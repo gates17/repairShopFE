@@ -1,0 +1,63 @@
+<!-- Material form register -->
+<mdb-card>
+  <mdb-card-header class="info-color white-text text-center py-4">
+    <h5>Criar reparação</h5>
+  </mdb-card-header>
+  
+  <mdb-card-body class="px-lg-5 pt-0">
+
+    <!-- Form -->
+
+    <form [formGroup]="reparacaoForm" (ngSubmit)="createReparacao()">
+      <!--    <form class="text-center" style="color: #757575;"> -->
+
+      <!-- name -->
+      <div class="md-form mt-0">    
+        <input type="text" formControlName="name" class="form-control" mdbInputDirective>
+        <label>Name</label>
+      </div>  
+
+      <!-- description -->
+      <div class="md-form mt-0">
+        <textarea type="text" formControlName="description"  class="md-textarea form-control" mdbInputDirective>
+        </textarea>
+        <label>Description</label>
+      </div>
+ 
+   
+      <!-- date_completed -->
+      <!--     
+      <div class="md-form mt-0">
+        <input type="datetime" id="materialDateCompleted" class="form-control" mdbInputDirective>
+        <label for="materialDateCompleted">Date Completed</label>
+      </div>
+      -->
+      <button mdbBtn color="success" block="true" class="my-4" type="submit">Guardar</button>
+      <button mdbBtn color="danger"  block="true" class="my-4" routerLink="/reparacao" type="submit">Cancelar</button>
+   
+    </form>
+    <!-- Form -->
+
+  </mdb-card-body>
+
+</mdb-card>
+
+
+<!--
+<div class="card">
+  <div class="card-header">
+    <div class="card-title"><h2>Criar reparação</h2></div>
+  </div>
+  <div class="card-body">
+    <form #reparacaoForm="ngForm" (ngSubmit)="createReparacao(reparacaoForm)">
+          <input name="Nome" required [(ngModel)]="reparacao" placeholder="Nome reparação" #name="ngModel">
+  
+    </form>
+  </div> 
+  <div class="card-actions">
+    <button class="text-success" color="primary" type="submit">Save</button>
+    <a class="text-danger" routerLink="/reparacao">Cancel</a>
+  </div>
+
+</div>
+-->
