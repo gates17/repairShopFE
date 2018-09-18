@@ -11,15 +11,26 @@
       </span>
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
+          <th class="text-center">Imagem</th>
           <th class="text-center">Nome </th>
           <th class="text-center">Descrição</th>
+          <th class="text-center">Orçamento</th>
+          <th class="text-center">Preço</th>
+          <th class="text-center">Materiais</th>
+          <th class="text-center">Contacto</th>
           <th class="text-center">Data de início</th>
           <th class="text-center">Data de conclusão</th>
-          <th class="text-center">Remover</th>
+          <th class="text-center">Acções</th>
+ 
         </tr>
         <tr *ngFor="let reparacao of reparacoes;let i = index">
+          <td>{{reparacao.foto}}</td>
           <td>{{reparacao.name}}</td>
           <td>{{reparacao.description}}</td>
+          <td>{{reparacao.budget}}</td>
+          <td>{{reparacao.price}}</td>
+          <td>{{reparacao.materials}}</td>
+          <td>{{reparacao.tlf}}</td>
           <td>{{reparacao.date_created}}</td>
           <td>{{reparacao.date_completed}}</td>
           <td>

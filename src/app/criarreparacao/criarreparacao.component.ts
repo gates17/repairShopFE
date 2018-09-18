@@ -17,7 +17,13 @@ export class CriarreparacaoComponent implements OnInit {
   reparacaoSub: Subscription;
   reparacaoForm = new FormGroup({
     name: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
+    price: new FormControl(''),
+    budget: new FormControl(''),
+    date_completed: new FormControl(''),
+    tlf: new FormControl(''),
+    foto: new FormControl(''),
+    materials: new FormControl('')
   })
 
   constructor(
@@ -34,7 +40,6 @@ export class CriarreparacaoComponent implements OnInit {
   }
 
   createReparacao() {
-    console.log(this.reparacaoForm.value)
     this.reparacaoCreateService.guardarReparacao(this.reparacaoForm).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));

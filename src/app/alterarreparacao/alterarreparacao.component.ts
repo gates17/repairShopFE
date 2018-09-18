@@ -17,7 +17,12 @@ export class AlterarreparacaoComponent implements OnInit {
   reparacaoForm = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
-    date_completed: new FormControl('')
+    date_completed: new FormControl(''),
+    price: new FormControl(''),
+    budget: new FormControl(''),
+    tlf: new FormControl(''),
+    foto: new FormControl(''),
+    materials: new FormControl('')
   })
 
   constructor(
