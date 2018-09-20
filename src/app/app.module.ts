@@ -10,24 +10,32 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MainnavbarComponent } from './mainnavbar/mainnavbar.component';
 import { FooternavbarComponent } from './footernavbar/footernavbar.component';
-import { RepairedTableComponent } from './repaired-table/repaired-table.component';
-import { RepairingTableComponent } from './repairing-table/repairing-table.component';
+
 import { CriarreparacaoComponent } from './criarreparacao/criarreparacao.component';
 import { EliminarreparacaoComponent } from './eliminarreparacao/eliminarreparacao.component';
 import { AlterarreparacaoComponent } from './alterarreparacao/alterarreparacao.component';
 import { DetalhesreparacaoComponent } from './detalhesreparacao/detalhesreparacao.component';
+
+import { CriarclienteComponent } from './criarcliente/criarcliente.component';
+import { AlterarclienteComponent } from './alterarcliente/alterarcliente.component';
+import { RemoverclienteComponent } from './removercliente/removercliente.component';
+import { DetalhesclienteComponent } from './detalhescliente/detalhescliente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainnavbarComponent,
     FooternavbarComponent,
-    RepairedTableComponent,
-    RepairingTableComponent,
+
     CriarreparacaoComponent,
     EliminarreparacaoComponent,
     AlterarreparacaoComponent,
-    DetalhesreparacaoComponent
+    DetalhesreparacaoComponent,
+    
+    CriarclienteComponent,
+    AlterarclienteComponent,
+    RemoverclienteComponent,
+    DetalhesclienteComponent
   ],
   imports: [
     BrowserModule,

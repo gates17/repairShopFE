@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { EliminarreparacaoserviceService } from '../services/eliminarreparacao/eliminarreparacaoservice.service';
+import { EliminarreparacaoserviceService } from '../services/reparacao/eliminarreparacao/eliminarreparacaoservice.service';
 import { IReparacao } from '../models/reparacao';
 
 @Component({

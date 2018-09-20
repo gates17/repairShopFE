@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RepairedService } from './repaired.service';
+import { RemoverService } from './remover.service';
 
-describe('RepairedService', () => {
+describe('RemoverService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: RepairedService = TestBed.get(RepairedService);
+    const service: RemoverService = TestBed.get(RemoverService);
     expect(service).toBeTruthy();
   });
 });

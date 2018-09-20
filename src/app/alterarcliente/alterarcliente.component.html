@@ -1,0 +1,65 @@
+<!-- Material form register -->
+<mdb-card>
+  <mdb-card-header class="info-color white-text text-center py-4">
+    <h5>Criar Cliente</h5>
+  </mdb-card-header>
+  
+  <mdb-card-body class="px-lg-5 pt-0">
+
+    <!-- Form -->
+
+    <div class="container">
+      <form [formGroup]="clienteForm" (ngSubmit)="saveCliente()">
+        <!--    <form class="text-center" style="color: #757575;"> -->
+
+        <!-- name -->
+        <div class="md-form mt-0">    
+          <input type="text" formControlName="name" class="form-control" mdbInputDirective>
+          <label>Nome</label>
+        </div>  
+        <!-- morada -->
+          <div class="md-form mt-0">    
+            <textarea type="text" formControlName="address" class="form-control" mdbInputDirective></textarea>  
+            <label>Morada</label>
+          </div>  
+        <!-- localidade -->
+        <div class="md-form mt-0">
+          <input type="text" formControlName="localidade"  class="md-textarea form-control" mdbInputDirective>
+          <label>Localidade</label>
+        </div>
+
+        <!-- codigo postal -->
+        <div class="md-form mt-0">    
+          <input type="text" formControlName="zip_code" class="form-control" mdbInputDirective>
+          <label>Codigo postal</label>
+        </div>  
+
+        <!-- cell phone -->
+        <div class="md-form mt-0">    
+          <input type="text" formControlName="tlf" class="form-control" mdbInputDirective>
+          <label>Telefone/Telemovel</label>
+        </div>  
+
+         <!-- saldo -->
+         <div class="md-form mt-0">    
+          <input type="text" formControlName="total_spent_by_client" class="form-control" mdbInputDirective>
+          <label>Saldo</label>
+        </div>  
+
+        <!-- ACÇÕES -->
+        <div class="col-md-3 flex-center">
+          <div class="flex-item">
+            <button mdbBtn color="success" block="true" class="my-4" type="submit">Guardar</button>
+          </div> 
+          <div class="flex-item">
+            <button mdbBtn color="danger"  block="true" class="my-4" routerLink="/cliente" type="submit">Cancelar</button>
+          </div>
+        </div>
+    
+      </form>
+    </div>
+    <!-- Form -->
+
+  </mdb-card-body>
+
+</mdb-card>

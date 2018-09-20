@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IReparacao } from '../../models/reparacao';
+import { IReparacao } from '../../../models/reparacao';
 
 @Injectable()
 export class DetalhesreparacaoserviceService {

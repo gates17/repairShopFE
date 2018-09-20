@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AlterarreparacaoserviceService } from '../services/alterarreparacao/alterarreparacaoservice.service';
+import { AlterarreparacaoserviceService } from '../services/reparacao/alterarreparacao/alterarreparacaoservice.service';
 import { IReparacao } from '../models/reparacao';
 
 @Component({
