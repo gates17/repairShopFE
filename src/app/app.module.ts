@@ -20,6 +20,7 @@ import { CriarclienteComponent } from './criarcliente/criarcliente.component';
 import { AlterarclienteComponent } from './alterarcliente/alterarcliente.component';
 import { RemoverclienteComponent } from './removercliente/removercliente.component';
 import { DetalhesclienteComponent } from './detalhescliente/detalhescliente.component';
+import { HtmlToPdfComponent } from './html-to-pdf/html-to-pdf.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DetalhesclienteComponent } from './detalhescliente/detalhescliente.comp
     CriarclienteComponent,
     AlterarclienteComponent,
     RemoverclienteComponent,
-    DetalhesclienteComponent
+    DetalhesclienteComponent,
+    HtmlToPdfComponent
   ],
   imports: [
     BrowserModule,

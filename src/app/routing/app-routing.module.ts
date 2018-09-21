@@ -3,17 +3,24 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 //components
+
 //reparacao
 import { AlterarreparacaoComponent } from '../alterarreparacao/alterarreparacao.component';
 import { CriarreparacaoComponent } from '../criarreparacao/criarreparacao.component';
 import { DetalhesreparacaoComponent } from '../detalhesreparacao/detalhesreparacao.component';
 import { EliminarreparacaoComponent } from '../eliminarreparacao/eliminarreparacao.component';
+
 //cliente
 import { AlterarclienteComponent } from '../alterarcliente/alterarcliente.component';
 import { CriarclienteComponent } from '../criarcliente/criarcliente.component';
 import { DetalhesclienteComponent } from '../detalhescliente/detalhescliente.component';
 import { RemoverclienteComponent } from '../removercliente/removercliente.component';
+
+//html to pdf
+import {HtmlToPdfComponent} from '../html-to-pdf/html-to-pdf.component';
+
 //services
+
 //reparacao
 import { AlterarreparacaoserviceService } from '../services/reparacao/alterarreparacao/alterarreparacaoservice.service';
 import { CriarreparacaoserviceService } from '../services/reparacao/criarreparacao/criarreparacaoservice.service';
@@ -40,6 +47,9 @@ const routes: Routes = [
   {path: 'cliente/details/:id', component: DetalhesclienteComponent },
   {path: 'cliente/delete/:id', component: RemoverclienteComponent },
   {path: 'cliente/update/:id', component: AlterarclienteComponent },
+
+  {path: 'print', component: HtmlToPdfComponent },
+
 ]
 
 @NgModule({
@@ -71,8 +81,11 @@ export const routingComponents = [
   CriarreparacaoComponent,
   DetalhesreparacaoComponent,
   EliminarreparacaoComponent,
+
   AlterarclienteComponent,
   CriarclienteComponent,
   DetalhesclienteComponent,
-  RemoverclienteComponent  
+  RemoverclienteComponent,
+
+  HtmlToPdfComponent
 ]
