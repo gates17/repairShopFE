@@ -38,6 +38,13 @@ export class AlterarclienteComponent implements OnInit {
           if (cliente) {
             this.cliente = cliente;
             this.cliente.url = cliente.url;
+
+            this.clienteForm.controls.name.setValue(this.cliente.name);
+            this.clienteForm.controls.tlf.setValue(this.cliente.tlf);
+            this.clienteForm.controls.address.setValue(this.cliente.address);
+            this.clienteForm.controls.zip_code.setValue(this.cliente.zip_code);
+            this.clienteForm.controls.localidade.setValue(this.cliente.localidade);
+            this.clienteForm.controls.total_spent_by_client.setValue(this.cliente.total_spent_by_client);
           } else {
             this.gotoList();
           }

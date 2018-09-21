@@ -20,7 +20,7 @@ export class AlterarService {
   updateCliente(clientes: any, id:number):Observable<any> {
     console.log(clientes)
     if (clientes){
-          return this.http.put(this._clienteurl + 'update/' + id + '/',clientes)
+          return this.http.patch(this._clienteurl + 'update/' + id + '/',clientes)
     }
     else {  
       return this.http.get<ICliente[]>(this._clienteurl);
