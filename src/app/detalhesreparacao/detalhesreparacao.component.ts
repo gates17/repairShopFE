@@ -65,9 +65,13 @@ export class DetalhesreparacaoComponent implements OnInit {
 
 
     }, error => console.error(error));
+
+ 
   }
 
-
+  print(){
+  }
+  
   editField: string;
   personList: Array<any> = [
     { id: 1, name: 'Aurelia Vega', age: 30, companyName: 'Deepends', country: 'Spain', city: 'Madrid' },

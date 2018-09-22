@@ -1,6 +1,6 @@
 <!-- Editable table -->
-<div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
+<div class="card reparacoes">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Reparações</h3>
   <div class="card-body">
     <div id="table" class="table-editable">
       <span class="table-add float-right mb-3 mr-2">
@@ -36,7 +36,7 @@
           <td>
             <span class="table-remove">
 
-              <button type="button nav-link" mdbBtn color="primary"  block="true" class="my-12" routerLink="/print"  mdbWavesEffect>Imprimir</button>
+              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" routerLink="/print"  mdbWavesEffect>Imprimir</button>
 
               <button type="button nav-link" [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active" 
                                     mdbBtn color="secondary" rounded="true" class="my-0">Editar</button>
@@ -66,33 +66,7 @@
             </span>
           </td>
         </tr>
-        <!--
-        <tr *ngFor="let person of personList; let id = index">
-          <td contenteditable="false" (keyup)="changeValue(id, 'name', $event)">{{person.name}}</td>
-          <td contenteditable="false" (keyup)="changeValue(id, 'age', $event)">{{person.age}}</td>
-          <td contenteditable="false" (keyup)="changeValue(id, 'companyName', $event)">{{person.companyName}}</td>
-          <td contenteditable="false" (keyup)="changeValue(id, 'country', $event)">{{person.country}}</td>
-          <td contenteditable="false" (keyup)="changeValue(id, 'city', $event)">{{person.city}}</td>
-          <td>
-            <span class="table-up">
-              <a class="indigo-text">
-                <mdb-icon icon="long-arrow-up"></mdb-icon>
-              </a>
-            </span>
-            <span class="table-down">
-              <a class="indigo-text">
-                <mdb-icon icon="long-arrow-down"></mdb-icon>
-              </a>
-            </span>
-          </td>
-          <td>
-            <span class="table-remove">
-
-              <button type="button nav-link" routerLink="/reparacao/delete" routerLinkActive="active" mdbBtn color="danger" rounded="true" size="sm" class="my-0">Remove</button>
-            </span>
-          </td>
-        </tr>
-        -->
+      
       </table>
     </div>
   </div>
