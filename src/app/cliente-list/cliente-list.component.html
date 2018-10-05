@@ -1,0 +1,70 @@
+<!-- Editable table -->
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <a class="nav-link text-success"  routerLink="/cliente/create" routerLinkActive="active">
+  
+            <mdb-icon icon="plus" size="2x"></mdb-icon>
+          </a>
+        </span>
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <tr>
+            <th class="text-center">Nome </th>
+            <th class="text-center">Morada</th>
+            <th class="text-center">Codigo Postal</th>
+            <th class="text-center">Localidade</th>
+            <th class="text-center">Contacto</th>
+            <th class="text-center">Data de conclusão</th>
+            <th class="text-center">Saldo</th>
+            <th class="text-center">Acções</th>
+   
+          </tr>
+          <tr *ngFor="let cliente of clientes;let i = index">
+            <td>{{cliente.name}}</td>
+            <td>{{cliente.address}}</td>
+            <td>{{cliente.zip_code}}</td>
+            <td>{{cliente.localidade}}</td>
+            <td>{{cliente.tlf}}</td>
+            <td>{{cliente.date_created}}</td>
+            <td>{{cliente.total_spent_by_cliente}}</td>
+            <td>
+              <span class="table-remove">
+  
+                <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" (click)=get_detail(cliente.id)  mdbWavesEffect>Consultar</button>
+  
+                <button type="button nav-link" [routerLink]="['/cliente/update',cliente.id]" routerLinkActive="active" 
+                                      mdbBtn color="secondary" rounded="true" class="my-0">Editar</button>
+  
+                <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Remover</button>
+  
+                <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title w-100" id="myModalLabel">Remover reparação</h4>
+                      </div>
+                      <div class="modal-body">
+                        Tem a certeza que pretende eliminar a reparação?
+                        Caso elimine, não poderá voltar a consultar esta reparação!
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Cancelar</button>
+                        <button type="button" mdbBtn color="primary" class="relative waves-light"  (click)=[basicModal.hide(),remove(cliente.id,i)] mdbWavesEffect>Eliminar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </span>
+            </td>
+          </tr>
+        
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Editable table -->

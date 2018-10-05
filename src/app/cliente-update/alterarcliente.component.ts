@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -10,8 +10,9 @@ import { ICliente } from '../models/cliente';
   templateUrl: './alterarcliente.component.html',
   styleUrls: ['./alterarcliente.component.scss']
 })
-export class AlterarclienteComponent implements OnInit {
+export class AlterarclienteComponent implements OnInit, OnDestroy {
  
+  private request:any;
   cliente: ICliente;
   clienteSub: Subscription;
   clienteForm = new FormGroup({
@@ -34,7 +35,7 @@ export class AlterarclienteComponent implements OnInit {
       const id = params['id'];
       
       if (id) {
-        this.alterarClienteService.getCliente(id).subscribe((cliente: ICliente) => {
+        this.request = this.alterarClienteService.getCliente(id).subscribe((cliente: ICliente) => {
           if (cliente) {
             this.cliente = cliente;
             this.cliente.url = cliente.url;
@@ -51,6 +52,11 @@ export class AlterarclienteComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngOnDestroy(){
+    this.clienteSub.unsubscribe();
+    this.request.unsubscribe();
   }
   gotoList() {
     this.router.navigate(['/cliente']);

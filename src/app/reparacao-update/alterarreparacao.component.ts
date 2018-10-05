@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { tap  } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { AlterarreparacaoserviceService } from '../services/reparacao/alterarreparacao/alterarreparacaoservice.service';
 import { IReparacao } from '../models/reparacao';
 
@@ -11,11 +11,12 @@ import { IReparacao } from '../models/reparacao';
   templateUrl: './alterarreparacao.component.html',
   styleUrls: ['./alterarreparacao.component.scss']
 })
-export class AlterarreparacaoComponent implements OnInit {
+export class AlterarreparacaoComponent implements OnInit, OnDestroy {
 
 
   reparacao:  IReparacao;
   reparacaoSub: Subscription;
+  private request: any;
   reparacaoForm = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
@@ -28,8 +29,7 @@ export class AlterarreparacaoComponent implements OnInit {
   })
 
   constructor(
-    private formBuilder: FormBuilder,
-
+    
     private route: ActivatedRoute,
     private router: Router,
     private alterarReparacaoService: AlterarreparacaoserviceService
@@ -44,10 +44,7 @@ export class AlterarreparacaoComponent implements OnInit {
        
         console.log(this.reparacaoForm)
 
-
-
-     
-        this.alterarReparacaoService.getReparacao(id).subscribe((reparacao: IReparacao) => {
+        this.request = this.alterarReparacaoService.getReparacao(id).subscribe((reparacao: IReparacao) => {
           if (reparacao) {
             this.reparacao = reparacao;
             this.reparacao.url = reparacao.url;
@@ -69,6 +66,12 @@ export class AlterarreparacaoComponent implements OnInit {
 
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.reparacaoSub.unsubscribe();
+    this.request.unsubscribe();
+
   }
   gotoList() {
     this.router.navigate(['/reparacao']);

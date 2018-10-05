@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CriarreparacaoserviceService } from '../services/reparacao/criarreparacao/criarreparacaoservice.service';
 import { IReparacao } from '../models/reparacao';
 
@@ -11,20 +11,22 @@ import { IReparacao } from '../models/reparacao';
   templateUrl: './criarreparacao.component.html',
   styleUrls: ['./criarreparacao.component.scss']
 })
-export class CriarreparacaoComponent implements OnInit {
+export class CriarreparacaoComponent implements OnInit, OnDestroy {
 
   reparacao: string;
   reparacaoSub: Subscription;
   reparacaoForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('',Validators.required),
     description: new FormControl(''),
     price: new FormControl(''),
-    budget: new FormControl(''),
+    budget: new FormControl('',Validators.required),
     date_completed: new FormControl(''),
-    tlf: new FormControl(''),
+    tlf: new FormControl('',Validators.required),
     foto: new FormControl(''),
     materials: new FormControl('')
   })
+ 
+  private subresponse:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,8 +42,15 @@ export class CriarreparacaoComponent implements OnInit {
   }
 
   createReparacao() {
-    this.reparacaoCreateService.guardarReparacao(this.reparacaoForm).subscribe(result => {
+    this.subresponse = this.reparacaoCreateService.guardarReparacao(this.reparacaoForm).subscribe(result => {
+      console.log("teste");
+      console.log(result);
       this.gotoList();
     }, error => console.error(error));
+  }
+
+  ngOnDestroy():void {
+    
+    this.subresponse.unsubscribe()  
   }
 }

@@ -13,6 +13,8 @@ import { ICliente } from '../models/cliente';
 export class RemoverclienteComponent implements OnInit, OnDestroy {
   cliente: ICliente;
   clienteSub: Subscription;
+  private request: any;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +27,7 @@ export class RemoverclienteComponent implements OnInit, OnDestroy {
       const id = params['id'];
 
       if (id) {
-        this.clienteRemoveService.getCliente(id).subscribe((cliente: ICliente) => {
+        this.request = this.clienteRemoveService.getCliente(id).subscribe((cliente: ICliente) => {
           if (cliente) {
             this.cliente = cliente;
             this.cliente.url = cliente.url;
@@ -39,10 +41,13 @@ export class RemoverclienteComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.clienteSub.unsubscribe();
+    this.request.unsubscribe();
   }
+
   gotoList() {
     this.router.navigate(['/clientes']);
   }
+  
   remove(id: number) {
     this.clienteRemoveService.removerCliente(id).subscribe(result => {
       this.gotoList();

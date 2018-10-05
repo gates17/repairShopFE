@@ -5,16 +5,18 @@ import { Routes, RouterModule } from '@angular/router';
 //components
 
 //reparacao
-import { AlterarreparacaoComponent } from '../alterarreparacao/alterarreparacao.component';
-import { CriarreparacaoComponent } from '../criarreparacao/criarreparacao.component';
-import { DetalhesreparacaoComponent } from '../detalhesreparacao/detalhesreparacao.component';
-import { EliminarreparacaoComponent } from '../eliminarreparacao/eliminarreparacao.component';
+import { CriarreparacaoComponent } from '../reparacao-create/criarreparacao.component';
+import { EliminarreparacaoComponent } from '../reparacao-delete/eliminarreparacao.component';
+import { AlterarreparacaoComponent } from '../reparacao-update/alterarreparacao.component';
+import { DetalhesreparacaoComponent } from '../reparacao-details/detalhesreparacao.component';
+import { ReparacaoListComponent } from '../reparacao-list/reparacao-list.component';
 
 //cliente
-import { AlterarclienteComponent } from '../alterarcliente/alterarcliente.component';
-import { CriarclienteComponent } from '../criarcliente/criarcliente.component';
-import { DetalhesclienteComponent } from '../detalhescliente/detalhescliente.component';
-import { RemoverclienteComponent } from '../removercliente/removercliente.component';
+import { CriarclienteComponent } from '../cliente-create/criarcliente.component';
+import { AlterarclienteComponent } from '../cliente-update/alterarcliente.component';
+import { RemoverclienteComponent } from '../cliente-delete/removercliente.component';
+import { DetalhesclienteComponent } from '../cliente-details/detalhescliente.component';
+import { ClienteListComponent } from '../cliente-list/cliente-list.component';
 
 //html to pdf
 import {HtmlToPdfComponent} from '../html-to-pdf/html-to-pdf.component';
@@ -26,22 +28,25 @@ import { AlterarreparacaoserviceService } from '../services/reparacao/alterarrep
 import { CriarreparacaoserviceService } from '../services/reparacao/criarreparacao/criarreparacaoservice.service';
 import { EliminarreparacaoserviceService } from '../services/reparacao/eliminarreparacao/eliminarreparacaoservice.service';
 import { DetalhesreparacaoserviceService } from '../services/reparacao/detalhesreparacao/detalhesreparacaoservice.service';
+
+
 //cliente
 import { AlterarService } from '../services/cliente/alterarservice/alterar.service';
 import { CriarService } from '../services/cliente/criarservice/criar.service';
 import { ConsultarService } from '../services/cliente/consultarservice/consultar.service';
 import { RemoverService } from '../services/cliente/removerservice/remover.service';
 
+
 const routes: Routes = [
   
-  {path: 'reparacao', component: DetalhesreparacaoComponent },
+  {path: 'reparacao', component: ReparacaoListComponent },
   {path: 'reparacao/create', component: CriarreparacaoComponent },
   
   {path: 'reparacao/details/:id', component: DetalhesreparacaoComponent },
   {path: 'reparacao/delete/:id', component: EliminarreparacaoComponent },
   {path: 'reparacao/update/:id', component: AlterarreparacaoComponent },
 
-  {path: 'cliente', component: DetalhesclienteComponent },
+  {path: 'cliente', component: ClienteListComponent },
   {path: 'cliente/create', component: CriarclienteComponent },
   
   {path: 'cliente/details/:id', component: DetalhesclienteComponent },
@@ -81,11 +86,13 @@ export const routingComponents = [
   CriarreparacaoComponent,
   DetalhesreparacaoComponent,
   EliminarreparacaoComponent,
+  ReparacaoListComponent,
 
   AlterarclienteComponent,
   CriarclienteComponent,
   DetalhesclienteComponent,
   RemoverclienteComponent,
+  ClienteListComponent,
 
   HtmlToPdfComponent
 ]

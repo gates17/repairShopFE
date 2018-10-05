@@ -11,16 +11,18 @@ import { AppComponent } from './app.component';
 import { MainnavbarComponent } from './mainnavbar/mainnavbar.component';
 import { FooternavbarComponent } from './footernavbar/footernavbar.component';
 
-import { CriarreparacaoComponent } from './criarreparacao/criarreparacao.component';
-import { EliminarreparacaoComponent } from './eliminarreparacao/eliminarreparacao.component';
-import { AlterarreparacaoComponent } from './alterarreparacao/alterarreparacao.component';
-import { DetalhesreparacaoComponent } from './detalhesreparacao/detalhesreparacao.component';
+import { CriarreparacaoComponent } from './reparacao-create/criarreparacao.component';
+import { EliminarreparacaoComponent } from './reparacao-delete/eliminarreparacao.component';
+import { AlterarreparacaoComponent } from './reparacao-update/alterarreparacao.component';
+import { DetalhesreparacaoComponent } from './reparacao-details/detalhesreparacao.component';
 
-import { CriarclienteComponent } from './criarcliente/criarcliente.component';
-import { AlterarclienteComponent } from './alterarcliente/alterarcliente.component';
-import { RemoverclienteComponent } from './removercliente/removercliente.component';
-import { DetalhesclienteComponent } from './detalhescliente/detalhescliente.component';
+import { CriarclienteComponent } from './cliente-create/criarcliente.component';
+import { AlterarclienteComponent } from './cliente-update/alterarcliente.component';
+import { RemoverclienteComponent } from './cliente-delete/removercliente.component';
+import { DetalhesclienteComponent } from './cliente-details/detalhescliente.component';
 import { HtmlToPdfComponent } from './html-to-pdf/html-to-pdf.component';
+import { ReparacaoListComponent } from './reparacao-list/reparacao-list.component';
+import { ClienteListComponent } from './cliente-list/cliente-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { HtmlToPdfComponent } from './html-to-pdf/html-to-pdf.component';
     AlterarclienteComponent,
     RemoverclienteComponent,
     DetalhesclienteComponent,
-    HtmlToPdfComponent
+    HtmlToPdfComponent,
+    ReparacaoListComponent,
+    ClienteListComponent
   ],
   imports: [
     BrowserModule,

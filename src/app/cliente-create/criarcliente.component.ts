@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -11,8 +11,9 @@ import { ICliente } from '../models/cliente';
   templateUrl: './criarcliente.component.html',
   styleUrls: ['./criarcliente.component.scss']
 })
-export class CriarclienteComponent implements OnInit {
+export class CriarclienteComponent implements OnInit, OnDestroy {
 
+  private request:any;
   cliente: string;
   clienteSub: Subscription;
   clienteForm = new FormGroup({
@@ -33,12 +34,16 @@ export class CriarclienteComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.request.unsubscribe();
+  }
+
   gotoList() {
     this.router.navigate(['/cliente']);
   }
 
   createCliente() {
-    this.clienteCreateService.guardarCliente(this.clienteForm).subscribe(result => {
+    this.request = this.clienteCreateService.guardarCliente(this.clienteForm).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }

@@ -14,6 +14,7 @@ import { IReparacao } from '../models/reparacao';
 export class EliminarreparacaoComponent implements OnInit, OnDestroy {
   reparacao: IReparacao;
   reparacaoSub: Subscription;
+  private request:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,7 +27,7 @@ export class EliminarreparacaoComponent implements OnInit, OnDestroy {
       const id = params['id'];
 
       if (id) {
-        this.reparacaoRemoveService.getReparacao(id).subscribe((reparacao: IReparacao) => {
+        this.request = this.reparacaoRemoveService.getReparacao(id).subscribe((reparacao: IReparacao) => {
           if (reparacao) {
             this.reparacao = reparacao;
             this.reparacao.url = reparacao.url;
@@ -40,6 +41,7 @@ export class EliminarreparacaoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.reparacaoSub.unsubscribe();
+    this.request.unsubscribe();
   }
   gotoList() {
     this.router.navigate(['/reparacao']);
