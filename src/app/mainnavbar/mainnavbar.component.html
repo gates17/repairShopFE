@@ -5,7 +5,7 @@
     </a>
   </logo>
   <links>
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto flex-center align-items-center">
         <li class="nav-item waves-light" mdbWavesEffect>
           <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
         </li>
@@ -15,6 +15,10 @@
         <li class="nav-item waves-light" mdbWavesEffect>
           <a class="nav-link" routerLink="/cliente" routerLinkActive="active">Clientes</a>
         </li>
+        <li class="nav-item waves-light flex align-items-center justify-content-center" mdbWavesEffect>
+          <app-search [pesquisa]='searchParam'></app-search
+        ></li>
+
       </ul>
       <ul class="navbar-nav nav-flex-icons">
         <li class="nav-item waves-light" mdbWavesEffect>

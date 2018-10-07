@@ -11,7 +11,7 @@
       </span>
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
-          <th class="text-center">Imagem</th>
+          <th class="text-center" [hidden]="!false">Imagem</th>
           <th class="text-center">Nome </th>
           <th class="text-center">Descrição</th>
           <th class="text-center">Orçamento</th>
@@ -24,7 +24,7 @@
  
         </tr>
         <tr *ngFor="let reparacao of reparacoes;let i = index">
-          <td>{{reparacao.foto}}</td>
+          <td [hidden]="!false">{{reparacao.foto}}</td>
           <td>{{reparacao.name}}</td>
           <td>{{reparacao.description}}</td>
           <td>{{reparacao.budget}}</td>

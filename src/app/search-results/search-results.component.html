@@ -1,0 +1,74 @@
+<!-- Editable table -->
+<div class="card reparacoes">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Reparações</h3>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <span class="table-add float-right mb-3 mr-2">
+          <a class="nav-link text-success"  routerLink="/reparacao/create" routerLinkActive="active">
+  
+            <mdb-icon icon="plus" size="2x"></mdb-icon>
+          </a>
+        </span>
+        <table class="table table-bordered table-responsive-md table-striped text-center">
+          <tr>
+            <th class="text-center">Imagem</th>
+            <th class="text-center">Nome </th>
+            <th class="text-center">Descrição</th>
+            <th class="text-center">Orçamento</th>
+            <th class="text-center">Preço</th>
+            <th class="text-center">Materiais</th>
+            <th class="text-center">Contacto</th>
+            <th class="text-center">Data de início</th>
+            <th class="text-center">Data de conclusão</th>
+            <th class="text-center">Acções</th>
+   
+          </tr>
+          <tr *ngFor="let reparacao of reparacoes;let i = index">
+            <td>{{reparacao.foto}}</td>
+            <td>{{reparacao.name}}</td>
+            <td>{{reparacao.description}}</td>
+            <td>{{reparacao.budget}}</td>
+            <td>{{reparacao.price}}</td>
+            <td>{{reparacao.materials}}</td>
+            <td>{{reparacao.tlf}}</td>
+            <td>{{reparacao.date_created}}</td>
+            <td>{{reparacao.date_completed}}</td>
+            <td>
+              <span class="table-remove">
+  
+                <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" (click)=get_detail(reparacao.id)  mdbWavesEffect>Consultar</button>
+  
+                <button type="button nav-link" [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active" 
+                                      mdbBtn color="secondary" rounded="true" class="my-0">Editar</button>
+  
+                <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Remover</button>
+  
+                <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title w-100" id="myModalLabel">Remover reparação</h4>
+                      </div>
+                      <div class="modal-body">
+                        Tem a certeza que pretende eliminar a reparação?
+                        Caso elimine, não poderá voltar a consultar esta reparação!
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Cancelar</button>
+                        <button type="button" mdbBtn color="primary" class="relative waves-light"  (click)=[basicModal.hide(),remove(reparacao.id,i)] mdbWavesEffect>Eliminar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </span>
+            </td>
+          </tr>
+        
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Editable table -->
