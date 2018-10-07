@@ -36,11 +36,18 @@ import { CriarService } from '../services/cliente/criarservice/criar.service';
 import { ConsultarService } from '../services/cliente/consultarservice/consultar.service';
 import { RemoverService } from '../services/cliente/removerservice/remover.service';
 
+//pesquisa
+import { SearchResultsComponent } from '../search-results/search-results.component';
+import { PrintClienteComponent } from '../print-cliente/print-cliente.component';
+import { PrintreparacaoComponent } from '../printreparacao/printreparacao.component';
+import { AppComponent } from '../app.component';
+
 
 const routes: Routes = [
   
   {path: 'reparacao', component: ReparacaoListComponent },
   {path: 'reparacao/create', component: CriarreparacaoComponent },
+  {path: 'reparacao/print', component: PrintreparacaoComponent},
   
   {path: 'reparacao/details/:id', component: DetalhesreparacaoComponent },
   {path: 'reparacao/delete/:id', component: EliminarreparacaoComponent },
@@ -48,12 +55,16 @@ const routes: Routes = [
 
   {path: 'cliente', component: ClienteListComponent },
   {path: 'cliente/create', component: CriarclienteComponent },
+  {path: 'cliente/print', component: PrintClienteComponent},
   
   {path: 'cliente/details/:id', component: DetalhesclienteComponent },
   {path: 'cliente/delete/:id', component: RemoverclienteComponent },
   {path: 'cliente/update/:id', component: AlterarclienteComponent },
 
+  {path: 'search', component: SearchResultsComponent },
   {path: 'print', component: HtmlToPdfComponent },
+
+  {path: '', component: AppComponent},
 
 ]
 
@@ -81,18 +92,23 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 export const routingComponents = [
-
+  AppComponent,
+  
   AlterarreparacaoComponent,
   CriarreparacaoComponent,
   DetalhesreparacaoComponent,
   EliminarreparacaoComponent,
   ReparacaoListComponent,
+  PrintreparacaoComponent,
 
   AlterarclienteComponent,
   CriarclienteComponent,
   DetalhesclienteComponent,
   RemoverclienteComponent,
   ClienteListComponent,
+  PrintClienteComponent,
+
+  SearchResultsComponent,
 
   HtmlToPdfComponent
 ]

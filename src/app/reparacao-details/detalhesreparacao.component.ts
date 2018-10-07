@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, Input, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -7,6 +7,7 @@ import { EliminarreparacaoserviceService } from '../services/reparacao/eliminarr
 import { IReparacao } from '../models/reparacao';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { HtmlToPdfComponent } from '../html-to-pdf/html-to-pdf.component'
 
 
 @Component({
@@ -16,6 +17,8 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
   providers: [DetalhesreparacaoserviceService,EliminarreparacaoserviceService]
 })
 export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
+
+  @Output() messageEvent = new EventEmitter<any>();
 
   private request: any;
   reparacao: IReparacao;
@@ -58,7 +61,6 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
 
             this.reparacao.url = reparacao.url;
 
-            console.log(reparacao)
             this.reparacaoForm.controls.name.setValue(this.reparacao.name);
             this.reparacaoForm.controls.description.setValue(this.reparacao.description);
             this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
@@ -78,7 +80,6 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.request.unsubscribe();
     this.reparacaoSub.unsubscribe();
   }
  
@@ -97,6 +98,22 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
   }
 
   print(){
+      // this.clientData= this.cliente;
+      this.reparacaoForm.controls.name.setValue(this.reparacao.name);
+      this.reparacaoForm.controls.description.setValue(this.reparacao.description);
+      this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
+      this.reparacaoForm.controls.price.setValue(this.reparacao.price);
+      this.reparacaoForm.controls.budget.setValue(this.reparacao.budget);
+      this.reparacaoForm.controls.tlf.setValue(this.reparacao.tlf);
+      this.reparacaoForm.controls.foto.setValue(this.reparacao.foto);
+      this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
+      this.messageEvent.emit({
+        form: this.reparacaoForm.controls.value,
+        reparacao: this.reparacao,
+        value: this.reparacaoForm.value
+      });
+      this.router.navigate(['/reparacao/print']);
+    
   }
   
 

@@ -1,15 +1,15 @@
 <!-- Editable table -->
 
 <!-- Material form register -->
-<mdb-card>
-  <mdb-card-header class="info-color white-text text-center py-4">
-    <h5>Alterar reparação</h5>
+<mdb-card class="reparacoes">
+  <mdb-card-header class="info-color white-text text-center py-4" id="header">
+    <h5>Detalhes reparação</h5>
   </mdb-card-header>
   
   <mdb-card-body class="px-lg-5 pt-0">
 
     <!-- Form -->
-    <div class="container">
+    <div class="container reparacoes">
       <form [formGroup]="reparacaoForm">
         <!--    <form class="text-center" style="color: #757575;"> -->
 
@@ -62,9 +62,11 @@
           </textarea>
           <label>Materiais</label>
         </div>
-        <div class="col-md-3 flex-center">
+
+        <!--ACCOES-->
+        <div class="col-md-3 flex-center" id="accoes">
           <div class="flex-item">
-            <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" routerLink="/print"  mdbWavesEffect>Imprimir</button>
+            <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)="print()" mdbWavesEffect>Imprimir</button>
           </div> 
           <div class="flex-item" *ngIf="reparacao">
               <button type="button nav-link" [routerLink]="['/reparacao/update',id]" routerLinkActive="active" 

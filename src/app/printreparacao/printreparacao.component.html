@@ -1,0 +1,22 @@
+<div class="container flex">
+  <div id="content" #content class="flex-center">  
+    <div>  
+      <div class="alert alert-info flex-center">  
+          <strong>Pré-visualização recibo</strong>  
+      </div>  
+    </div>  
+  </div>  
+  <div>  
+    <div class="card recibo mx-auto">  <!-- alinhar os items ao centro resulta em imagem desfocada devido ao tamanho da div -->
+      <app-detalhesreparacao formdata="data" id="contentToConvert" (messageEvent)="receiveMessage($event)"></app-detalhesreparacao>
+    </div> 
+  </div>  
+  <div class="actions flex-center">  
+    <div>         
+      <div>  
+        <button type="button nav-link" mdbBtn color="secondary"  class="my-0 flex-item" routerLink="/reparacao"  mdbWavesEffect>Reparações</button>
+        <input type="button" mdbBtn color="primary"  class="my-0 flex-item" value="Imprimir recibo" (click)="print()" mdbWavesEffect/>  
+      </div>  
+    </div>  
+  </div> 
+</div>

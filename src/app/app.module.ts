@@ -23,6 +23,10 @@ import { DetalhesclienteComponent } from './cliente-details/detalhescliente.comp
 import { HtmlToPdfComponent } from './html-to-pdf/html-to-pdf.component';
 import { ReparacaoListComponent } from './reparacao-list/reparacao-list.component';
 import { ClienteListComponent } from './cliente-list/cliente-list.component';
+import { SearchComponent } from './search/search.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { PrintreparacaoComponent } from './printreparacao/printreparacao.component';
+import { PrintClienteComponent } from './print-cliente/print-cliente.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { ClienteListComponent } from './cliente-list/cliente-list.component';
     DetalhesclienteComponent,
     HtmlToPdfComponent,
     ReparacaoListComponent,
-    ClienteListComponent
+    ClienteListComponent,
+    SearchComponent,
+    SearchResultsComponent,
+    PrintreparacaoComponent,
+    PrintClienteComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 <mdb-card>
-    <mdb-card-header class="info-color white-text text-center py-4">
-      <h5>Criar Cliente</h5>
+    <mdb-card-header class="info-color white-text text-center py-4" id="header">
+      <h5>Detalhes Cliente</h5>
     </mdb-card-header>
     
     <mdb-card-body class="px-lg-5 pt-0">
@@ -8,7 +8,7 @@
       <!-- Form -->
   
       <div class="container">
-        <form [formGroup]="clienteForm">
+        <form [formGroup]="clienteForm" #form>
           <!--    <form class="text-center" style="color: #757575;"> -->
   
           <!-- name -->
@@ -44,49 +44,53 @@
             <input type="text" formControlName="total_spent_by_client" class="form-control" mdbInputDirective>
             <label>Saldo</label>
           </div>  
-  
-          <!-- ACÇÕES -->
-          <div class="col-md-3 flex-center">
-            <div class="flex-item">
-                <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" routerLink="/print"  mdbWavesEffect>Imprimir</button>
-              </div> 
-            <div class="flex-item" *ngIf="cliente">
-              <button type="button nav-link" [routerLink]="['/cliente/update',id]" routerLinkActive="active" 
-                                    mdbBtn color="secondary" rounded="true" class="my-0">Editar</button>
-            </div>
-            <div class="flex-item">
-                <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Remover</button>
-            </div>
-            <div class="flex-item">
-                <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-                          <span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title w-100" id="myModalLabel">Remover reparação</h4>
-                      </div>
-                      <div class="modal-body">
-                        Tem a certeza que pretende eliminar a reparação?
-                        Caso elimine, não poderá voltar a consultar esta reparação!
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Cancelar</button>
-                        <button type="button" mdbBtn color="primary" class="relative waves-light"  (click)=[basicModal.hide(),remove(id)] mdbWavesEffect>Eliminar</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            
-            <div class="flex-item">
-              <button mdbBtn color="danger"  block="true" class="my-4" routerLink="/cliente" type="submit">Cancelar</button>
-            </div>
-          </div>
+          <div class="md-form mt-0">    
+              <input type="text" formControlName="date_created" class="form-control" mdbInputDirective>
+              <label>Data de registo</label>
+            </div>  
+         
        
       
         </form>
+         <!-- ACÇÕES -->
+        <div class="col-md-3 flex-center" id="accoes">
+          <div class="flex-item">
+              <button  type="button nav-link" mdbBtn color="primary" class="my-0 accoes" rounded="true" (click)="print()"  mdbWavesEffect>Imprimir</button>
+            </div> 
+          <div class="flex-item" *ngIf="cliente">
+            <button  type="button nav-link" [routerLink]="['/cliente/update',id]" routerLinkActive="active" 
+                                  mdbBtn color="secondary" rounded="true" class="my-0 accoes">Editar</button>
+          </div>
+          <div class="flex-item">
+              <button type="button" mdbBtn color="danger" class="relative waves-light accoes" (click)="basicModal.show()" mdbWavesEffect>Remover</button>
+          </div>
+          <div class="flex-item">
+              <div mdbModal #basicModal="mdbModal" class="modal fade accoes" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="modal-title w-100" id="myModalLabel">Remover reparação</h4>
+                    </div>
+                    <div class="modal-body">
+                      Tem a certeza que pretende eliminar a reparação?
+                      Caso elimine, não poderá voltar a consultar esta reparação!
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Cancelar</button>
+                      <button type="button" mdbBtn color="primary" class="relative waves-light"  (click)=[basicModal.hide(),remove(id)] mdbWavesEffect>Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          
+          <div class="flex-item accoes">
+            <button id="accoes" mdbBtn color="danger"  block="true" class="my-4 accoes" routerLink="/cliente" type="submit">Cancelar</button>
+          </div>
+        </div>
       </div>
       <!-- Form -->
   

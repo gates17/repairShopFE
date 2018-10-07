@@ -1,13 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, Input, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ConsultarService } from '../services/cliente/consultarservice/consultar.service';
 import { RemoverService } from '../services/cliente/removerservice/remover.service';
 import { ICliente } from '../models/cliente';
-import {map} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { HtmlToPdfComponent } from '../html-to-pdf/html-to-pdf.component'
+
 
 @Component({
   selector: 'app-detalhescliente',
@@ -16,12 +17,15 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class DetalhesclienteComponent implements OnInit, OnDestroy {
 
+  @Output() messageEvent = new EventEmitter<any>();
+ 
+  
   cliente: ICliente;
   private request:any;
   clienteSub: Subscription;
-  public clientes = [];
   images: Array<string>;
   id: any;
+  convert: HtmlToPdfComponent;
 
   clienteForm = new FormGroup({
     name: new FormControl(''),
@@ -29,7 +33,9 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
     address: new FormControl(''),
     zip_code:  new FormControl(''),
     localidade:  new FormControl(''),
-    total_spent_by_client:  new FormControl('')
+    total_spent_by_client:  new FormControl(''),
+
+    date_created:  new FormControl('')
   })
 
   constructor(
@@ -42,7 +48,6 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-  
     this.clienteSub = this.route.params.subscribe(params => {
       this.id = params['id'];
       
@@ -51,12 +56,12 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
           if (cliente) {
             this.cliente = cliente;
             this.cliente.url = cliente.url;
-            this.cliente.tlf = cliente.tlf;
-            this.cliente.total_spent_by_client = cliente.total_spent_by_client;
-            this.cliente.address = cliente.address;
-            this.cliente.zip_code = cliente.zip_code;
-            this.cliente.localidade = cliente.localidade;
-            this.cliente.name = cliente.name;
+            this.clienteForm.controls.tlf.setValue(cliente.tlf);
+            this.clienteForm.controls.address.setValue(cliente.address);
+            this.clienteForm.controls.zip_code.setValue(cliente.zip_code);
+            this.clienteForm.controls.localidade.setValue(cliente.localidade);
+            this.clienteForm.controls.name.setValue(cliente.name);
+            this.clienteForm.controls.date_created.setValue(cliente.date_created);
 
           } else {
             this.gotoList();
@@ -68,7 +73,6 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.request.unsubscribe();
     this.clienteSub.unsubscribe();
     
   }
@@ -79,13 +83,27 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
 
   remove(id: number) {
     this.clienteEliminarService.removerCliente(id).subscribe(result => {
-      console.log(this.clientes)
 
 
     }, error => console.error(error));
   }
 
   print(){
+   // this.clientData= this.cliente;
+    this.clienteForm.controls.tlf.setValue(this.cliente.tlf);
+    this.clienteForm.controls.address.setValue(this.cliente.address);
+    this.clienteForm.controls.zip_code.setValue(this.cliente.zip_code);
+    this.clienteForm.controls.localidade.setValue(this.cliente.localidade);
+    this.clienteForm.controls.name.setValue(this.cliente.name);
+    this.clienteForm.controls.date_created.setValue(this.cliente.date_created);
+
+    this.messageEvent.emit({
+      form:this.clienteForm.controls.value, 
+      cliente: this.cliente, 
+      value: this.clienteForm.value
+    });
+    this.router.navigate(['/cliente/print']);
+  
   }
   
 
