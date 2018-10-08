@@ -25,7 +25,9 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
     budget: new FormControl(''),
     tlf: new FormControl(''),
     foto: new FormControl(''),
-    materials: new FormControl('')
+    materials: new FormControl(''),
+    faturado: new FormControl('')
+
   })
 
   constructor(
@@ -57,7 +59,7 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.reparacaoForm.controls.tlf.setValue(this.reparacao.tlf);
             this.reparacaoForm.controls.foto.setValue(this.reparacao.foto);
             this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
-
+            this.reparacaoForm.controls.faturado.setValue(this.reparacao.faturado);
 
           } else {
             this.gotoList();
@@ -81,6 +83,7 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
  
     this.alterarReparacaoService.updateReparacao(this.reparacaoForm.value,this.reparacao.id).subscribe(result => {
       this.gotoList();
+      console.log(this.reparacaoForm.value)
     }, error => console.error(error));
   }
 }

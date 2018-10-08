@@ -17,7 +17,14 @@ export class ConsultarService {
     }
   }
 
-  getClientes(): Observable<ICliente[]> {
-    return this.http.get<ICliente[]>(this._clientesurl);
+
+  getClientes(url:any): Observable<ICliente[]> {
+    if(url=='' || url==undefined){
+      return this.http.get<ICliente[]>(this._clientesurl);
+    }
+    else{
+      return this.http.get<ICliente[]>(url);
+
+    }   
   }
 }

@@ -3,6 +3,47 @@
     <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
     <div class="card-body">
       <div id="table" class="table-editable">
+        <nav class="my-4 flex-center">
+          <ul class="pagination pagination-circle pg-blue mb-0"  *ngIf="pages">
+    
+              <!--First-->
+              <li class="page-item">
+                <a class="page-link" mdbWavesEffect (click)="onPageChanged(first_page[0])">Primeira página </a>
+              </li>
+    
+              <!--Previous-->
+              <li class="page-item" >
+                <a class="page-link" mdbWavesEffect aria-label="Previous" (click)="onPageChanged(previous_url)" 
+                      [disabled]="!previous_url">
+                    <span aria-hidden="true">Página anterior</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+              </li>
+    
+              <!--Numbers-->
+              <div *ngFor="let page of page_links ;let i = index,let last = last ">
+                  <li class="page-item" [ngClass]="{'active': page[2]}" >
+                  <a class="page-link"  mdbWavesEffect (click)="page" (click)="onPageChanged(page[0])" 
+                      >{{i+1}}</a>
+                  </li>
+              </div>
+    
+              <!--next-->
+              <li class="page-item">
+                  <a class="page-link" mdbWavesEffect aria-label="Next" (click)="onPageChanged(next_url)" 
+                      [disabled]="!next_url">
+                      <span aria-hidden="true">Página seguinte </span>
+                      <span class="sr-only" >Next</span>
+                  </a>
+              </li>
+    
+              <!--LAST-->
+              <li class="page-item">
+                <a class="page-link"  (click)="onPageChanged(last_page[0])">Ultima página</a>
+              </li>
+    
+          </ul>
+        </nav>
         <span class="table-add float-right mb-3 mr-2">
           <a class="nav-link text-success"  routerLink="/cliente/create" routerLinkActive="active">
   
@@ -64,6 +105,47 @@
           </tr>
         
         </table>
+        <nav class="my-4 flex-center">
+          <ul class="pagination pagination-circle pg-blue mb-0"  *ngIf="pages">
+    
+              <!--First-->
+              <li class="page-item">
+                <a class="page-link" mdbWavesEffect (click)="onPageChanged(first_page[0])">Primeira página </a>
+              </li>
+    
+              <!--Previous-->
+              <li class="page-item" >
+                <a class="page-link" mdbWavesEffect aria-label="Previous" (click)="onPageChanged(previous_url)" 
+                      [disabled]="!previous_url">
+                    <span aria-hidden="true">Página anterior</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+              </li>
+    
+              <!--Numbers-->
+              <div *ngFor="let page of page_links ;let i = index,let last = last ">
+                  <li class="page-item" [ngClass]="{'active': page[2]}" >
+                  <a class="page-link"  mdbWavesEffect (click)="page" (click)="onPageChanged(page[0])" 
+                      >{{i+1}}</a>
+                  </li>
+              </div>
+    
+              <!--next-->
+              <li class="page-item">
+                  <a class="page-link" mdbWavesEffect aria-label="Next" (click)="onPageChanged(next_url)" 
+                      [disabled]="!next_url">
+                      <span aria-hidden="true">Página seguinte </span>
+                      <span class="sr-only" >Next</span>
+                  </a>
+              </li>
+    
+              <!--LAST-->
+              <li class="page-item">
+                <a class="page-link"  (click)="onPageChanged(last_page[0])">Ultima página</a>
+              </li>
+    
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

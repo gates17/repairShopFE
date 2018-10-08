@@ -10,7 +10,7 @@
 
           <!--First-->
           <li class="page-item">
-            <a class="page-link" mdbWavesEffect (click)="onPageChanged(first_page[0])">First </a>
+            <a class="page-link" mdbWavesEffect (click)="onPageChanged(first_page[0])">Primeira página </a>
           </li>
 
           <!--Previous-->
@@ -41,7 +41,7 @@
 
           <!--LAST-->
           <li class="page-item">
-            <a class="page-link"  (click)="onPageChanged(last_page[0])">Last</a>
+            <a class="page-link"  (click)="onPageChanged(last_page[0])">Ultima página</a>
           </li>
 
       </ul>
@@ -63,6 +63,7 @@
         <th class="text-center">Contacto</th>
         <th class="text-center">Data de início</th>
         <th class="text-center">Data de conclusão</th>
+        <th class="text-center">Faturado</th>
         <th class="text-center">Acções</th>
 
       </tr>
@@ -76,6 +77,13 @@
         <td>{{reparacao.tlf}}</td>
         <td>{{reparacao.date_created}}</td>
         <td>{{reparacao.date_completed}}</td>
+        <td> <ng-container *ngIf="reparacao.faturado; else elseTemplate">
+          Sim
+        </ng-container>
+        <ng-template #elseTemplate>
+          Não
+        </ng-template>
+        </td>
         <td>
           <span class="table-remove">
 
@@ -117,7 +125,7 @@
 
             <!--First-->
             <li class="page-item">
-              <a class="page-link" mdbWavesEffect (click)="onPageChanged(first_page[0])">First </a>
+              <a class="page-link" mdbWavesEffect (click)="onPageChanged(first_page[0])">Primeira página </a>
             </li>
 
             <!--Previous-->
@@ -148,7 +156,7 @@
 
             <!--LAST-->
             <li class="page-item">
-              <a class="page-link"  (click)="onPageChanged(last_page[0])">Last</a>
+              <a class="page-link"  (click)="onPageChanged(last_page[0])">Ultima página</a>
             </li>
 
         </ul>

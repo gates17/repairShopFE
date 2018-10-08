@@ -23,6 +23,13 @@ export class ClienteListComponent implements OnInit, OnDestroy {
   images: Array<string>;
   id:any;
 
+  public pages=[];
+  public page_links=[];
+  public last_page: any;
+  public previous_url:any;
+  public next_url:any;
+  public first_page: any;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -32,29 +39,36 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     
   ) { }
 
+
+
+  onPageChanged(url: string) {
+    console.log(url)
+    this.get_request = this.clienteDetailhesService.getClientes(url).subscribe(data =>{
+      this.pages = data['pages_list']
+      this.page_links= this.pages['page_links']
+      this.clientes = data['results']
+      this.last_page = this.page_links[this.page_links.length-1]
+      this.previous_url = this.pages['previous_url']
+      this.next_url = this.pages['next_url']
+      this.first_page = this.page_links[0]
+    });
+  }
+  
   ngOnInit() {
-     
-    this.get_request = this.clienteDetailhesService.getClientes().subscribe(data => {
-      this.clientes = data
+    this.get_request = this.clienteDetailhesService.getClientes('').subscribe(data =>{
+      this.pages = data['pages_list']
+      this.clientes = data['results']
+      this.page_links= this.pages['page_links']
+      this.last_page = this.page_links[this.page_links.length-1]
+      this.previous_url = this.pages['previous_url']
+      this.next_url = this.pages['next_url']
+      this.first_page = this.page_links[0]
       console.log(data)
     });
-
-/*    this.clienteSub = this.route.params.subscribe(params => {
-      this.id = params['id'];
-      
-      if (this.id) {
-        console.log(this.id)
-        this.request = this.clienteDetailhesService.getCliente(this.id).subscribe((cliente: ICliente) => {
-          if (cliente) {
-            this.cliente = cliente;
-            this.cliente.url = cliente.url;
-          } else {
-            this.gotoList();
-          }
-        });
-      }
-    });*/
+    
   }
+
+  
 
   ngOnDestroy() {
     this.get_request.unsubscribe();

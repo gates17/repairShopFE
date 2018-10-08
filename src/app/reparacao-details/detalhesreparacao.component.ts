@@ -34,7 +34,9 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
     budget: new FormControl(''),
     tlf: new FormControl(''),
     foto: new FormControl(''),
-    materials: new FormControl('')
+    materials: new FormControl(''),
+    faturado: new FormControl('')
+
   })
 
 
