@@ -5,6 +5,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './routing/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 //COMPONENTS IMPORT
 import { AppComponent } from './app.component';
@@ -15,18 +16,21 @@ import { CriarreparacaoComponent } from './reparacao-create/criarreparacao.compo
 import { EliminarreparacaoComponent } from './reparacao-delete/eliminarreparacao.component';
 import { AlterarreparacaoComponent } from './reparacao-update/alterarreparacao.component';
 import { DetalhesreparacaoComponent } from './reparacao-details/detalhesreparacao.component';
+import { ReparacaoListComponent } from './reparacao-list/reparacao-list.component';
+import { PrintreparacaoComponent } from './printreparacao/printreparacao.component';
 
 import { CriarclienteComponent } from './cliente-create/criarcliente.component';
 import { AlterarclienteComponent } from './cliente-update/alterarcliente.component';
 import { RemoverclienteComponent } from './cliente-delete/removercliente.component';
 import { DetalhesclienteComponent } from './cliente-details/detalhescliente.component';
-import { HtmlToPdfComponent } from './html-to-pdf/html-to-pdf.component';
-import { ReparacaoListComponent } from './reparacao-list/reparacao-list.component';
 import { ClienteListComponent } from './cliente-list/cliente-list.component';
+import { PrintClienteComponent } from './print-cliente/print-cliente.component';
+
+import { HtmlToPdfComponent } from './html-to-pdf/html-to-pdf.component';
 import { SearchComponent } from './search/search.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
-import { PrintreparacaoComponent } from './printreparacao/printreparacao.component';
-import { PrintClienteComponent } from './print-cliente/print-cliente.component';
+
+
 
 @NgModule({
   declarations: [
@@ -38,18 +42,21 @@ import { PrintClienteComponent } from './print-cliente/print-cliente.component';
     EliminarreparacaoComponent,
     AlterarreparacaoComponent,
     DetalhesreparacaoComponent,
+    ReparacaoListComponent,
+    PrintreparacaoComponent,
     
     CriarclienteComponent,
     AlterarclienteComponent,
     RemoverclienteComponent,
     DetalhesclienteComponent,
-    HtmlToPdfComponent,
-    ReparacaoListComponent,
     ClienteListComponent,
+    PrintClienteComponent,
+  
+    HtmlToPdfComponent,
+  
     SearchComponent,
     SearchResultsComponent,
-    PrintreparacaoComponent,
-    PrintClienteComponent
+
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,9 @@ import { PrintClienteComponent } from './print-cliente/print-cliente.component';
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule 
+
   ],
   providers: [],
   bootstrap: [
