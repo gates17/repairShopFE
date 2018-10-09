@@ -57,15 +57,22 @@
           </textarea>
           <label>Materiais</label>
         </div>
-    
+
         <!-- date_completed -->
-        <div class="md-form mt-0">
-          <textarea type="text" formControlName="date_completed"  class="md-textarea form-control" mdbInputDirective>
-          </textarea>
-          <label>Data de conclusão</label>
-        </div>
+        <div class="md-form mt-0 input-group"> 
+        <ngb-datepicker>
+            <input type="text" placeholder="yyyy-mm-dd"name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="date_completed" class="form-control" mdbInputDirective>
+            <div class="input-group-append">
+  
+              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"  type="button">Calendario</button>
+              </div>
+            <label>Data de conclusão</label>
+        </ngb-datepicker>
+
+       
+        </div>  
     
-         <!-- date_completed -->
+         <!-- faturado -->
          <div class="md-form mt-0">
             <input type="checkbox" formControlName="faturado"  class="md-textarea form-control" mdbInputDirective>
             <label>Faturado</label>

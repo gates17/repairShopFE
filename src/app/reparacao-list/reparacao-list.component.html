@@ -67,7 +67,7 @@
         <th class="text-center">Acções</th>
 
       </tr>
-      <tr *ngFor="let reparacao of reparacoes;let i = index" > <!--(page | async)?.results-->
+      <tr *ngFor="let reparacao of reparacoes;let i = index" > 
         <td [hidden]="!false">{{reparacao.foto}}</td>
         <td>{{reparacao.name}}</td>
         <td>{{reparacao.description}}</td>

@@ -7,8 +7,84 @@
     </div>  
   </div>  
   <div>  
-    <div class="card recibo mx-auto">  <!-- alinhar os items ao centro resulta em imagem desfocada devido ao tamanho da div -->
-      <app-detalhesreparacao formdata="data" id="contentToConvert" (messageEvent)="receiveMessage($event)"></app-detalhesreparacao>
+    <div class="card recibo mx-auto">  <!-- alinhar os items ao centro resulta em imagem desfocada devido ao tamanho da div  (messageEvent)="receiveMessage($event)"-->
+     <!--
+      <app-detalhesreparacao [formGroup]="reparacaoForm" id="contentToConvert"></app-detalhesreparacao>
+      -->
+      <mdb-card id="contentToConvert">
+          <mdb-card-header class="info-color white-text text-center py-4" id="header">
+            <h5>Detalhes reparação</h5>
+          </mdb-card-header>
+          
+          <mdb-card-body class="px-lg-5 pt-0">
+        
+            <!-- Form -->
+            <div class="container reparacoes">
+              <form [formGroup]="reparacaoForm" >
+                <!--    <form class="text-center" style="color: #757575;"> -->
+        
+                <!-- name -->
+                <div class="md-form mt-0">    
+                  <input type="text" formControlName="name" class="form-control disabled" mdbInputDirective>
+                  <label>Nome</label>
+                </div>  
+                <!-- price -->
+                  <div class="md-form mt-0">    
+                    <input type="text" formControlName="price" class="form-control disabled" mdbInputDirective>
+                    <label>Preço</label>
+                  </div>  
+        
+                <!-- budget -->
+                <div class="md-form mt-0">    
+                  <input type="text" formControlName="budget" class="form-control disabled" mdbInputDirective>
+                  <label>Orçamento</label>
+                </div>  
+        
+                <!-- description -->
+                <div class="md-form mt-0">
+                  <textarea type="text" formControlName="description"  class="md-textarea form-control disabled" mdbInputDirective>
+                  </textarea>
+                  <label>Descrição</label>
+                </div>
+        
+                <!-- date_completed -->
+                <div class="md-form mt-0">    
+                  <input type="text" formControlName="date_completed" class="form-control disabled" mdbInputDirective>
+                  <label>Data de conclusão</label>
+                </div>  
+        
+                <!-- cell phone -->
+                <div class="md-form mt-0">    
+                  <input type="text" formControlName="tlf" class="form-control disabled" mdbInputDirective>
+                  <label>Telefone/Telemovel</label>
+                </div>  
+        
+                <!-- foto -->
+                <div class="md-form mt-0">    
+                  <input type="text" formControlName="foto" class="form-control disabled" mdbInputDirective>
+                  <label>Imagem</label>
+                </div>  
+        
+               <!-- materials -->
+                <div class="md-form mt-0">
+                  <textarea type="text" formControlName="materials"  class="md-textarea form-control disabled" mdbInputDirective>
+                  </textarea>
+                  <label>Materiais</label>
+                </div>
+        
+               <!-- faturado -->
+               <div class="md-form mt-0">
+                  <input type="checkbox" formControlName="faturado"  class="md-textarea form-control disabled" mdbInputDirective>
+                  <label>Faturado</label>
+                </div>
+        
+              </form>
+            </div>
+            <!-- Form -->
+        
+          </mdb-card-body>
+        
+        </mdb-card>
     </div> 
   </div>  
   <div class="actions flex-center">  
@@ -20,3 +96,5 @@
     </div>  
   </div> 
 </div>
+
+

@@ -13,7 +13,7 @@ import { IReparacao } from '../models/reparacao';
 })
 export class AlterarreparacaoComponent implements OnInit, OnDestroy {
 
-
+  date: any;
   reparacao:  IReparacao;
   reparacaoSub: Subscription;
   private request: any;

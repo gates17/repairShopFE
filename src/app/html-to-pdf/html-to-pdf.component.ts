@@ -1,7 +1,9 @@
-import { Component, OnInit, ElementRef ,ViewChild} from '@angular/core';  
+import { Component, OnInit, ElementRef ,ViewChild, Input} from '@angular/core';  
+import { DetalhesclienteComponent } from '../cliente-details/detalhescliente.component';
+import { DetalhesreparacaoComponent } from '../reparacao-details/detalhesreparacao.component';
+import {Router, Route, ActivatedRoute} from '@angular/router';
 
-import * as jspdf from 'jspdf';  
-  
+import * as jspdf from 'jspdf';   
 import html2canvas from 'html2canvas';  
 
 @Component({
@@ -10,13 +12,27 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./html-to-pdf.component.scss']
 })
 export class HtmlToPdfComponent implements OnInit {
+  //@ViewChild(DetalhesclienteComponent) cliente: DetalhesclienteComponent;
 
-  constructor() { }
+  @Input() formData:any;
+  message:any;
+  constructor(
+    router: Router
+  ) { }
 
   ngOnInit() {
   }
+
+  receiveMessage($event) {
+    this.message = $event;
+    console.log(this.message)
+   
+  }
+
+
+
   public captureScreen()  
-  {  
+  { 
     var data = document.getElementById('contentToConvert');  
     html2canvas(data).then(canvas => {  
       // Few necessary setting options  
@@ -29,6 +45,8 @@ export class HtmlToPdfComponent implements OnInit {
       let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
       var position = 0;  
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      //pdf.read('MYPdf.pdf');
+
       pdf.save('MYPdf.pdf'); // Generated PDF   
     });  
   }  

@@ -6,6 +6,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 //COMPONENTS IMPORT
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { PrintClienteComponent } from './print-cliente/print-cliente.component';
 import { HtmlToPdfComponent } from './html-to-pdf/html-to-pdf.component';
 import { SearchComponent } from './search/search.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { PrintReparacaoService } from './services/print/print-reparacao.service';
 
 
 
@@ -55,7 +57,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     HtmlToPdfComponent,
   
     SearchComponent,
-    SearchResultsComponent,
+    SearchResultsComponent,    
 
   ],
   imports: [
@@ -65,10 +67,11 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule 
+    NgxPaginationModule,
+    NgbModule.forRoot()
 
   ],
-  providers: [],
+  providers: [PrintReparacaoService],
   bootstrap: [
     AppComponent,
     MainnavbarComponent,

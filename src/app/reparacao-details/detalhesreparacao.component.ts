@@ -8,7 +8,7 @@ import { IReparacao } from '../models/reparacao';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { HtmlToPdfComponent } from '../html-to-pdf/html-to-pdf.component'
-
+import { PrintReparacaoService } from '../services/print/print-reparacao.service';
 
 @Component({
   selector: 'app-detalhesreparacao',
@@ -17,8 +17,6 @@ import { HtmlToPdfComponent } from '../html-to-pdf/html-to-pdf.component'
   providers: [DetalhesreparacaoserviceService,EliminarreparacaoserviceService]
 })
 export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
-
-  @Output() messageEvent = new EventEmitter<any>();
 
   private request: any;
   reparacao: IReparacao;
@@ -41,6 +39,7 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
 
 
   constructor(
+    private prs: PrintReparacaoService, 
     private route: ActivatedRoute,
     private router: Router,
     private reparacaoDetailhesService: DetalhesreparacaoserviceService,
@@ -49,9 +48,8 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
     
   ) { }
 
+
   ngOnInit() {
-
-
     this.reparacaoSub = this.route.params.subscribe(params => {
       this.id = params['id'];
       
@@ -85,11 +83,9 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
     this.reparacaoSub.unsubscribe();
   }
  
-  
-  gotoList() {
+    gotoList() {
     this.router.navigate(['/reparacao']);
   }
-
 
   remove(id: number) {
     this.reparacaoEliminarService.removerReparacao(id).subscribe(result => {
@@ -109,11 +105,20 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
       this.reparacaoForm.controls.tlf.setValue(this.reparacao.tlf);
       this.reparacaoForm.controls.foto.setValue(this.reparacao.foto);
       this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
+      
+      this.prs.setData(this.reparacaoForm);
+   
+
+      /*
       this.messageEvent.emit({
-        form: this.reparacaoForm.controls.value,
+        form: this.reparacaoForm.controls,
         reparacao: this.reparacao,
         value: this.reparacaoForm.value
       });
+      console.log(this.reparacaoForm.controls)
+      console.log(this.reparacao)
+      console.log(this.reparacaoForm.value)
+      */
       this.router.navigate(['/reparacao/print']);
     
   }

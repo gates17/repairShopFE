@@ -42,7 +42,6 @@ import { PrintClienteComponent } from '../print-cliente/print-cliente.component'
 import { PrintreparacaoComponent } from '../printreparacao/printreparacao.component';
 import { AppComponent } from '../app.component';
 
-
 const routes: Routes = [
   
   {path: 'reparacao', component: ReparacaoListComponent },

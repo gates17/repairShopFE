@@ -1,43 +1,22 @@
 <div class="container flex">
-    <div id="content" #content class="flex-center">  
-      <div>  
-        <div class="alert alert-info flex-center">  
-            <strong>Pré-visualização recibo</strong>  
-        </div>  
+  <div id="content" #content class="flex-center">  
+    <div>  
+      <div class="alert alert-info flex-center">  
+          <strong>Pré-visualização recibo</strong>  
       </div>  
     </div>  
-    <div>  
-      <div class="card recibo mx-auto">  <!-- alinhar os items ao centro resulta em imagem desfocada devido ao tamanho da div -->
-        <table id="contentToConvert">  
-            <tr>  
-              <th>Reparação n.º 17 </th>  
-            </tr>  
-            <tr>  
-              <td>Alexandre Costa</td>  
-            </tr>  
-            <tr>  
-              <td>Teleone: 913673513</td>  
-            </tr>  
-            <tr>  
-              <td>Preço: 500€ </td>  
-            </tr>  
-            <tr>
-              <td>
-                22/09/2018 14:40:35
-              </td>
-            </tr>
-          </table>  
-            
-        </div>  
-    </div> 
-    <div class="actions flex-center">  
-      <div>         
-        <div>  
-          <button type="button nav-link" mdbBtn color="secondary"  class="my-0 flex-item" routerLink="/reparacao"  mdbWavesEffect>Reparações</button>
-  
-          <input type="button" mdbBtn color="primary"  class="my-0 flex-item" value="Imprimir recibo" (click)="captureScreen()" mdbWavesEffect/>  
-  
-        </div>  
-      </div>  
+  </div>  
+  <div>  
+    <div class="card recibo mx-auto">  <!-- alinhar os items ao centro resulta em imagem desfocada devido ao tamanho da div -->
+      <app-detalhescliente formdata="data" id="contentToConvert" (messageEvent)="receiveMessage($event)"></app-detalhescliente>
     </div> 
   </div>
+  <div class="actions flex-center">  
+    <div>         
+      <div>  
+        <button type="button nav-link" mdbBtn color="secondary"  class="my-0 flex-item" routerLink="/reparacao"  mdbWavesEffect>Reparações</button>
+        <input type="button" mdbBtn color="primary"  class="my-0 flex-item" value="Imprimir recibo" (click)="captureScreen()" mdbWavesEffect/>  
+      </div>  
+    </div>  
+  </div> 
+</div>
