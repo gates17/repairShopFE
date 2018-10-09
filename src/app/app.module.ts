@@ -32,6 +32,8 @@ import { SearchComponent } from './search/search.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { PrintReparacaoService } from './services/print/print-reparacao.service';
 
+import { DatePipe } from '@angular/common'
+
 
 
 @NgModule({
@@ -71,7 +73,7 @@ import { PrintReparacaoService } from './services/print/print-reparacao.service'
     NgbModule.forRoot()
 
   ],
-  providers: [PrintReparacaoService],
+  providers: [PrintReparacaoService,DatePipe],
   bootstrap: [
     AppComponent,
     MainnavbarComponent,

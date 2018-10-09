@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { AlterarreparacaoserviceService } from '../services/reparacao/alterarreparacao/alterarreparacaoservice.service';
 import { IReparacao } from '../models/reparacao';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-alterarreparacao',
@@ -34,7 +35,8 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
     
     private route: ActivatedRoute,
     private router: Router,
-    private alterarReparacaoService: AlterarreparacaoserviceService
+    private alterarReparacaoService: AlterarreparacaoserviceService,
+    private datePipe: DatePipe,
   ) { }
 
   ngOnInit() {
@@ -80,10 +82,13 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
   }
 
   saveReparacao() {
- 
+    console.log(this.reparacaoForm.controls.date_completed.value)
+    let date = this.reparacaoForm.controls.date_completed.value
+    let dateParser = new Date(date.year, date.month-1, date.day);
+    let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
+    this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
     this.alterarReparacaoService.updateReparacao(this.reparacaoForm.value,this.reparacao.id).subscribe(result => {
       this.gotoList();
-      console.log(this.reparacaoForm.value)
     }, error => console.error(error));
   }
 }

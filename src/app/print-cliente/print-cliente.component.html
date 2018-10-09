@@ -9,6 +9,58 @@
   <div>  
     <div class="card recibo mx-auto">  <!-- alinhar os items ao centro resulta em imagem desfocada devido ao tamanho da div -->
       <app-detalhescliente formdata="data" id="contentToConvert" (messageEvent)="receiveMessage($event)"></app-detalhescliente>
+      <mdb-card>
+        <mdb-card-header class="info-color white-text text-center py-4" id="header">
+          <h5>Detalhes Cliente</h5>
+        </mdb-card-header>
+        
+        <mdb-card-body class="px-lg-5 pt-0">
+          <!-- Form -->
+          <div class="container">
+            <form [formGroup]="clienteForm" #form>
+              <!-- name -->
+              <div class="md-form mt-0">    
+                <input type="text" formControlName="name" class="form-control disabled" mdbInputDirective>
+                <label>Nome</label>
+              </div>  
+              <!-- morada -->
+                <div class="md-form mt-0">    
+                  <textarea type="text" formControlName="address" class="form-control disabled" mdbInputDirective></textarea>  
+                  <label>Morada</label>
+                </div>  
+              <!-- localidade -->
+              <div class="md-form mt-0">
+                <input type="text" formControlName="localidade"  class="md-textarea form-control disabled" mdbInputDirective>
+                <label>Localidade</label>
+              </div>      
+              <!-- codigo postal -->
+              <div class="md-form mt-0">    
+                <input type="text" formControlName="zip_code" class="form-control disabled" mdbInputDirective>
+                <label>Codigo postal</label>
+              </div>  
+      
+              <!-- cell phone -->
+              <div class="md-form mt-0">    
+                <input type="text" formControlName="tlf" class="form-control disabled" mdbInputDirective>
+                <label>Telefone/Telemovel</label>
+              </div>        
+              <!-- saldo -->
+              <div class="md-form mt-0">    
+                <input type="text" formControlName="total_spent_by_client" class="form-contro disabledl" mdbInputDirective>
+                <label>Saldo</label>
+              </div>  
+              <div class="md-form mt-0">    
+                  <input type="text" formControlName="date_created" class="form-control disabled" mdbInputDirective>
+                  <label>Data de registo</label>
+                </div>  
+                        
+            </form>   
+          </div>
+          <!-- Form -->
+      
+        </mdb-card-body>
+      
+      </mdb-card>
     </div> 
   </div>  
   <div class="actions flex-center">  

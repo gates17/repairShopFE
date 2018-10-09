@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CriarreparacaoserviceService } from '../services/reparacao/criarreparacao/criarreparacaoservice.service';
 import { IReparacao } from '../models/reparacao';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private reparacaoCreateService: CriarreparacaoserviceService
+    private reparacaoCreateService: CriarreparacaoserviceService,
+    private datePipe: DatePipe,
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,11 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   }
 
   createReparacao() {
+    console.log(this.reparacaoForm.controls.date_completed.value)
+    let date = this.reparacaoForm.controls.date_completed.value
+    let dateParser = new Date(date.year, date.month-1, date.day);
+    let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
+    this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
     this.subresponse = this.reparacaoCreateService.guardarReparacao(this.reparacaoForm).subscribe(result => {
       console.log("teste");
       console.log(result);

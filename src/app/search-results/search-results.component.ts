@@ -23,16 +23,29 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params=>{
-      this.query=params['q']
-      console.log(params['q'])
+      if(params['q']){
+        this.query=params['q']
+        console.log(this.query)
+      }
+      else if(params['qdi'] && params['qdf'] ){
+        this.query={qdi: params['qdi'], qdf:params['qdf']}
+        console.log(this.query)
+      }
+      else if(params['qdi']){
+        this.query=params['qdi']
+        console.log(this.query)
+      }
+      else if(params['qdf']){
+        this.query=params['qdf']
+        console.log(this.query)
+      }
+     
+    
       this.get_request = this.reparacaoDetailhesService.searchReparacoes(this.query).subscribe(data => {
-        this.reparacoes = data
+        this.reparacoes = data['results']
         console.log(data)
       });
     })
-
-  
-
   }
  
   ngOnDestroy() {

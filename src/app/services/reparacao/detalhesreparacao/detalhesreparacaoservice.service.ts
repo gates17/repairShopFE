@@ -20,7 +20,6 @@ export class DetalhesreparacaoserviceService {
 
   getReparacoes(url: any): Observable<any[]> {
     if(url=='' || url==undefined){
-      console.log( this.http.get<any[]>(this._reparacoesurl))
       return this.http.get<any[]>(this._reparacoesurl);
     }
     else{
@@ -31,7 +30,6 @@ export class DetalhesreparacaoserviceService {
 
   searchReparacoes(reparacoes_id): Observable<IReparacao[]> {
     if(reparacoes_id){
-      console.log(reparacoes_id)
       return this.http.get<IReparacao[]>(this._reparacoesurl + '?q=' + reparacoes_id);
     }
     else
