@@ -28,14 +28,17 @@ export class DetalhesreparacaoserviceService {
     }   
   }
 
-  searchReparacoes(reparacoes_id): Observable<IReparacao[]> {
+  searchReparacoes(reparacoes_id, searchParam): Observable<IReparacao[]> {
     if(reparacoes_id){
-      return this.http.get<IReparacao[]>(this._reparacoesurl + '?q=' + reparacoes_id);
+      return this.http.get<IReparacao[]>(this._reparacoesurl + '?'+searchParam +'=' + reparacoes_id);
     }
     else
     {
       return this.http.get<IReparacao[]>(this._reparacoesurl);
     }
   }
+  searchReparacoesDateBetween(dateStart, dateEnd,paramStart,paramEnd): Observable<IReparacao[]> {
+      return this.http.get<IReparacao[]>(this._reparacoesurl + '?'+paramStart +'=' + dateStart+'&'+paramEnd+'='+dateEnd);
+     }
 
 }

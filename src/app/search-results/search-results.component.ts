@@ -24,27 +24,33 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params=>{
       if(params['q']){
-        this.query=params['q']
-        console.log(this.query)
+        this.get_request = this.reparacaoDetailhesService.searchReparacoes(params['q'],'q').subscribe(data => {
+          this.reparacoes = data['results']
+        });
       }
       else if(params['qdi'] && params['qdf'] ){
-        this.query={qdi: params['qdi'], qdf:params['qdf']}
-        console.log(this.query)
+        this.query={qdi:params['qdi'],qdf:params['qdf']}
+        this.get_request = this.reparacaoDetailhesService.searchReparacoesDateBetween(params['qdi'],params['qdf'],'qdi','qdf').subscribe(data => {
+          this.reparacoes = data['results']
+        });
       }
       else if(params['qdi']){
-        this.query=params['qdi']
-        console.log(this.query)
+        this.get_request = this.reparacaoDetailhesService.searchReparacoes(params['qdi'],'qdi').subscribe(data => {
+          this.reparacoes = data['results']
+        });
       }
       else if(params['qdf']){
-        this.query=params['qdf']
-        console.log(this.query)
+        this.get_request = this.reparacaoDetailhesService.searchReparacoes(params['qdf'],'qdf').subscribe(data => {
+          this.reparacoes = data['results']
+        });
       }
+      console.log(this.query)
+      console.log(params['q'])
+      console.log(params['qdi'])
+      console.log(params['qdf'])
      
     
-      this.get_request = this.reparacaoDetailhesService.searchReparacoes(this.query).subscribe(data => {
-        this.reparacoes = data['results']
-        console.log(data)
-      });
+     
     })
   }
  

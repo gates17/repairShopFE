@@ -1,16 +1,19 @@
 <form #searchForm='ngForm' class="navbar-form navbar-right" (ngSubmit)='submitPesquisa($event, searchForm)' ><!--ngSubmit='pesquisar()'-->
   <div class="form-group flex-center">
-    <input type="text" class="form-control" placeholder="Pesquisar reparacão ou contacto" name='q'   [(ngModel)]='searchQuery' (change)='searchChange("q")' >
-   <button type="submit" class="btn btn-default btn-search" >Procurar</button>
+    <input type="text" class="form-control" placeholder="Pesquisar reparacão ou contacto" name='q' 
+    [(ngModel)]='searchQuery' (change)='searchChange("q")' >
+    <button type="submit" class="btn btn-default btn-search" >Procurar</button>
 
   </div>
+
   <div class="form-group flex-center">
     <input type="text" class="form-control" placeholder="Data de inicio" name='qdi' ngbDatepicker #d="ngbDatepicker" 
       [(ngModel)]='searchStartQuery' (change)='searchDataInicio("qdi")' (click)=[d.toggle()]>
-      <input type="text" class="form-control" placeholder="Data de conclusão" name='qdf' ngbDatepicker #d2="ngbDatepicker"
+    <input type="text" class="form-control" placeholder="Data de conclusão" name='qdf' ngbDatepicker #d2="ngbDatepicker"
       [(ngModel)]='searchEndQuery' (change)='searchDataFim("qdf")' (click)=[d2.toggle()]>
-  <button type="submit" class="btn btn-default btn-search" >Procurar</button>
+    <button type="submit" class="btn btn-default btn-search" >Procurar</button>
 
   </div>
 
 </form>
+

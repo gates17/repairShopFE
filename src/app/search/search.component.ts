@@ -30,10 +30,11 @@ export class SearchComponent implements OnInit {
     let queryDataStart = formData.value['qdi']
     let queryDataEnd = formData.value['qdf']
    
+    console.log(query)
     console.log(queryDataStart)
     console.log(queryDataEnd)
     if (query){
-      this.router.navigate(['/search', {q: query}])
+      this.router.navigate(['/search', {q: this.searchQuery}])
       //pedido para servidor com os params na query
     }
    
@@ -73,8 +74,6 @@ export class SearchComponent implements OnInit {
       let ngbDate = this.searchStartQuery;
       let myDateParser = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
       let myDate = this.datePipe.transform(myDateParser,"yyyy-MM-dd")
-
-      this.router.navigate(['/search', {qdi: myDate}])
     }
   }
   searchDataFim(query){
@@ -83,8 +82,6 @@ export class SearchComponent implements OnInit {
       let ngbDate = this.searchEndQuery;
       let myDateParser = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
       let myDate = this.datePipe.transform(myDateParser,"yyyy-MM-dd")
-
-      this.router.navigate(['/search', {qdi: myDate}])
     }
   }
   
