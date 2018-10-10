@@ -1,5 +1,5 @@
 <!-- Material form register -->
-<mdb-card>
+<mdb-card class="reparacoes">
   <mdb-card-header class="info-color white-text text-center py-4">
     <h5>Criar reparação</h5>
   </mdb-card-header>
@@ -8,10 +8,8 @@
 
     <!-- Form -->
 
-    <div class="container">
+    <div class="container reparacoes-container">
       <form [formGroup]="reparacaoForm" (ngSubmit)="createReparacao()">
-        <!--    <form class="text-center" style="color: #757575;"> -->
-
         <!-- name -->
         <div class="md-form mt-0">    
           <input type="text" formControlName="name" class="form-control" mdbInputDirective>
@@ -22,74 +20,82 @@
             <input type="text" formControlName="price" class="form-control" mdbInputDirective>
             <label>Preço</label>
           </div>  
-
         <!-- budget -->
         <div class="md-form mt-0">    
           <input type="text" formControlName="budget" class="form-control" mdbInputDirective>
           <label>Orçamento</label>
         </div>  
-
         <!-- description -->
         <div class="md-form mt-0">
           <textarea type="text" formControlName="description"  class="md-textarea form-control" mdbInputDirective>
           </textarea>
           <label>Descrição</label>
         </div>
-
-
-
         <!-- cell phone -->
         <div class="md-form mt-0">    
           <input type="text" formControlName="tlf" class="form-control" mdbInputDirective>
           <label>Telefone/Telemovel</label>
         </div>  
-
         <!-- foto -->
         <div class="md-form mt-0">    
           <input type="text" formControlName="foto" class="form-control" mdbInputDirective>
           <label>Imagem</label>
         </div>  
-
-
         <!-- materials -->
         <div class="md-form mt-0">
           <textarea type="text" formControlName="materials"  class="md-textarea form-control" mdbInputDirective>
           </textarea>
           <label>Materiais</label>
         </div>
-
         <!-- date_completed -->
-        <div class="md-form mt-0 input-group"> 
-        <ngb-datepicker>
-            <input type="text" placeholder="yyyy-mm-dd"name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="date_completed" class="form-control" mdbInputDirective>
-            <div class="input-group-append">
-  
-              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"  type="button">Calendario</button>
+        <div class="md-form mt-0 input-group">   
+          <!--
+          <button type="button"  class="btn btn-outline-secondary calendar" (click)="basicModal.show()" mdbWavesEffect>Modal Calendario</button>
+
+          <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                  <h4 class="modal-title w-100" id="myModalLabel">Escolher Data</h4>
+                </div>
+                <div class="modal-body">
+                  <input type="text" placeholder="yyyy-mm-dd"name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="date_completed" class="form-control" mdbInputDirective>
+                  <div class="input-group-append">
+
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"  type="button">Calendario</button>
+                    </div>
+                  <label>Data de conclusão</label>
+                </div>
               </div>
-            <label>Data de conclusão</label>
-        </ngb-datepicker>
-
-       
-        </div>  
-    
-         <!-- faturado -->
-         <div class="md-form mt-0">
-            <input type="checkbox" formControlName="faturado"  class="md-textarea form-control" mdbInputDirective>
-            <label>Faturado</label>
+            </div>
           </div>
-        <!-- date_completed -->
-        <!--     
-        <div class="md-form mt-0">
-          <input type="datetime" id="materialDateCompleted" class="form-control" mdbInputDirective>
-          <label for="materialDateCompleted">Date Completed</label>
-        </div>
         -->
+          <div class="input-group-append">
+            <input type="text" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="date_completed" class="form-control" mdbInputDirective>
+            <button class="btn btn-outline-secondary calendar " (click)=[d.toggle()]  type="button">Calendario</button>
+          </div>
+          <label>Data de conclusão</label>
+        </div>  
+        <!-- faturado -->
+        <div class="md-form mt-0">
+          <input type="checkbox" formControlName="faturado"  class="md-textarea form-control" mdbInputDirective>
+          <label>Faturado</label>
+        </div>
+       
         <div class="col-md-3 flex-center">
           <div class="flex-item">
             <button mdbBtn color="success" block="true" class="my-4" type="submit" [disabled]="!reparacaoForm.valid">Guardar</button>
           </div> 
+          <!--
           <div class="flex-item">
             <button mdbBtn color="danger"  block="true" class="my-4" routerLink="/reparacao" type="submit">Cancelar</button>
+          </div>
+          -->
+          <div class="flex-item">
+            <button mdbBtn color="danger" block="true" class="my-4" (click)="gotoList()">Cancelar</button>
           </div>
         </div>
     
@@ -100,23 +106,3 @@
   </mdb-card-body>
 
 </mdb-card>
-
-
-<!--
-<div class="card">
-  <div class="card-header">
-    <div class="card-title"><h2>Criar reparação</h2></div>
-  </div>
-  <div class="card-body">
-    <form #reparacaoForm="ngForm" (ngSubmit)="createReparacao(reparacaoForm)">
-          <input name="Nome" required [(ngModel)]="reparacao" placeholder="Nome reparação" #name="ngModel">
-  
-    </form>
-  </div> 
-  <div class="card-actions">
-    <button class="text-success" color="primary" type="submit">Save</button>
-    <a class="text-danger" routerLink="/reparacao">Cancel</a>
-  </div>
-
-</div>
--->

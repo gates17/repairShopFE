@@ -35,7 +35,7 @@ export class CriarclienteComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.request.unsubscribe();
+    //this.request.unsubscribe();
   }
 
   gotoList() {
@@ -43,7 +43,8 @@ export class CriarclienteComponent implements OnInit, OnDestroy {
   }
 
   createCliente() {
-    this.request = this.clienteCreateService.guardarCliente(this.clienteForm).subscribe(result => {
+    //this.request = 
+    this.clienteCreateService.guardarCliente(this.clienteForm).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }

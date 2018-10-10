@@ -1,7 +1,7 @@
 <!-- Editable table -->
-<div class="card">
-    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
-    <div class="card-body">
+<div class="card clientes">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Lista Clientes</h3>
+    <div class="card-body clientes-container">
       <div id="table" class="table-editable">
         <nav class="my-4 flex-center">
           <ul class="pagination pagination-circle pg-blue mb-0"  *ngIf="pages">
@@ -87,11 +87,11 @@
                         <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
                           <span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title w-100" id="myModalLabel">Remover reparação</h4>
+                        <h4 class="modal-title w-100" id="myModalLabel">Remover cliente</h4>
                       </div>
                       <div class="modal-body">
-                        Tem a certeza que pretende eliminar a reparação?
-                        Caso elimine, não poderá voltar a consultar esta reparação!
+                        Tem a certeza que pretende eliminar o cliente?
+                        Caso elimine, não poderá voltar a consultar este cliente!
                       </div>
                       <div class="modal-footer">
                         <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Cancelar</button>

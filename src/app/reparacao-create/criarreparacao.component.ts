@@ -46,20 +46,18 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   }
 
   createReparacao() {
-    console.log(this.reparacaoForm.controls.date_completed.value)
     let date = this.reparacaoForm.controls.date_completed.value
     let dateParser = new Date(date.year, date.month-1, date.day);
     let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
     this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
-    this.subresponse = this.reparacaoCreateService.guardarReparacao(this.reparacaoForm).subscribe(result => {
-      console.log("teste");
-      console.log(result);
+
+  // this.subresponse =
+    this.reparacaoCreateService.guardarReparacao(this.reparacaoForm).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));
   }
 
-  ngOnDestroy():void {
-    
-    this.subresponse.unsubscribe()  
+  ngOnDestroy(){
+    //this.subresponse.unsubscribe()  
   }
 }
