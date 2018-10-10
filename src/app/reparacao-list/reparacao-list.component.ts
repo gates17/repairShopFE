@@ -41,20 +41,6 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
     private _http: HttpClient
   ) { 
   }
-
-
-  onPageChanged(url: string) {
-    console.log(url)
-    this.get_request = this.reparacaoDetailhesService.getReparacoes(url).subscribe(data =>{
-      this.pages = data['pages_list']
-      this.page_links= this.pages['page_links']
-      this.reparacoes = data['results']
-      this.last_page = this.page_links[this.page_links.length-1]
-      this.previous_url = this.pages['previous_url']
-      this.next_url = this.pages['next_url']
-      this.first_page = this.page_links[0]
-    });
-  }
   
   ngOnInit() {
     this.get_request = this.reparacaoDetailhesService.getReparacoes('').subscribe(data =>{
@@ -74,16 +60,8 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
      this.get_request.unsubscribe();
   }
   
-  
   gotoList() {
     this.router.navigate(['/reparacao']);
-  }
-
-  remove(id: number, i:number) {
-    this.delete_request = this.reparacaoEliminarService.removerReparacao(id).subscribe(result => {
-      this.reparacoes.splice(i, 1);
-    }, error => console.error(error)); 
-
   }
 
   get_detail(id:number) {
@@ -93,6 +71,26 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
       this.gotoList();
     }
   } 
+
+  remove(id: number, i:number) {
+    this.delete_request = this.reparacaoEliminarService.removerReparacao(id).subscribe(result => {
+      this.reparacoes.splice(i, 1);
+    }, error => console.error(error)); 
+
+  }
+
+  onPageChanged(url: string) {
+    console.log(url)
+    this.get_request = this.reparacaoDetailhesService.getReparacoes(url).subscribe(data =>{
+      this.pages = data['pages_list']
+      this.page_links= this.pages['page_links']
+      this.reparacoes = data['results']
+      this.last_page = this.page_links[this.page_links.length-1]
+      this.previous_url = this.pages['previous_url']
+      this.next_url = this.pages['next_url']
+      this.first_page = this.page_links[0]
+    });
+  }
 }
 
   
