@@ -1,19 +1,73 @@
-<form #searchForm='ngForm' class="navbar-form navbar-right" (ngSubmit)='submitPesquisa($event, searchForm)' ><!--ngSubmit='pesquisar()'-->
+<form #searchForm='ngForm' class="navbar-form navbar-right" (ngSubmit)='submitPesquisa($event, searchForm)' >
   <div class="form-group flex-center">
-    <input type="text" class="form-control" placeholder="Pesquisar reparacão ou contacto" name='q' 
+
+    <!--PESQUISA NOME/CONTACTO-->  
+    <input mdbBtn type="text" class="form-control search-input" placeholder="Pesquisar reparacão ou contacto" name='q' 
     [(ngModel)]='searchQuery' (change)='searchChange("q")' >
-    <button type="submit" class="btn btn-default btn-search" >Procurar</button>
+    
+    <!--PESQUISA DATA ENTRADA-->
+    <input type="text" class="form-control search-input" placeholder="Data de inicio" 
+      name='qdi' ngbDatepicker #d="ngbDatepicker" 
+      [(ngModel)]='searchStartQuery' (change)='searchDataInicio("qdi")' (click)=[dateIn.show(),dateOut.hide()]>
+    <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 
+    <!--MODAL DATA ENTRADA-->
+    <div mdbModal #dateIn="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dateInModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="dateIn.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title w-100" id="myModalLabel">Data de inicio</h4>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" placeholder="Data de inicio" 
+            name='qdi' ngbDatepicker #d="ngbDatepicker" 
+            [(ngModel)]='searchStartQuery' (change)='searchDataInicio("qdi")' (click)=[d.toggle()]>
+            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+         
+          </div>
+          <div class="modal-footer">
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="dateIn.hide()" mdbWavesEffect>Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--PESQUISA DATA SAIDA-->
+    <input type="text" class="form-control search-input" placeholder="Data de conclusão" 
+      name='qdf' ngbDatepicker #d2="ngbDatepicker"
+      [(ngModel)]='searchEndQuery' (change)='searchDataFim("qdf")' (click)=[dateOut.show(),dateIn.hide()]>
+
+    <!--MODAL DATA SAIDA-->
+    <div mdbModal #dateOut="mdbModal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="dateOutModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="dateOut.hide()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title w-100" id="myModalLabel">Data de conclusão</h4>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" placeholder="Data de conclusão"
+            name='qdf' ngbDatepicker #d2="ngbDatepicker" 
+            [(ngModel)]='searchEndQuery' (change)='searchDataFim("qdf")' (click)=[d2.toggle()]>
+            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+          
+          </div>
+          <div class="modal-footer">
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="dateOut.hide()" mdbWavesEffect>Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--SUBMIT PESQUISA-->
+    <button type="submit" class="btn btn-default btn-search search-submit" >Procurar</button>
   </div>
-
-  <div class="form-group flex-center">
-    <input type="text" class="form-control" placeholder="Data de inicio" name='qdi' ngbDatepicker #d="ngbDatepicker" 
-      [(ngModel)]='searchStartQuery' (change)='searchDataInicio("qdi")' (click)=[d.toggle()]>
-    <input type="text" class="form-control" placeholder="Data de conclusão" name='qdf' ngbDatepicker #d2="ngbDatepicker"
-      [(ngModel)]='searchEndQuery' (change)='searchDataFim("qdf")' (click)=[d2.toggle()]>
-    <button type="submit" class="btn btn-default btn-search" >Procurar</button>
-
-  </div>
-
+   
+ 
 </form>
 
