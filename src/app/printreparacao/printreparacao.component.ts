@@ -71,7 +71,7 @@ export class PrintreparacaoComponent extends HtmlToPdfComponent  implements OnIn
     console.log(this.data)
     */
     this.dataToConvert = document.getElementById('contentToConvert');
-    document.getElementById('accoes').style.display="none";
+    //document.getElementById('accoes').style.display="none";
     //document.getElementById('header').style.display="none";
   }
 

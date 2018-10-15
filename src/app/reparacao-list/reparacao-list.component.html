@@ -51,24 +51,30 @@
           <mdb-icon icon="plus" size="2x"></mdb-icon>
         </a>
       </span>
-
-      <table class="table table-bordered table-responsive-md table-striped text-center">
+      
+      <table mdbTable class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
-          <th class="text-center" [hidden]="!false">Imagem</th>
-          <th class="text-center">Nome </th>
-          <th class="text-center">Descrição</th>
-          <th class="text-center">Orçamento</th>
-          <th class="text-center">Preço</th>
-          <th class="text-center">Materiais</th>
-          <th class="text-center">Contacto</th>
-          <th class="text-center">Data de início</th>
-          <th class="text-center">Data de conclusão</th>
-          <th class="text-center">Faturado</th>
-          <th class="text-center">Acções</th>
 
+          <th *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="reparacoes" [sortBy]="headElements[i]">{{head}}
+            <mdb-icon icon="sort"></mdb-icon>
+          </th>
+          <div>
+            <!-- <th class="text-center" [hidden]="!false">Imagem</th>
+            <th class="text-center">Nome </th>
+            <th class="text-center">Descrição</th>
+            <th class="text-center">Orçamento</th>
+            <th class="text-center">Preço</th>
+            <th class="text-center">Materiais</th>
+            <th class="text-center">Contacto</th>
+            <th class="text-center">Data de início</th>
+            <th class="text-center">Data de conclusão</th>
+            <th class="text-center">Faturado</th>
+            <th class="text-center">Acções</th> -->
+            </div>
         </tr>
         <tr *ngFor="let reparacao of reparacoes;let i = index" > 
-          <td [hidden]="!false">{{reparacao.foto}}</td>
+          <td   [hidden]="!false">{{reparacao.foto}}</td>
+          <td scope="row">{{reparacao.id}}</td>
           <td>{{reparacao.name}}</td>
           <td>{{reparacao.description}}</td>
           <td>{{reparacao.budget}}</td>
@@ -77,22 +83,28 @@
           <td>{{reparacao.tlf}}</td>
           <td>{{reparacao.date_created}}</td>
           <td>{{reparacao.date_completed}}</td>
-          <td> <ng-container *ngIf="reparacao.faturado; else elseTemplate">
-            Sim
-          </ng-container>
-          <ng-template #elseTemplate>
-            Não
-          </ng-template>
+          <td>
+            <ng-container *ngIf="reparacao.faturado; else elseTemplate">
+              Sim
+            </ng-container>
+            <ng-template #elseTemplate>
+              Não
+            </ng-template>
           </td>
+
+          <!-- ACCOES-->
           <td>
             <span class="table-remove">
 
-              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" (click)=get_detail(reparacao.id)  mdbWavesEffect>Consultar</button>
+              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)=get_detail(reparacao.id) mdbWavesEffect>
+              <i class="fa fa-search" aria-hidden="true"></i></button>
 
-              <button type="button nav-link" [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active" 
-                                    mdbBtn color="secondary" rounded="true" class="my-0">Editar</button>
+              <button type="button nav-link" mdbBtn color="secondary" class="my-0" rounded="true" 
+              [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
 
-              <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Remover</button>
+              <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
+              <i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
               <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">

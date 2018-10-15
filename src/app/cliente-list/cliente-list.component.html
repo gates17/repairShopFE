@@ -73,12 +73,14 @@
             <td>
               <span class="table-remove">
   
-                <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" (click)=get_detail(cliente.id)  mdbWavesEffect>Consultar</button>
+                <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" (click)=get_detail(cliente.id)  mdbWavesEffect>
+                <i class="fa fa-search" aria-hidden="true"></i></button>
   
                 <button type="button nav-link" [routerLink]="['/cliente/update',cliente.id]" routerLinkActive="active" 
-                                      mdbBtn color="secondary" rounded="true" class="my-0">Editar</button>
+                mdbBtn color="secondary" rounded="true" class="my-0">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
   
-                <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Remover</button>
+                <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect><i class="fa fa-trash-o" aria-hidden="true"></i></button>
   
                 <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">

@@ -33,9 +33,9 @@ export class PrintClienteComponent extends HtmlToPdfComponent  implements OnInit
   ngOnInit() {
     this.message = this.receiveMessage(event);
     this.dataToConvert = document.getElementById('contentToConvert');
-    document.getElementById('accoes').style.display="none";
+    //document.getElementById('accoes').style.display="none";
     //document.getElementById('header').style.display="none";
-    console.log(document.getElementById('accoes'));
+    //console.log(document.getElementById('accoes'));
   }
 
   print(){

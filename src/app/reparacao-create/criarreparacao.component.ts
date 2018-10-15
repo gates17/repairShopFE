@@ -21,12 +21,11 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
     description: new FormControl(''),
     price: new FormControl(''),
     budget: new FormControl('',Validators.required),
-    date_completed: new FormControl(''),
+    date_completed: new FormControl(null),
     tlf: new FormControl('',Validators.required),
     foto: new FormControl(''),
     materials: new FormControl(''),
-    faturado: new FormControl('')
-
+    faturado: new FormControl(false)
   })
  
   private subresponse:any;
@@ -46,11 +45,12 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   }
 
   createReparacao() {
-    let date = this.reparacaoForm.controls.date_completed.value
-    let dateParser = new Date(date.year, date.month-1, date.day);
-    let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
-    this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
-
+    if (this.reparacaoForm.controls.date_completed.value != null){
+      let date = this.reparacaoForm.controls.date_completed.value
+      let dateParser = new Date(date.year, date.month-1, date.day);
+      let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
+      this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
+    }
   // this.subresponse =
     this.reparacaoCreateService.guardarReparacao(this.reparacaoForm).subscribe(result => {
       this.gotoList();

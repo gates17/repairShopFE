@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 
+
 @Component({
   selector: 'app-reparacao-list',
   templateUrl: './reparacao-list.component.html',
@@ -21,8 +22,10 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
 
   private get_request: any;
   private delete_request:any;
+ 
   reparacao: IReparacao;
   reparacaoSub: Subscription;
+ 
   public reparacoes = [];
  
   public pages=[];
@@ -42,7 +45,24 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
   ) { 
   }
   
+  
+  headElements = [ 
+  'Id',
+  'Nome',
+  'Descrição',
+  'Orçamento',
+  'Preço',
+  'Materiais',
+  'Contacto',
+  'Data de início',
+  'Data de conclusão',
+  'Faturado',
+  'Acções'];
+  
+  
+
   ngOnInit() {
+   
     this.get_request = this.reparacaoDetailhesService.getReparacoes('').subscribe(data =>{
       this.pages = data['pages_list']
       this.reparacoes = data['results']
@@ -51,9 +71,24 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
       this.previous_url = this.pages['previous_url']
       this.next_url = this.pages['next_url']
       this.first_page = this.page_links[0]
-      console.log(data)
+
     });
-    
+   
+    // for (let i = 1; i <= this.reparacoes['count']; i++) {
+    //   this.reparacoes.push({ 
+    //     id: i, 
+    //     name: 'Nome ' + i, 
+    //     description: 'Descrição ' + i, 
+    //     budget: 'Orçamento ' + i,
+    //     price: 'Preço' + i,
+    //     materials: 'Materiais' + i,
+    //     tlf: 'Contacto' + i,
+    //     date_created:'Data de início' + i,
+    //     date_completed: 'Data de conclusão' + i,
+    //     faturado: 'Faturado' + i,
+        
+    //   });
+    // }
   }
 
   ngOnDestroy(){
