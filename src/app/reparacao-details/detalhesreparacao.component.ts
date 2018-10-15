@@ -23,14 +23,14 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
   reparacaoSub: Subscription;
   images: Array<string>;
   id:any;
-  
+
   reparacaoForm = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
     date_completed: new FormControl(''),
     price: new FormControl(''),
     budget: new FormControl(''),
-    tlf: new FormControl(''),
+    weight: new FormControl(''),
     foto: new FormControl(''),
     materials: new FormControl(''),
     faturado: new FormControl('')
@@ -66,7 +66,7 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
             this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
             this.reparacaoForm.controls.price.setValue(this.reparacao.price);
             this.reparacaoForm.controls.budget.setValue(this.reparacao.budget);
-            this.reparacaoForm.controls.tlf.setValue(this.reparacao.tlf);
+            this.reparacaoForm.controls.weight.setValue(this.reparacao.weight);
             this.reparacaoForm.controls.foto.setValue(this.reparacao.foto);
             this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
             
@@ -102,7 +102,7 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
       this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
       this.reparacaoForm.controls.price.setValue(this.reparacao.price);
       this.reparacaoForm.controls.budget.setValue(this.reparacao.budget);
-      this.reparacaoForm.controls.tlf.setValue(this.reparacao.tlf);
+      this.reparacaoForm.controls.weight.setValue(this.reparacao.weight);
       this.reparacaoForm.controls.foto.setValue(this.reparacao.foto);
       this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
       

@@ -9,7 +9,7 @@ export interface IReparacao {
     description: string,
     date_created: string
     date_completed: string,
-    tlf: string,
+    weight: number,
     foto: string,
     materials:string,
     faturado:boolean,

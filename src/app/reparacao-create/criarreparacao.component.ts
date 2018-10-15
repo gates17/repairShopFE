@@ -22,7 +22,7 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
     price: new FormControl(''),
     budget: new FormControl('',Validators.required),
     date_completed: new FormControl(null),
-    tlf: new FormControl('',Validators.required),
+    weight: new FormControl(''),
     foto: new FormControl(''),
     materials: new FormControl(''),
     faturado: new FormControl(false)

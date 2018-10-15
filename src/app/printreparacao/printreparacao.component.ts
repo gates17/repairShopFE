@@ -22,7 +22,7 @@ export class PrintreparacaoComponent extends HtmlToPdfComponent  implements OnIn
     date_completed: new FormControl(''),
     price: new FormControl(''),
     budget: new FormControl(''),
-    tlf: new FormControl(''),
+    weight: new FormControl(''),
     foto: new FormControl(''),
     materials: new FormControl(''),
     faturado: new FormControl('')

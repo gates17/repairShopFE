@@ -19,17 +19,17 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
   reparacaoSub: Subscription;
   private request: any;
   reparacaoForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('',Validators.required),
     description: new FormControl(''),
-    date_completed: new FormControl(''),
+    date_completed: new FormControl(null),
     price: new FormControl(''),
-    budget: new FormControl(''),
-    tlf: new FormControl(''),
+    budget: new FormControl('',Validators.required),
+    weight: new FormControl(''),
     foto: new FormControl(''),
     materials: new FormControl(''),
-    faturado: new FormControl('')
-
+    faturado: new FormControl(false)
   })
+
 
   constructor(
     
@@ -58,7 +58,7 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
             this.reparacaoForm.controls.price.setValue(this.reparacao.price);
             this.reparacaoForm.controls.budget.setValue(this.reparacao.budget);
-            this.reparacaoForm.controls.tlf.setValue(this.reparacao.tlf);
+            this.reparacaoForm.controls.weight.setValue(this.reparacao.weight);
             this.reparacaoForm.controls.foto.setValue(this.reparacao.foto);
             this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
             this.reparacaoForm.controls.faturado.setValue(this.reparacao.faturado);
@@ -82,10 +82,13 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
   }
 
   saveReparacao() {
-    let date = this.reparacaoForm.controls.date_completed.value
-    let dateParser = new Date(date.year, date.month-1, date.day);
-    let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
-    this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
+    console.log(this.reparacaoForm.controls.date_completed.value)
+    if (this.reparacaoForm.controls.date_completed.value != null){
+      let date = this.reparacaoForm.controls.date_completed.value
+      let dateParser = new Date(date.year, date.month-1, date.day);
+      let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
+      this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
+    }
     
     this.alterarReparacaoService.updateReparacao(this.reparacaoForm.value,this.reparacao.id).subscribe(result => {
       this.gotoList();
