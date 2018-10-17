@@ -53,7 +53,6 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
   
   
   sortData(sort: Sort) {
-    console.log("PILAS")
     console.log(sort)
     const data = this.reparacoes.slice();
     this.reparacoes = data
@@ -90,23 +89,7 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
       console.log(this.reparacoes)
 
     });
-   
-    // for (let i = 1; i <= this.reparacoes['count']; i++) {
-    //   this.reparacoes.push({ 
-    //     id: i, 
-    //     name: 'Nome ' + i, 
-    //     description: 'Descrição ' + i, 
-    //     budget: 'Orçamento ' + i,
-    //     price: 'Preço' + i,
-    //     materials: 'Materiais' + i,
-    //     tlf: 'Contacto' + i,
-    //     date_created:'Data de início' + i,
-    //     date_completed: 'Data de conclusão' + i,
-    //     faturado: 'Faturado' + i,
-        
-    //   });
-    // }
-  }
+     }
 
   ngOnDestroy(){
      this.get_request.unsubscribe();

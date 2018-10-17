@@ -41,6 +41,7 @@ import { MatSelectModule,MatFormFieldModule, MatInputModule } from '@angular/mat
 import {ObserversModule} from '@angular/cdk/observers';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {PlatformModule} from '@angular/cdk/platform';
+import { ContaCorrenteComponent } from './conta-corrente/conta-corrente.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import {PlatformModule} from '@angular/cdk/platform';
     HtmlToPdfComponent,
   
     SearchComponent,
-    SearchResultsComponent,    
+    SearchResultsComponent,
+    ContaCorrenteComponent,    
 
   ],
   imports: [

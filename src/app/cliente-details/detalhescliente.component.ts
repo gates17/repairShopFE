@@ -8,6 +8,7 @@ import { ICliente } from '../models/cliente';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { HtmlToPdfComponent } from '../html-to-pdf/html-to-pdf.component'
+import { DetalhesreparacaoserviceService } from '../services/reparacao/detalhesreparacao/detalhesreparacaoservice.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
   images: Array<string>;
   id: any;
   convert: HtmlToPdfComponent;
-
+  reparacoes: any [];
   clienteForm = new FormGroup({
     name: new FormControl(''),
     tlf: new FormControl(''),
@@ -43,6 +44,7 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
     private router: Router,
     private clienteDetailhesService: ConsultarService,
     private clienteEliminarService: RemoverService,
+    private reparacoesClienteService: DetalhesreparacaoserviceService,
     private _http: HttpClient
     
   ) { }
@@ -106,5 +108,8 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
   
   }
   
+  get_conta_corrente(){
+    this.router.navigate['/cliente/details/'+ this.cliente.id +'/conta/']
+  }
 
 }

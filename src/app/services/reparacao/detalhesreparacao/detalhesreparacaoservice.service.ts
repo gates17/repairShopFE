@@ -18,6 +18,10 @@ export class DetalhesreparacaoserviceService {
     }
   }
 
+  getReparacoesCliente(cliente_id: any): Observable<any[]>{
+    return this.http.get<any[]>(this._reparacoesurl  +'?'+'qc' +'=' + cliente_id);
+
+  }
   getReparacoes(url: any): Observable<any[]> {
     if(url=='' || url==undefined){
       return this.http.get<any[]>(this._reparacoesurl);
