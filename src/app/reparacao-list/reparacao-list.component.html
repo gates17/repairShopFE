@@ -69,6 +69,7 @@
           <th class="text-center">Descrição</th>
           <th class="text-center">Materiais</th>
           <th class="text-center">Faturado</th>
+          <th class="text-center" mat-sort-header="pago">Pago</th>
           <th class="text-center">Acções</th>
 
         </tr>
@@ -83,8 +84,16 @@
           <td>{{reparacao.date_completed}}</td>
           <td>{{reparacao.description}}</td>
           <td>{{reparacao.materials}}</td>
-         <td>
+          <td>
             <ng-container *ngIf="reparacao.faturado; else elseTemplate">
+              Sim
+            </ng-container>
+            <ng-template #elseTemplate>
+              Não
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="reparacao.pago; else elseTemplate">
               Sim
             </ng-container>
             <ng-template #elseTemplate>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy , ViewChild} from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { tap  } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,9 +8,9 @@ import { IReparacao } from '../models/reparacao';
 import { DatePipe } from '@angular/common';
 import { ConsultarService } from '../services/cliente/consultarservice/consultar.service';
 
-export interface Option {
-  value: number;
-  label: string;
+export interface Food {
+  value: string;
+  viewValue: string;
 }
 
 @Component({
@@ -26,7 +26,7 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
   reparacaoSub: Subscription;
   private request: any;
   reparacaoForm = new FormGroup({
-    name: new FormControl('',Validators.required),
+    name_id: new FormControl('',Validators.required),
     description: new FormControl(''),
     date_completed: new FormControl(null),
     price: new FormControl(''),
@@ -34,13 +34,19 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
     weight: new FormControl(''),
     foto: new FormControl(''),
     materials: new FormControl(''),
-    faturado: new FormControl(false)
+    faturado: new FormControl(false),
+    pago: new FormControl(false)
+
   })
   private client_request: any;
   clientOptions: any;
   defaultId:any;
   optionsSelect: Array<any> =[];
-  
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
   constructor(
     
     private route: ActivatedRoute,
@@ -50,19 +56,9 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
     private getClientesService: ConsultarService,
   ) { }
 
+
   ngOnInit() {
-    this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
-      this.clientOptions = data['results']
-     
-      this.clientOptions.forEach(o => {
-        console.log(o)
-        this.optionsSelect.push({value: o.id, label:o.name});
-        console.log(this.optionsSelect)
-        // if(o.name == this.reparacao.name_id)
-        //   this.defaultId = o.id;
-        
-      });
-    });
+   
 
     this.reparacaoSub = this.route.params.subscribe(params => {
       const id = params['id'];
@@ -77,7 +73,7 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.reparacao.url = reparacao.url;
             console.log(this.reparacao)
             this.reparacaoForm.hasError
-            this.reparacaoForm.controls.name.setValue(this.reparacao.name_id);
+            this.reparacaoForm.controls.name_id.setValue(this.reparacao.name_id);
             this.reparacaoForm.controls.description.setValue(this.reparacao.description);
             this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
             this.reparacaoForm.controls.price.setValue(this.reparacao.price);
@@ -86,10 +82,23 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.reparacaoForm.controls.foto.setValue(this.reparacao.foto);
             this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
             this.reparacaoForm.controls.faturado.setValue(this.reparacao.faturado);
+            this.reparacaoForm.controls.pago.setValue(this.reparacao.pago);
 
 
 
-
+            this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
+              this.clientOptions = data['results']
+             
+              this.clientOptions.forEach(o => {
+                console.log(o)
+                this.optionsSelect.push({value: o.id, label:o.name});
+                console.log(this.optionsSelect)
+                if(o.name == this.reparacao.name_id)
+                  this.defaultId = o.id;
+                  console.log(this.defaultId)
+                
+              });
+            });
 
 
           } else {
@@ -122,7 +131,7 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
       let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
       this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
     }
-    
+    console.log(this.reparacaoForm.value)
     this.alterarReparacaoService.updateReparacao(this.reparacaoForm.value,this.reparacao.id).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));

@@ -26,7 +26,9 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
     weight: new FormControl(''),
     foto: new FormControl(''),
     materials: new FormControl(''),
-    faturado: new FormControl(false)
+    faturado: new FormControl(false),
+    pago: new FormControl(false)
+
   })
   private client_request: any;
   clientOptions: any;

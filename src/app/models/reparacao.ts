@@ -13,4 +13,5 @@ export interface IReparacao {
     foto: string,
     materials:string,
     faturado:boolean,
+    pago:boolean,
 }

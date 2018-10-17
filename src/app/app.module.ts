@@ -36,9 +36,11 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { PrintReparacaoService } from './services/print/print-reparacao.service';
 
 import { DatePipe } from '@angular/common'
-import { MatSelectModule } from '@angular/material';
+import { MatSelectModule,MatFormFieldModule, MatInputModule } from '@angular/material';
 
-
+import {ObserversModule} from '@angular/cdk/observers';
+import {OverlayModule} from '@angular/cdk/overlay';
+import {PlatformModule} from '@angular/cdk/platform';
 
 @NgModule({
   declarations: [
@@ -75,11 +77,18 @@ import { MatSelectModule } from '@angular/material';
     ReactiveFormsModule,
     NgxPaginationModule,
     NgbModule.forRoot(),
+  
+    BrowserAnimationsModule,
+    
     MatSortModule,
     MatSelectModule,
-    BrowserAnimationsModule
-
+    MatFormFieldModule,
+    MatInputModule,
+    OverlayModule,
+    ObserversModule,
+    PlatformModule
   ],
+
   providers: [PrintReparacaoService,DatePipe],
   bootstrap: [
     AppComponent,

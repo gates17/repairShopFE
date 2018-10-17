@@ -33,7 +33,8 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
     weight: new FormControl(''),
     foto: new FormControl(''),
     materials: new FormControl(''),
-    faturado: new FormControl('')
+    faturado: new FormControl(''),
+    pago: new FormControl('')
 
   })
 
