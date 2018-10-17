@@ -61,7 +61,7 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
 
             this.reparacao.url = reparacao.url;
 
-            this.reparacaoForm.controls.name.setValue(this.reparacao.name);
+            this.reparacaoForm.controls.name.setValue(this.reparacao.name_id);
             this.reparacaoForm.controls.description.setValue(this.reparacao.description);
             this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
             this.reparacaoForm.controls.price.setValue(this.reparacao.price);
@@ -97,7 +97,7 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
 
   print(){
       // this.clientData= this.cliente;
-      this.reparacaoForm.controls.name.setValue(this.reparacao.name);
+      this.reparacaoForm.controls.name.setValue(this.reparacao.name_id);
       this.reparacaoForm.controls.description.setValue(this.reparacao.description);
       this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
       this.reparacaoForm.controls.price.setValue(this.reparacao.price);

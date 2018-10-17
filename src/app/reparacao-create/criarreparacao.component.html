@@ -10,10 +10,15 @@
 
     <div class="container reparacoes-container">
       <form [formGroup]="reparacaoForm" (ngSubmit)="createReparacao()">
+     
         <!-- name -->
-        <div class="md-form mt-0">    
-          <input type="text" formControlName="name" class="form-control" mdbInputDirective>
-          <label>Nome</label>
+        <div class="md-form mt-0"> 
+          <label>Cliente</label>
+
+          <select class="mat-select" formControlName="name" required>
+            <option [value]="option.id" *ngFor="let option of clientOptions">{{option.name}}</option>
+          </select>
+
         </div>  
         <!-- price -->
           <div class="md-form mt-0">    

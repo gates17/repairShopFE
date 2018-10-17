@@ -8,6 +8,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { MatSortModule } from '@angular/material/sort';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 //COMPONENTS IMPORT
 import { AppComponent } from './app.component';
 import { MainnavbarComponent } from './mainnavbar/mainnavbar.component';
@@ -33,6 +36,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { PrintReparacaoService } from './services/print/print-reparacao.service';
 
 import { DatePipe } from '@angular/common'
+import { MatSelectModule } from '@angular/material';
 
 
 
@@ -70,7 +74,10 @@ import { DatePipe } from '@angular/common'
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MatSortModule,
+    MatSelectModule,
+    BrowserAnimationsModule
 
   ],
   providers: [PrintReparacaoService,DatePipe],

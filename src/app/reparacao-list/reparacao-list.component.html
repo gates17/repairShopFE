@@ -52,38 +52,38 @@
         </a>
       </span>
       
-      <table mdbTable class="table table-bordered table-responsive-md table-striped text-center">
+      <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
-
-          <th *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="reparacoes" [sortBy]="headElements[i]">{{head}}
+          <!-- <th *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="reparacoes" [sortBy]="headElements[i]">{{head}}
             <mdb-icon icon="sort"></mdb-icon>
           </th>
-          <div>
-            <!-- <th class="text-center" [hidden]="!false">Imagem</th>
-            <th class="text-center">Nome </th>
-            <th class="text-center">Descrição</th>
-            <th class="text-center">Orçamento</th>
-            <th class="text-center">Preço</th>
-            <th class="text-center">Materiais</th>
-            <th class="text-center">Contacto</th>
-            <th class="text-center">Data de início</th>
-            <th class="text-center">Data de conclusão</th>
-            <th class="text-center">Faturado</th>
-            <th class="text-center">Acções</th> -->
-            </div>
+        mat-sort-header="name" -->
+          <th class="text-center" mat-sort-header="id">Id </th>
+          <th class="text-center" mat-sort-header="name">Cliente </th>
+          <th class="text-center">Orçamento</th>
+          <th class="text-center">Preço</th>
+          
+          <th class="text-center" mat-sort-header="wight">Peso</th>
+          <th class="text-center" mat-sort-header="date_created">Data de início</th>
+          <th class="text-center" mat-sort-header="date_completed">Data de conclusão</th> 
+          <th class="text-center">Descrição</th>
+          <th class="text-center">Materiais</th>
+          <th class="text-center">Faturado</th>
+          <th class="text-center">Acções</th>
+
         </tr>
         <tr *ngFor="let reparacao of reparacoes;let i = index" > 
           <td   [hidden]="!false">{{reparacao.foto}}</td>
-          <td scope="row">{{reparacao.id}}</td>
-          <td>{{reparacao.name}}</td>
-          <td>{{reparacao.description}}</td>
+          <td>{{reparacao.id}}</td>
+          <td>{{reparacao.name_id}}</td>
           <td>{{reparacao.budget}}</td>
           <td>{{reparacao.price}}</td>
-          <td>{{reparacao.materials}}</td>
-          <td>{{reparacao.tlf}}</td>
+          <td>{{reparacao.weight}}</td>
           <td>{{reparacao.date_created}}</td>
           <td>{{reparacao.date_completed}}</td>
-          <td>
+          <td>{{reparacao.description}}</td>
+          <td>{{reparacao.materials}}</td>
+         <td>
             <ng-container *ngIf="reparacao.faturado; else elseTemplate">
               Sim
             </ng-container>

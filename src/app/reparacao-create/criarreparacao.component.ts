@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CriarreparacaoserviceService } from '../services/reparacao/criarreparacao/criarreparacaoservice.service';
 import { IReparacao } from '../models/reparacao';
 import { DatePipe } from '@angular/common';
+import { ConsultarService } from '../services/cliente/consultarservice/consultar.service';
 
 
 @Component({
@@ -27,6 +28,8 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
     materials: new FormControl(''),
     faturado: new FormControl(false)
   })
+  private client_request: any;
+  clientOptions: any;
  
   private subresponse:any;
 
@@ -34,10 +37,16 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private reparacaoCreateService: CriarreparacaoserviceService,
+    private getClientesService: ConsultarService,
     private datePipe: DatePipe,
   ) { }
 
   ngOnInit() {
+    this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
+      this.clientOptions = data['results']
+      console.log(data)
+      console.log(this.clientOptions)
+    });
   }
 
   gotoList() {

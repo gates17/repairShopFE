@@ -6,12 +6,19 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { AlterarreparacaoserviceService } from '../services/reparacao/alterarreparacao/alterarreparacaoservice.service';
 import { IReparacao } from '../models/reparacao';
 import { DatePipe } from '@angular/common';
+import { ConsultarService } from '../services/cliente/consultarservice/consultar.service';
+
+export interface Option {
+  value: number;
+  label: string;
+}
 
 @Component({
   selector: 'app-alterarreparacao',
   templateUrl: './alterarreparacao.component.html',
   styleUrls: ['./alterarreparacao.component.scss']
 })
+
 export class AlterarreparacaoComponent implements OnInit, OnDestroy {
 
   date: any;
@@ -29,31 +36,48 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
     materials: new FormControl(''),
     faturado: new FormControl(false)
   })
-
-
+  private client_request: any;
+  clientOptions: any;
+  defaultId:any;
+  optionsSelect: Array<any> =[];
+  
   constructor(
     
     private route: ActivatedRoute,
     private router: Router,
     private alterarReparacaoService: AlterarreparacaoserviceService,
     private datePipe: DatePipe,
+    private getClientesService: ConsultarService,
   ) { }
 
   ngOnInit() {
+    this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
+      this.clientOptions = data['results']
+     
+      this.clientOptions.forEach(o => {
+        console.log(o)
+        this.optionsSelect.push({value: o.id, label:o.name});
+        console.log(this.optionsSelect)
+        // if(o.name == this.reparacao.name_id)
+        //   this.defaultId = o.id;
+        
+      });
+    });
+
     this.reparacaoSub = this.route.params.subscribe(params => {
       const id = params['id'];
       
       if (id) {
         //form pre-load
        
-        console.log(this.reparacaoForm)
 
         this.request = this.alterarReparacaoService.getReparacao(id).subscribe((reparacao: IReparacao) => {
           if (reparacao) {
             this.reparacao = reparacao;
             this.reparacao.url = reparacao.url;
-            console.log(reparacao)
-            this.reparacaoForm.controls.name.setValue(this.reparacao.name);
+            console.log(this.reparacao)
+            this.reparacaoForm.hasError
+            this.reparacaoForm.controls.name.setValue(this.reparacao.name_id);
             this.reparacaoForm.controls.description.setValue(this.reparacao.description);
             this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
             this.reparacaoForm.controls.price.setValue(this.reparacao.price);
@@ -63,13 +87,22 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
             this.reparacaoForm.controls.faturado.setValue(this.reparacao.faturado);
 
+
+
+
+
+
           } else {
             this.gotoList();
           }
         });
+      
+         
+        
 
       }
     });
+  
   }
 
   ngOnDestroy() {

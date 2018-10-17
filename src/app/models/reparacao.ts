@@ -3,7 +3,7 @@ import { Url } from "url";
 export interface IReparacao {
     url: Url,
     id: number,
-    name: string,
+    name_id: string,
     price: number,
     budget: number,
     description: string,

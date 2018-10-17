@@ -12,15 +12,37 @@
         <!--    <form class="text-center" style="color: #757575;"> -->
 
         <!-- name -->
+
+      <div>
+        <mat-form-field>
+          <mat-select placeholder="Escolha o Cliente"  required>
+            <mat-option>----</mat-option>
+            <mat-option [value]="1">teste1</mat-option>
+            <mat-option [value]="2">teste2</mat-option>
+            <mat-option [value]="3">teste3</mat-option>
+            <!-- <mat-option *ngFor="let option of optionsSelect" [value]="option.id">
+              {{option}}   
+            </mat-option> -->
+          </mat-select>
+          <mat-error *ngIf="reparacaoForm.hasError('required')">Por favor escoha um cliente</mat-error>
+        </mat-form-field>
+      </div>
+          <!-- 
         <div class="md-form mt-0">    
-          <label>Nome</label>
-          <input type="text" formControlName="name" class="form-control" mdbInputDirective>
-        </div>  
+          <label>Cliente</label>
+          
+          <select class="mat-select" formControlName="name" required [ngModel]="clientOptions">
+            <option *ngFor="let option of clientOptions" [value]="option.id" [ngValue]="defaultId">{{option.name}}</option>
+          </select>
+        </div>   -->
+
+
+
         <!-- price -->
-          <div class="md-form mt-0">    
-            <input type="text" formControlName="price" class="form-control" mdbInputDirective>
-            <label>Preço</label>
-          </div>  
+        <div class="md-form mt-0">    
+          <input type="text" formControlName="price" class="form-control" mdbInputDirective>
+          <label>Preço</label>
+        </div>  
 
         <!-- budget -->
         <div class="md-form mt-0">    

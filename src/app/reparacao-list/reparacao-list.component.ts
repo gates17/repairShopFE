@@ -8,6 +8,7 @@ import { IReparacao } from '../models/reparacao';
 
 import { HttpClient } from '@angular/common/http';
 
+import { Sort } from '@angular/material';
 
 
 
@@ -26,7 +27,6 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
   reparacao: IReparacao;
   reparacaoSub: Subscription;
  
-  public reparacoes = [];
  
   public pages=[];
   public page_links=[];
@@ -36,30 +36,46 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
   public first_page: any;
   images: Array<string>;
  
+  public reparacoes = [];
+
+  sortedData: any[];
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private reparacaoDetailhesService: DetalhesreparacaoserviceService,
     private reparacaoEliminarService: EliminarreparacaoserviceService,
-    private _http: HttpClient
-  ) { 
+    private _http: HttpClient,
+  ) 
+  { 
+
   }
   
   
-  headElements = [ 
-  'Id',
-  'Nome',
-  'Descrição',
-  'Orçamento',
-  'Preço',
-  'Materiais',
-  'Contacto',
-  'Data de início',
-  'Data de conclusão',
-  'Faturado',
-  'Acções'];
-  
-  
+  sortData(sort: Sort) {
+    console.log("PILAS")
+    console.log(sort)
+    const data = this.reparacoes.slice();
+    this.reparacoes = data
+    console.log(data)
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      console.log("DATA",data)
+
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id':  return compare(a.id, b.id, isAsc);
+        case 'name': return compare(a.name, b.name, isAsc);
+        case 'date_created': return compare(a.date_created, b.date_created, isAsc);
+        case 'date_completed': return compare(a.date_completed, b.date_completed, isAsc);
+        default: return 0;
+      }
+    });
+  }
 
   ngOnInit() {
    
@@ -71,6 +87,7 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
       this.previous_url = this.pages['previous_url']
       this.next_url = this.pages['next_url']
       this.first_page = this.page_links[0]
+      console.log(this.reparacoes)
 
     });
    
@@ -128,5 +145,7 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
   }
 }
 
-  
 
+function compare(a, b, isAsc) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
