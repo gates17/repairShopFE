@@ -1,14 +1,13 @@
 <div class="card">
 
   <div class="card-header">
-    <card-title><h2>Remove {{reparacao.name}}</h2></card-title>
+    <card-title><h2>Remover reparação{{reparacao.id}}</h2></card-title>
   </div>
   <div class="card-body">
     <input 
       type="hidden" 
       name="url" 
-      [(ngModel)]="reparacao.url"
-    >
+      [(ngModel)]="reparacao.url">
   
   <button type="button" raised-button color="success" mdbBtn color="success" rounded="true" size="sm" class="my-0" (click)=remove(reparacao.id)>Remover</button>
 

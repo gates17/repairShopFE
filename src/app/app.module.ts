@@ -9,7 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MatSortModule } from '@angular/material/sort';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //COMPONENTS IMPORT
 import { AppComponent } from './app.component';
@@ -42,6 +42,7 @@ import {ObserversModule} from '@angular/cdk/observers';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {PlatformModule} from '@angular/cdk/platform';
 import { ContaCorrenteComponent } from './conta-corrente/conta-corrente.component';
+import { ContaCorrenteClienteComponent } from './conta-corrente-cliente/conta-corrente-cliente.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ContaCorrenteComponent } from './conta-corrente/conta-corrente.componen
   
     SearchComponent,
     SearchResultsComponent,
-    ContaCorrenteComponent,    
+    ContaCorrenteComponent,
+    ContaCorrenteClienteComponent,    
 
   ],
   imports: [
@@ -91,7 +93,10 @@ import { ContaCorrenteComponent } from './conta-corrente/conta-corrente.componen
     PlatformModule
   ],
 
-  providers: [PrintReparacaoService,DatePipe],
+  providers: [
+    PrintReparacaoService,
+    DatePipe,  
+  ],
   bootstrap: [
     AppComponent,
     MainnavbarComponent,

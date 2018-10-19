@@ -109,7 +109,8 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
   }
   
   get_conta_corrente(){
-    this.router.navigate['/cliente/details/'+ this.cliente.id +'/conta/']
+    console.log('/cliente/details/'+ this.cliente.id +'/conta/')
+    this.router.navigate(['/cliente/details/'+ this.cliente.id +'/conta/'])
   }
 
 }

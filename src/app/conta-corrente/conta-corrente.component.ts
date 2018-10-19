@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DetalhesreparacaoserviceService } from '../services/reparacao/detalhesreparacao/detalhesreparacaoservice.service';
 import { Router,ActivatedRoute } from '@angular/router';
+import { ConsultarService } from '../services/cliente/consultarservice/consultar.service';
 
 @Component({
   selector: 'app-conta-corrente',
@@ -8,26 +8,22 @@ import { Router,ActivatedRoute } from '@angular/router';
   styleUrls: ['./conta-corrente.component.scss']
 })
 export class ContaCorrenteComponent implements OnInit {
-  reparacoes:any [];
+  clientes:any [];
   private clienteSub: any;
   private id:any;
-  @Input() cliente_id;
+  
   constructor(
-    private reparacoesClienteService: DetalhesreparacaoserviceService,
+    private getClientesService: ConsultarService,
     private router: Router,
     private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.clienteSub = this.route.params.subscribe(params => {
-      this.id = params['id'];
-console.log(this.id)
-      this.reparacoesClienteService.getReparacoesCliente(this.id).subscribe(data =>{
-        this.reparacoes = data['results']
+    this.clienteSub = this.getClientesService.getClientes('').subscribe(data =>{
+        this.clientes = data['results']
         console.log(data)
-        console.log("reparacaoes", this.reparacoes)
+        console.log("clientes", this.clientes)
       });
-    });
   }
 
   gotoList() {
@@ -36,7 +32,7 @@ console.log(this.id)
 
   get_detail(id:number) {
     if (id) {
-      this.router.navigate(['reparacao/details/' + id])
+      this.router.navigate(['cliente/details/' + id])
     } else {
       this.gotoList();
     }

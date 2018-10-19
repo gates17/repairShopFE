@@ -11,42 +11,22 @@
           </th>
         mat-sort-header="name" -->
           <th class="text-center" mat-sort-header="id">Id </th>
-          <th class="text-center">Orçamento</th>
-          <th class="text-center">Preço</th>
-          <th class="text-center" mat-sort-header="wight">Peso</th>
-          <th class="text-center">Faturado</th>
-          <th class="text-center" mat-sort-header="pago">Pago</th>
+          <th class="text-center" mat-sort-header="cliente">Cliente</th>
+          <th class="text-center">Débito</th>
+          <th class="text-center">Pago</th>
           <th class="text-center">Acções</th>
-
         </tr>
-        <tr *ngFor="let reparacao of reparacoes;let i = index" > 
-          <td   [hidden]="!false">{{reparacao.foto}}</td>
-          <td>{{reparacao.id}}</td>
-          <td>{{reparacao.budget}}</td>
-          <td>{{reparacao.price}}</td>
-          <td>{{reparacao.weight}}</td>
-          <td>
-            <ng-container *ngIf="reparacao.faturado; else elseTemplate">
-              Sim
-            </ng-container>
-            <ng-template #elseTemplate>
-              Não
-            </ng-template>
-          </td>
-          <td>
-            <ng-container *ngIf="reparacao.pago; else elseTemplate">
-              Sim
-            </ng-container>
-            <ng-template #elseTemplate>
-              Não
-            </ng-template>
-          </td>
-
+        <tr *ngFor="let cliente of clientes;let i = index" > 
+          <td>{{cliente.id}}</td>
+          <td>{{cliente.name}}</td>
+          <td>{{cliente.total_debt_by_client|currency:'EUR':true }} </td>
+          <td>{{cliente.total_spent_by_client|currency:'EUR':true }}</td>
+     
           <!-- ACCOES-->
           <td>
             <span class="table-remove">
 
-              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)=get_detail(reparacao.id) mdbWavesEffect>
+              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)=get_detail(cliente.id) mdbWavesEffect>
               <i class="fa fa-search" aria-hidden="true"></i></button>
               
             </span>
