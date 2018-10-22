@@ -10,8 +10,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { Sort } from '@angular/material';
 
-
-
 @Component({
   selector: 'app-reparacao-list',
   templateUrl: './reparacao-list.component.html',
@@ -20,6 +18,9 @@ import { Sort } from '@angular/material';
 })
 
 export class ReparacaoListComponent implements OnInit, OnDestroy {
+
+  private _reparacoesurl: string ="http://localhost:8000/reparacao/";
+  private teste:any;
 
   private get_request: any;
   private delete_request:any;
@@ -45,7 +46,7 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
     private router: Router,
     private reparacaoDetailhesService: DetalhesreparacaoserviceService,
     private reparacaoEliminarService: EliminarreparacaoserviceService,
-    private _http: HttpClient,
+
   ) 
   { 
 
@@ -53,14 +54,21 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
   
   
   sortData(sort: Sort) {
-    console.log(sort)
+    this.teste = this.reparacaoDetailhesService.getSort(sort).subscribe(data =>{
+      this.pages = data['pages_list']
+      this.reparacoes = data['results']
+      this.page_links = this.pages['page_links']
+      this.last_page = this.page_links[this.page_links.length-1]
+      this.previous_url = this.pages['previous_url']
+      this.next_url = this.pages['next_url']
+      this.first_page = this.page_links[0]
+    });
+  
     const data = this.reparacoes.slice();
     this.reparacoes = data
-    console.log(data)
+   
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
-      console.log("DATA",data)
-
       return;
     }
 
@@ -81,12 +89,11 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
     this.get_request = this.reparacaoDetailhesService.getReparacoes('').subscribe(data =>{
       this.pages = data['pages_list']
       this.reparacoes = data['results']
-      this.page_links= this.pages['page_links']
+      this.page_links = this.pages['page_links']
       this.last_page = this.page_links[this.page_links.length-1]
       this.previous_url = this.pages['previous_url']
       this.next_url = this.pages['next_url']
       this.first_page = this.page_links[0]
-      console.log(this.reparacoes)
 
     });
      }
@@ -115,7 +122,6 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
   }
 
   onPageChanged(url: string) {
-    console.log(url)
     this.get_request = this.reparacaoDetailhesService.getReparacoes(url).subscribe(data =>{
       this.pages = data['pages_list']
       this.page_links= this.pages['page_links']

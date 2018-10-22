@@ -34,9 +34,6 @@ export class CriarreparacaoserviceService {
   };
 
   guardarReparacao(reparacoes: any):Observable<any> {
-    console.log(reparacoes['url'])
-    console.log(reparacoes.value)
-
     if (reparacoes['url']){
       return this.http.get<IReparacao>(this._reparacaourl);
     }
@@ -47,9 +44,3 @@ export class CriarreparacaoserviceService {
 
   }
 }
-
-        /*.pipe(
-          catchError(
-            this.handleError('guardarReparacao', reparacaoes)
-            )
-        );   */   

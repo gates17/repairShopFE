@@ -32,6 +32,9 @@ export class DetalhesreparacaoserviceService {
     }   
   }
 
+  getSort(sortParam): Observable<any[]> {
+    return this.http.get<any[]>(this._reparacoesurl + '?'+sortParam.active +'=' + sortParam.direction);
+  }
   searchReparacoes(reparacoes_id, searchParam): Observable<IReparacao[]> {
     if(reparacoes_id){
       return this.http.get<IReparacao[]>(this._reparacoesurl + '?'+searchParam +'=' + reparacoes_id);

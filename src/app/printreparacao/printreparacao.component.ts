@@ -61,15 +61,7 @@ export class PrintreparacaoComponent extends HtmlToPdfComponent  implements OnIn
 */
   ngOnInit() {
     this.reparacaoForm = this.prs.getData();
-    //console.log(this.prs)
-    console.log(this.reparacaoForm)
-    console.log(this.formData)
-    /*
-    this.message = this.receiveMessage(event);
-    console.log(this.message)
 
-    console.log(this.data)
-    */
     this.dataToConvert = document.getElementById('contentToConvert');
     //document.getElementById('accoes').style.display="none";
     //document.getElementById('header').style.display="none";
@@ -86,6 +78,5 @@ export class PrintreparacaoComponent extends HtmlToPdfComponent  implements OnIn
 
   receiveMessage($event){
     this.message=$event;
-    console.log(this.message)
   }
 }

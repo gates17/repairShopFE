@@ -9,7 +9,6 @@ export class EliminarreparacaoserviceService {
   constructor(private http: HttpClient) {  }
 
   getReparacao(reparacao_id: any):Observable<any>{
-    console.log(reparacao_id)
     if (reparacao_id) {
       return this.http.get<IReparacao>(this._reparacaourl + 'detail/' + reparacao_id )
     }

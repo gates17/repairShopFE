@@ -116,9 +116,6 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
         reparacao: this.reparacao,
         value: this.reparacaoForm.value
       });
-      console.log(this.reparacaoForm.controls)
-      console.log(this.reparacao)
-      console.log(this.reparacaoForm.value)
       */
       this.router.navigate(['/reparacao/print']);
     

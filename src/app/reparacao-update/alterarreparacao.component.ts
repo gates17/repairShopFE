@@ -71,7 +71,6 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
           if (reparacao) {
             this.reparacao = reparacao;
             this.reparacao.url = reparacao.url;
-            console.log(this.reparacao)
             this.reparacaoForm.hasError
             this.reparacaoForm.controls.name_id.setValue(this.reparacao.name_id);
             this.reparacaoForm.controls.description.setValue(this.reparacao.description);
@@ -84,19 +83,13 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.reparacaoForm.controls.faturado.setValue(this.reparacao.faturado);
             this.reparacaoForm.controls.pago.setValue(this.reparacao.pago);
 
-
-
             this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
               this.clientOptions = data['results']
              
               this.clientOptions.forEach(o => {
-                console.log(o)
                 this.optionsSelect.push({value: o.id, label:o.name});
-                console.log(this.optionsSelect)
                 if(o.name == this.reparacao.name_id)
-                  this.defaultId = o.id;
-                  console.log(this.defaultId)
-                
+                  this.defaultId = o.id;                
               });
             });
 
@@ -105,10 +98,6 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.gotoList();
           }
         });
-      
-         
-        
-
       }
     });
   

@@ -22,7 +22,6 @@ export class AlterarreparacaoserviceService {
   updateReparacao(reparacoes: any, id:number):Observable<any> {
     if (reparacoes){
       //return this.http.put(reparacoes['url'] + 'update/' + reparacoes['id'] + '/',reparacoes)
-      console.log(this.http.patch(this._reparacaourl + 'update/' + id + '/',reparacoes))
       return this.http.patch(this._reparacaourl + 'update/' + id + '/',reparacoes)
     }
     else {  
