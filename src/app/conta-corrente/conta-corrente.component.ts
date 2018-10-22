@@ -21,8 +21,6 @@ export class ContaCorrenteComponent implements OnInit {
   ngOnInit() {
     this.clienteSub = this.getClientesService.getClientes('').subscribe(data =>{
         this.clientes = data['results']
-        console.log(data)
-        console.log("clientes", this.clientes)
       });
   }
 

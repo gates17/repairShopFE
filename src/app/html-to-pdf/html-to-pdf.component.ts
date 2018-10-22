@@ -25,7 +25,6 @@ export class HtmlToPdfComponent implements OnInit {
 
   receiveMessage($event) {
     this.message = $event;
-    console.log(this.message)
    
   }
 

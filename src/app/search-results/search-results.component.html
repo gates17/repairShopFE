@@ -1,7 +1,7 @@
 <!-- Editable table -->
 <div class="card reparacoes">
   <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Reparações</h3>
-  <div class="card-body">
+  <div class="card-body reparacoes-container">
     <div id="table" class="table-editable">
 
       <nav class="my-4 flex-center">
@@ -48,7 +48,6 @@
 
       <span class="table-add float-right mb-3 mr-2">
         <a class="nav-link text-success"  routerLink="/reparacao/create" routerLinkActive="active">
-
           <mdb-icon icon="plus" size="2x"></mdb-icon>
         </a>
       </span>
@@ -57,37 +56,62 @@
         <tr>
           <th class="text-center" [hidden]="true">Imagem</th>
           <th class="text-center">Id </th>
-          <th class="text-center">Nome </th>
-          <th class="text-center">Descrição</th>
+          <th class="text-center">Cliente </th>
           <th class="text-center">Orçamento</th>
           <th class="text-center">Preço</th>
-          <th class="text-center">Materiais</th>
           <th class="text-center">Peso</th>
           <th class="text-center">Data de início</th>
           <th class="text-center">Data de conclusão</th>
+          <th class="text-center">Descrição</th>
+          <th class="text-center">Materiais</th>
+          <th class="text-center">Faturado</th>
+          <th class="text-center">Pago</th>
           <th class="text-center">Acções</th>
   
         </tr>
         <tr *ngFor="let reparacao of reparacoes;let i = index">
           <td [hidden]="true">{{reparacao.foto}}</td>
           <td>{{reparacao.id}}</td>
-          <td>{{reparacao.name}}</td>
-          <td>{{reparacao.description}}</td>
+          <td>{{reparacao.name_id}}</td>
           <td>{{reparacao.budget}}</td>
           <td>{{reparacao.price}}</td>
-          <td>{{reparacao.materials}}</td>
           <td>{{reparacao.weight}}</td>
           <td>{{reparacao.date_created}}</td>
           <td>{{reparacao.date_completed}}</td>
+          <td>{{reparacao.description}}</td>
+          <td>{{reparacao.materials}}</td>
+          <td>
+            <ng-container *ngIf="reparacao.faturado; else elseTemplate">
+              Sim
+            </ng-container>
+            <ng-template #elseTemplate>
+              Não
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="reparacao.pago; else elseTemplate">
+              Sim
+            </ng-container>
+            <ng-template #elseTemplate>
+              Não
+            </ng-template>
+          </td>
+          <!--ACCOES-->
           <td>
             <span class="table-remove">
 
-              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" (click)=get_detail(reparacao.id)  mdbWavesEffect>Consultar</button>
+              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)=get_detail(reparacao.id)  mdbWavesEffect>
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
 
-              <button type="button nav-link" [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active" 
-                                    mdbBtn color="secondary" rounded="true" class="my-0">Editar</button>
+              <button type="button nav-link" mdbBtn color="secondary" class="my-0" rounded="true" 
+                [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
 
-              <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Remover</button>
+              <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
 
               <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">

@@ -46,8 +46,6 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
       this.clientOptions = data['results']
-      console.log(data)
-      console.log(this.clientOptions)
     });
   }
 

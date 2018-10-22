@@ -9,7 +9,6 @@ export class RemoverService {
   constructor(private http: HttpClient) {  }
 
   getCliente(cliente_id: any):Observable<any>{
-    console.log(cliente_id)
     if (cliente_id) {
       return this.http.get<ICliente>(this._clienteurl + 'detail/' + cliente_id )
     }

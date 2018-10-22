@@ -24,8 +24,6 @@ export class ContaCorrenteClienteComponent implements OnInit {
 
       this.reparacoesClienteService.getReparacoesCliente(this.id).subscribe(data =>{
         this.reparacoes = data['results']
-        console.log(data)
-        console.log("reparacaoes", this.reparacoes)
       });
     });
   }

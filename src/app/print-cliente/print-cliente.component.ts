@@ -45,6 +45,5 @@ export class PrintClienteComponent extends HtmlToPdfComponent  implements OnInit
 
   receiveMessage($event){
     this.message=$event;
-    console.log(this.message)
   }
 }

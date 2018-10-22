@@ -54,10 +54,6 @@
       
       <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
-          <!-- <th *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="reparacoes" [sortBy]="headElements[i]">{{head}}
-            <mdb-icon icon="sort"></mdb-icon>
-          </th>
-        mat-sort-header="name" -->
           <th class="text-center" mat-sort-header="id">Id </th>
           <th class="text-center" mat-sort-header="name_id">Cliente </th>
           <th class="text-center">Orçamento</th>
@@ -106,14 +102,17 @@
             <span class="table-remove">
 
               <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)=get_detail(reparacao.id) mdbWavesEffect>
-              <i class="fa fa-search" aria-hidden="true"></i></button>
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
 
               <button type="button nav-link" mdbBtn color="secondary" class="my-0" rounded="true" 
               [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
 
               <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
-              <i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
 
               <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">

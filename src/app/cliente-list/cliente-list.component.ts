@@ -42,7 +42,6 @@ export class ClienteListComponent implements OnInit, OnDestroy {
 
 
   onPageChanged(url: string) {
-    console.log(url)
     this.get_request = this.clienteDetailhesService.getClientes(url).subscribe(data =>{
       this.pages = data['pages_list']
       this.page_links= this.pages['page_links']
@@ -63,7 +62,6 @@ export class ClienteListComponent implements OnInit, OnDestroy {
       this.previous_url = this.pages['previous_url']
       this.next_url = this.pages['next_url']
       this.first_page = this.page_links[0]
-      console.log(data)
     });
     
   }
@@ -83,7 +81,6 @@ export class ClienteListComponent implements OnInit, OnDestroy {
   remove(id: number, i:number) {
       this.clienteEliminarService.removerCliente(id).subscribe(result => {
       this.clientes.splice(i, 1);
-      console.log(this.clientes)
     }, error => console.error(error));
   }
 

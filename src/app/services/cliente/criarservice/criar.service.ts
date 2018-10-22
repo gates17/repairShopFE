@@ -11,8 +11,6 @@ export class CriarService {
 
   guardarCliente(clientes: any):Observable<any> {
     let result: Observable<Object>;
-    console.log(clientes)
-
     if (clientes['url']){
       return this.http.get<ICliente>(this._clienteurl);
     }

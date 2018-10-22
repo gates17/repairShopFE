@@ -113,14 +113,12 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
   }
 
   saveReparacao() {
-    console.log(this.reparacaoForm.controls.date_completed.value)
     if (this.reparacaoForm.controls.date_completed.value != null){
       let date = this.reparacaoForm.controls.date_completed.value
       let dateParser = new Date(date.year, date.month-1, date.day);
       let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
       this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
     }
-    console.log(this.reparacaoForm.value)
     this.alterarReparacaoService.updateReparacao(this.reparacaoForm.value,this.reparacao.id).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));

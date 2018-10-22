@@ -30,9 +30,6 @@ export class SearchComponent implements OnInit {
     let queryDataStart = formData.value['qdi']
     let queryDataEnd = formData.value['qdf']
    
-    console.log(formData)
-    console.log(queryDataStart)
-    console.log(queryDataEnd)
     if (query){
       this.router.navigate(['/search', {q: this.searchQuery}])
       //pedido para servidor com os params na query
@@ -76,7 +73,6 @@ export class SearchComponent implements OnInit {
   }
   searchDataFim(query){
     this.search='query';
-    console.log("DATAFIM  ")
     if (query){
       let ngbDate = this.searchEndQuery;
       let myDateParser = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);

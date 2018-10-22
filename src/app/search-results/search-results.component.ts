@@ -38,31 +38,49 @@ export class SearchResultsComponent implements OnInit {
       if(params['q']){
         this.get_request = this.reparacaoDetailhesService.searchReparacoes(params['q'],'q').subscribe(data => {
           this.reparacoes = data['results']
+          this.pages = data['pages_list']
+          this.page_links= this.pages['page_links']
+          this.last_page = this.page_links[this.page_links.length-1]
+          this.previous_url = this.pages['previous_url']
+          this.next_url = this.pages['next_url']
+          this.first_page = this.page_links[0]  
         });
       }
       else if(params['qdi'] && params['qdf'] ){
         this.query={qdi:params['qdi'],qdf:params['qdf']}
         this.get_request = this.reparacaoDetailhesService.searchReparacoesDateBetween(params['qdi'],params['qdf'],'qdi','qdf').subscribe(data => {
           this.reparacoes = data['results']
+          this.pages = data['pages_list']
+          this.page_links= this.pages['page_links']
+          this.last_page = this.page_links[this.page_links.length-1]
+          this.previous_url = this.pages['previous_url']
+          this.next_url = this.pages['next_url']
+          this.first_page = this.page_links[0]  
+          console.log(data)
         });
       }
       else if(params['qdi']){
         this.get_request = this.reparacaoDetailhesService.searchReparacoes(params['qdi'],'qdi').subscribe(data => {
           this.reparacoes = data['results']
+          this.pages = data['pages_list']
+          this.page_links= this.pages['page_links']
+          this.last_page = this.page_links[this.page_links.length-1]
+          this.previous_url = this.pages['previous_url']
+          this.next_url = this.pages['next_url']
+          this.first_page = this.page_links[0]  
         });
       }
       else if(params['qdf']){
         this.get_request = this.reparacaoDetailhesService.searchReparacoes(params['qdf'],'qdf').subscribe(data => {
           this.reparacoes = data['results']
+          this.pages = data['pages_list']
+          this.page_links= this.pages['page_links']
+          this.last_page = this.page_links[this.page_links.length-1]
+          this.previous_url = this.pages['previous_url']
+          this.next_url = this.pages['next_url']
+          this.first_page = this.page_links[0]  
         });
       }
-      console.log(this.query)
-      console.log(params['q'])
-      console.log(params['qdi'])
-      console.log(params['qdf'])
-     
-    
-     
     })
   }
  
@@ -89,7 +107,6 @@ export class SearchResultsComponent implements OnInit {
   }
 
   onPageChanged(url: string) {
-    console.log(url)
     this.get_request = this.reparacaoDetailhesService.getReparacoes(url).subscribe(data =>{
       this.pages = data['pages_list']
       this.page_links= this.pages['page_links']
