@@ -66,11 +66,6 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
       this.clientOptions = data['results']
-      console.log(this.clientOptions)
-      console.log(
-       this.reparacaoForm.get('name_id').errors,
-       this.reparacaoForm.get('name_id').validator,
-      )
     });
   }
 
@@ -79,7 +74,6 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   }
 
   createReparacao() {
-    //?.touched || reparacaoForm.get('name')?.dirty || reparacaoForm.get('name')?.invalid"
     if (this.reparacaoForm.controls.date_completed.value != null){
       let date = this.reparacaoForm.controls.date_completed.value
       let dateParser = new Date(date.year, date.month-1, date.day);
