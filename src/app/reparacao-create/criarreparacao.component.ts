@@ -18,12 +18,12 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   reparacao: string;
   reparacaoSub: Subscription;
   reparacaoForm = new FormGroup({
-    name: new FormControl('',Validators.required),
-    description: new FormControl(''),
-    price: new FormControl(''),
-    budget: new FormControl('',Validators.required),
+    name_id: new FormControl('',Validators.required),
+    description: new FormControl('',Validators.maxLength(1024)),
+    price: new FormControl('',Validators.max(9999999999.99)),
+    budget: new FormControl('',[Validators.required, Validators.max(9999999999.99)]),
     date_completed: new FormControl(null),
-    weight: new FormControl(''),
+    weigth: new FormControl('',Validators.max(9999999999.99)),
     foto: new FormControl(''),
     materials: new FormControl(''),
     faturado: new FormControl(false),
@@ -34,6 +34,26 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   clientOptions: any;
  
   private subresponse:any;
+
+  validation_messages = {
+    'name_id': [
+      { type: 'required', message: 'É necessário escolher um cliente' }
+    ],
+    'budget': [
+      { type: 'size', message: 'Insira um valor entre 0 e 9 999 999 999.99 '},
+      { type: 'required', message: 'É necessário inserir um valor'  }
+    ],
+    'weigth': [
+      { type: 'size', message: 'Insira um valor entre 0 e 9 999 999 999.99 '},
+    ],
+    'price': [
+      { type: 'size', message: 'Insira um valor entre 0 e 9 999 999 999.99 '},
+    ],
+    'description': [
+      { type: 'size', message: 'Insira uma descrição até um máximo de 1024 caracteres'},
+    ],
+    }
+
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +66,11 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
       this.clientOptions = data['results']
+      console.log(this.clientOptions)
+      console.log(
+       this.reparacaoForm.get('name_id').errors,
+       this.reparacaoForm.get('name_id').validator,
+      )
     });
   }
 
@@ -54,6 +79,7 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   }
 
   createReparacao() {
+    //?.touched || reparacaoForm.get('name')?.dirty || reparacaoForm.get('name')?.invalid"
     if (this.reparacaoForm.controls.date_completed.value != null){
       let date = this.reparacaoForm.controls.date_completed.value
       let dateParser = new Date(date.year, date.month-1, date.day);

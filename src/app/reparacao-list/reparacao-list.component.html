@@ -78,7 +78,7 @@
           <td>{{reparacao.weight}}</td>
           <td>{{reparacao.date_created}}</td>
           <td>{{reparacao.date_completed}}</td>
-          <td>{{reparacao.description}}</td>
+          <td style="width:20% !important;" >{{reparacao.description |slice:0:120}}</td>
           <td>{{reparacao.materials}}</td>
           <td>
             <ng-container *ngIf="reparacao.faturado; else elseTemplate">
@@ -106,7 +106,7 @@
               </button>
 
               <button type="button nav-link" mdbBtn color="secondary" class="my-0" rounded="true" 
-              [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active">
+                [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
 

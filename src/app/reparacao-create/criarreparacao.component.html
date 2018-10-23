@@ -13,34 +13,60 @@
      
         <!-- name -->
         <div class="md-form mt-0"> 
-          <label>Cliente</label>
+          <label class="control-label">Cliente</label>
 
-          <select class="mat-select" formControlName="name" required>
-            <option [value]="option.id" *ngFor="let option of clientOptions">{{option.name}}</option>
+          <select class="mat-select select" 
+            formControlName="name_id" required>
+            <option [value]="option.id" *ngFor="let option of clientOptions">{{option.name}}
+            </option>
           </select>
-
+          <div  *ngFor="let validation of validation_messages.name_id">
+              <span class="help-block form-error text-danger" 
+                *ngIf="reparacaoForm.controls['name_id'].touched
+                && reparacaoForm.controls['name_id'].errors?.required">{{validation.message}}
+              </span>
+            </div>
         </div>  
         <!-- price -->
           <div class="md-form mt-0">    
-            <input type="text" formControlName="price" class="form-control" mdbInputDirective>
+            <input type="number" formControlName="price" class="form-control" mdbInputDirective>
             <label>Preço</label>
+            <div  *ngFor="let validation of validation_messages.price">
+              <span class="help-block form-error text-danger " 
+                *ngIf="reparacaoForm.controls['price'].errors?.required &&
+                reparacaoForm.controls['price'].touched">{{validation.message}}
+              </span>
+            </div>
           </div>  
         <!-- budget -->
         <div class="md-form mt-0">    
-          <input type="text" formControlName="budget" class="form-control" mdbInputDirective>
+          <input type="number" formControlName="budget" class="form-control" mdbInputDirective>
           <label>Orçamento</label>
-        </div>  
+          <div  *ngFor="let validation of validation_messages.budget">
+            <span class="help-block form-error text-danger" 
+              *ngIf="reparacaoForm.controls['budget'].errors?.required &&
+              reparacaoForm.controls['budget'].touched">{{validation.message}}
+            </span>
+          </div>
+                
+        </div>
+        <!-- weigth -->
+        <div class="md-form mt-0">    
+          <input type="number" formControlName="weigth" class="form-control" mdbInputDirective>
+          <label>Peso</label>
+          <div  *ngFor="let validation of validation_messages.weigth">
+            <span class="help-block form-error text-danger small" 
+              *ngIf="reparacaoForm.controls['weigth'].errors?.required &&
+              reparacaoForm.controls['weigth'].touched">{{validation.message}}
+            </span>
+          </div>
+        </div>    
         <!-- description -->
         <div class="md-form mt-0">
           <textarea type="text" formControlName="description"  class="md-textarea form-control" mdbInputDirective>
           </textarea>
           <label>Descrição</label>
         </div>
-        <!-- cell phone -->
-        <div class="md-form mt-0">    
-          <input type="text" formControlName="weight" class="form-control" mdbInputDirective>
-          <label>Peso</label>
-        </div>  
         <!-- foto -->
         <div class="md-form mt-0">    
           <input type="text" formControlName="foto" class="form-control" mdbInputDirective>
