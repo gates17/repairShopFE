@@ -43,6 +43,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {PlatformModule} from '@angular/cdk/platform';
 import { ContaCorrenteComponent } from './conta-corrente/conta-corrente.component';
 import { ContaCorrenteClienteComponent } from './conta-corrente-cliente/conta-corrente-cliente.component';
+import { PrintContaCorrenteClienteComponent } from './print-conta-corrente-cliente/print-conta-corrente-cliente.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ContaCorrenteClienteComponent } from './conta-corrente-cliente/conta-co
     SearchComponent,
     SearchResultsComponent,
     ContaCorrenteComponent,
-    ContaCorrenteClienteComponent,    
+    ContaCorrenteClienteComponent,
+    PrintContaCorrenteClienteComponent,    
 
   ],
   imports: [

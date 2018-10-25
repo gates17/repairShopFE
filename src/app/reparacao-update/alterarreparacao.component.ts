@@ -77,7 +77,7 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
             this.reparacaoForm.controls.price.setValue(this.reparacao.price);
             this.reparacaoForm.controls.budget.setValue(this.reparacao.budget);
-            this.reparacaoForm.controls.weight.setValue(this.reparacao.weight);
+            this.reparacaoForm.controls.weight.setValue(this.reparacao.weigth);
             this.reparacaoForm.controls.foto.setValue(this.reparacao.foto);
             this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
             this.reparacaoForm.controls.faturado.setValue(this.reparacao.faturado);

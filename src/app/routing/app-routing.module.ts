@@ -43,6 +43,7 @@ import { PrintreparacaoComponent } from '../printreparacao/printreparacao.compon
 import { AppComponent } from '../app.component';
 import { ContaCorrenteComponent } from '../conta-corrente/conta-corrente.component';
 import { ContaCorrenteClienteComponent } from '../conta-corrente-cliente/conta-corrente-cliente.component';
+import { PrintContaCorrenteClienteComponent } from '../print-conta-corrente-cliente/print-conta-corrente-cliente.component';
 
 const routes: Routes = [
   
@@ -62,6 +63,8 @@ const routes: Routes = [
   {path: 'cliente/delete/:id', component: RemoverclienteComponent },
   {path: 'cliente/update/:id', component: AlterarclienteComponent },
   {path: 'cliente/details/:id/conta', component: ContaCorrenteClienteComponent },
+  {path: 'cliente/details/:id/conta/print', component: PrintContaCorrenteClienteComponent },
+
 
   {path: 'search', component: SearchResultsComponent },
   {path: 'print', component: HtmlToPdfComponent },
@@ -110,6 +113,7 @@ export const routingComponents = [
 
   PrintreparacaoComponent,
   PrintClienteComponent,
+  PrintContaCorrenteClienteComponent,
 
   SearchResultsComponent,
 
