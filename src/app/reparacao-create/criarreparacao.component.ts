@@ -15,6 +15,8 @@ import { ConsultarService } from '../services/cliente/consultarservice/consultar
 })
 export class CriarreparacaoComponent implements OnInit, OnDestroy {
 
+  private client_request: any;
+  clientOptions: any;
   reparacao: string;
   reparacaoSub: Subscription;
   reparacaoForm = new FormGroup({
@@ -30,10 +32,8 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
     pago: new FormControl(false)
 
   })
-  private client_request: any;
-  clientOptions: any;
  
-  private subresponse:any;
+  // private subresponse:any;
 
   validation_messages = {
     'name_id': [
@@ -80,7 +80,6 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
       let date_completed = this.datePipe.transform(dateParser ,"yyyy-MM-dd")
       this.reparacaoForm.controls.date_completed.setValue(date_completed.toString())
     }
-  // this.subresponse =
     this.reparacaoCreateService.guardarReparacao(this.reparacaoForm).subscribe(result => {
       this.gotoList();
     }, error => console.error(error));

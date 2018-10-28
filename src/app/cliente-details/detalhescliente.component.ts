@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { HtmlToPdfComponent } from '../html-to-pdf/html-to-pdf.component'
 import { DetalhesreparacaoserviceService } from '../services/reparacao/detalhesreparacao/detalhesreparacaoservice.service';
+import { PrintReparacaoService } from '../services/print/print-reparacao.service';
 
 
 @Component({
@@ -24,9 +25,7 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
   cliente: ICliente;
   private request:any;
   clienteSub: Subscription;
-  images: Array<string>;
   id: any;
-  convert: HtmlToPdfComponent;
   reparacoes: any [];
   clienteForm = new FormGroup({
     name: new FormControl(''),
@@ -35,7 +34,6 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
     zip_code:  new FormControl(''),
     localidade:  new FormControl(''),
     total_spent_by_client:  new FormControl(''),
-
     date_created:  new FormControl('')
   })
 
@@ -44,8 +42,9 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
     private router: Router,
     private clienteDetailhesService: ConsultarService,
     private clienteEliminarService: RemoverService,
-    private reparacoesClienteService: DetalhesreparacaoserviceService,
-    private _http: HttpClient
+    private prs: PrintReparacaoService,
+    // private reparacoesClienteService: DetalhesreparacaoserviceService,
+    // private _http: HttpClient
     
   ) { }
 
@@ -99,11 +98,13 @@ export class DetalhesclienteComponent implements OnInit, OnDestroy {
     this.clienteForm.controls.name.setValue(this.cliente.name);
     this.clienteForm.controls.date_created.setValue(this.cliente.date_created);
 
-    this.messageEvent.emit({
-      form:this.clienteForm.controls.value, 
-      cliente: this.cliente, 
-      value: this.clienteForm.value
-    });
+    this.prs.setData(this.clienteForm);
+
+    // this.messageEvent.emit({
+    //   form:this.clienteForm.controls.value, 
+    //   cliente: this.cliente, 
+    //   value: this.clienteForm.value
+    // });
     this.router.navigate(['/cliente/print']);
   
   }

@@ -49,17 +49,24 @@
         <!-- ACÇÕES -->
         <div class="col-md-3 flex-center" id="accoes">
           <div class="flex-item">
-            <button  type="button nav-link" mdbBtn color="primary" class="my-0 accoes" rounded="true" (click)="print()"  mdbWavesEffect>Imprimir</button>
+            <button  type="button nav-link" mdbBtn color="primary" class="my-0 accoes" rounded="true" (click)="print()"  title="Imprimir" mdbWavesEffect>
+              <i class="fa fa-print" aria-hidden="true"></i>
+            </button>
           </div> 
           <div class="flex-item">
-            <button  type="button nav-link" mdbBtn color="primary" class="my-0 accoes" rounded="true" (click)="get_conta_corrente()"  mdbWavesEffect>Conta corrente</button>
+            <button  type="button nav-link" mdbBtn color="primary" class="my-0 accoes" rounded="true" (click)="get_conta_corrente()" title="Conta Corrente" mdbWavesEffect>
+              <i class="fa fa-money" aria-hidden="true"></i>
+            </button>
           </div> 
           <div class="flex-item" *ngIf="cliente">
-            <button  type="button nav-link" [routerLink]="['/cliente/update',id]" routerLinkActive="active" 
-                                  mdbBtn color="secondary" rounded="true" class="my-0 accoes">Editar</button>
+            <button  type="button nav-link" [routerLink]="['/cliente/update',id]" routerLinkActive="active" mdbBtn color="secondary" rounded="true" class="my-0 accoes" title="Editar">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
           </div>
           <div class="flex-item">
-              <button type="button" mdbBtn color="danger" class="relative waves-light accoes" (click)="basicModal.show()" mdbWavesEffect>Remover</button>
+            <button type="button" mdbBtn color="danger" class="relative waves-light accoes" (click)="basicModal.show()" title ="Remover" mdbWavesEffect>
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
           </div>
           <div>
               <div mdbModal #basicModal="mdbModal" class="modal fade accoes" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
@@ -85,7 +92,9 @@
           </div>
           
           <div class="flex-item accoes">
-            <button id="accoes" mdbBtn color="danger"  block="true" class="my-4 accoes" routerLink="/cliente" type="submit">Cancelar</button>
+            <button id="accoes" mdbBtn color="danger"  block="true" class="my-4 accoes" routerLink="/cliente" type="submit" title="Cancelar" >
+              <i class="fa fa-remove  " aria-hidden="true"></i>
+            </button>
           </div>
         </div>
   

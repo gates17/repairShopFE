@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HtmlToPdfComponent } from '../html-to-pdf/html-to-pdf.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { PrintReparacaoService } from '../services/print/print-reparacao.service';
+
 
 @Component({
   selector: 'app-print-conta-corrente-cliente',
@@ -12,7 +14,8 @@ export class PrintContaCorrenteClienteComponent extends HtmlToPdfComponent  impl
 
   private printer: HtmlToPdfComponent;
   private printSub: any;
-  message:any;
+  reparacoes: any;
+
   dataToConvert:any;
  
   clienteForm = new FormGroup({
@@ -26,19 +29,29 @@ export class PrintContaCorrenteClienteComponent extends HtmlToPdfComponent  impl
     date_created:  new FormControl('')
   })
 
-  constructor( private route: ActivatedRoute,private router:Router ) { 
+  constructor( 
+    private route: ActivatedRoute,
+    private router:Router,
+    private prs: PrintReparacaoService
+    ) { 
     super(router);
   }
 
   ngOnInit() {
-    this.message = this.receiveMessage(event);
-    console.log(this.message)
+    this.reparacoes = this.prs.getData();
+    console.log(this.reparacoes)
     this.dataToConvert = document.getElementById('contentToConvert');
   }
 
   print(){
     this.captureScreen()
     this.router.navigate(['/cliente'])
+  }
+
+  printAll(){
+    console.log(this.reparacoes)
+    this.captureHtml(this.reparacoes)
+    this.router.navigate(['/cliente'])    
   }
 
   receiveMessage($event){

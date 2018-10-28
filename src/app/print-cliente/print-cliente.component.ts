@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HtmlToPdfComponent } from '../html-to-pdf/html-to-pdf.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { PrintReparacaoService } from '../services/print/print-reparacao.service';
 
 @Component({
   selector: 'app-print-cliente',
@@ -11,9 +12,10 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 
 export class PrintClienteComponent extends HtmlToPdfComponent  implements OnInit {
-  private printer: HtmlToPdfComponent;
-  private printSub: any;
+  // private printer: HtmlToPdfComponent;
+  // private printSub: any;
   message:any;
+
   dataToConvert:any;
  
   clienteForm = new FormGroup({
@@ -27,11 +29,17 @@ export class PrintClienteComponent extends HtmlToPdfComponent  implements OnInit
     date_created:  new FormControl('')
   })
 
-  constructor( private route: ActivatedRoute,private router:Router ) { 
+  constructor( 
+    private route: ActivatedRoute,
+    private router:Router,
+    private prs: PrintReparacaoService,
+    ) { 
     super(router);
   }
   ngOnInit() {
-    this.message = this.receiveMessage(event);
+    this.clienteForm = this.prs.getData();
+
+    // this.message = this.receiveMessage(event);
     this.dataToConvert = document.getElementById('contentToConvert');
     //document.getElementById('accoes').style.display="none";
     //document.getElementById('header').style.display="none";

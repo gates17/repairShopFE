@@ -21,7 +21,6 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
   private request: any;
   reparacao: IReparacao;
   reparacaoSub: Subscription;
-  images: Array<string>;
   id:any;
 
   reparacaoForm = new FormGroup({
@@ -44,9 +43,7 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private reparacaoDetailhesService: DetalhesreparacaoserviceService,
-    private reparacaoEliminarService: EliminarreparacaoserviceService,
-    private _http: HttpClient
-    
+    private reparacaoEliminarService: EliminarreparacaoserviceService,    
   ) { }
 
 
@@ -97,7 +94,6 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
   }
 
   print(){
-      // this.clientData= this.cliente;
       this.reparacaoForm.controls.name.setValue(this.reparacao.name_id);
       this.reparacaoForm.controls.description.setValue(this.reparacao.description);
       this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);

@@ -1,55 +1,76 @@
 <!-- Editable table -->
-<div class="card clientes">
-    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Conta Corrente</h3>
-    <div class="card-body container clientes-container">
-      <div id="table" class="table-editable">
+<div class="container flex">
+    <div id="content" #content class="flex-center">  
+      <div>  
+        <div class="alert alert-info flex-center">  
+            <strong>Pré-visualização recibo</strong>  
+        </div>  
+      </div>  
+    </div>  
+    <div>  
+  <div class="card recibo mx-auto">  <!-- alinhar os items ao centro resulta em imagem desfocada devido ao tamanho da div  (messageEvent)="receiveMessage($event)"-->
+    <!--
+      <app-detalhesreparacao [formGroup]="reparacaoForm" id="contentToConvert"></app-detalhesreparacao>
+      -->
+      <mdb-card id="contentToConvert">
+          <mdb-card-header class="info-color white-text text-center py-4" id="header">
+            <h5>Pré-visualizar Conta Corrente</h5>
+          </mdb-card-header>
+          <mdb-card-body class="px-lg-5 pt-0">
+            <div id="table" class="table-editable">
+              
+              <table matSort  class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                  <!-- <th *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="reparacoes" [sortBy]="headElements[i]">{{head}}
+                    <mdb-icon icon="sort"></mdb-icon>
+                  </th>
+                mat-sort-header="name" -->
+                  <th class="text-center" mat-sort-header="id">Id </th>
+                  <th class="text-center">Orçamento</th>
+                  <th class="text-center">Preço</th>
+                  <th class="text-center" mat-sort-header="weight">Peso</th>
+                  <th class="text-center">Faturado</th>
+                  <th class="text-center" mat-sort-header="pago">Pago</th>
+                </tr>
+                <tr *ngFor="let reparacao of reparacoes;let i = index" > 
+                  <td   [hidden]="!false">{{reparacao.foto}}</td>
+                  <td>{{reparacao.id}}</td>
+                  <td>{{reparacao.budget}}</td>
+                  <td>{{reparacao.price}}</td>
+                  <td>{{reparacao.weight}}</td>
+                  <td>
+                    <ng-container *ngIf="reparacao.faturado; else elseTemplate">
+                      Sim
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                      Não
+                    </ng-template>
+                  </td>
+                  <td>
+                    <ng-container *ngIf="reparacao.pago; else elseTemplate">
+                      Sim
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                      Não
+                    </ng-template>
+                  </td>
         
-        <table matSort  class="table table-bordered table-responsive-md table-striped text-center">
-          <tr>
-            <!-- <th *ngFor="let head of headElements; let i = index" scope="col" [mdbTableSort]="reparacoes" [sortBy]="headElements[i]">{{head}}
-              <mdb-icon icon="sort"></mdb-icon>
-            </th>
-          mat-sort-header="name" -->
-            <th class="text-center" mat-sort-header="id">Id </th>
-            <th class="text-center">Orçamento</th>
-            <th class="text-center">Preço</th>
-            <th class="text-center" mat-sort-header="wight">Peso</th>
-            <th class="text-center">Faturado</th>
-            <th class="text-center" mat-sort-header="pago">Pago</th>
-            <th class="text-center">Acções</th>
-  
-          </tr>
-          <tr *ngFor="let reparacao of reparacoes;let i = index" > 
-            <td   [hidden]="!false">{{reparacao.foto}}</td>
-            <td>{{reparacao.id}}</td>
-            <td>{{reparacao.budget}}</td>
-            <td>{{reparacao.price}}</td>
-            <td>{{reparacao.weight}}</td>
-            <td>
-              <ng-container *ngIf="reparacao.faturado; else elseTemplate">
-                Sim
-              </ng-container>
-              <ng-template #elseTemplate>
-                Não
-              </ng-template>
-            </td>
-            <td>
-              <ng-container *ngIf="reparacao.pago; else elseTemplate">
-                Sim
-              </ng-container>
-              <ng-template #elseTemplate>
-                Não
-              </ng-template>
-            </td>
-  
-          </tr>
-        
-        </table>
-        <div>
-            <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)="a" mdbWavesEffect>
-                <i class="fa fa-print" aria-hidden="true"></i></button>
-        </div>
-      </div>
+                </tr>
+              
+              </table>
+            </div>
+          </mdb-card-body>
+        </mdb-card>
+ 
+      <div class="actions flex-center">  
+          <div>         
+            <div>  
+              <button type="button nav-link" mdbBtn color="secondary"  class="my-0 flex-item" routerLink="/cliente"  mdbWavesEffect>Clientes</button>
+              <input type="button" mdbBtn color="primary"  class="my-0 flex-item" value="Imprimir recibo" (click)="printAll()" mdbWavesEffect/>  
+            </div>  
+          </div>  
+        </div> 
     </div>
   </div>
+</div>
     

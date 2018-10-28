@@ -27,11 +27,11 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
   private request: any;
   reparacaoForm = new FormGroup({
     name_id: new FormControl('',Validators.required),
-    description: new FormControl(''),
+    description: new FormControl('',Validators.maxLength(1024)),
+    price: new FormControl('',Validators.max(9999999999.99)),
+    budget: new FormControl('',[Validators.required, Validators.max(9999999999.99)]),
     date_completed: new FormControl(null),
-    price: new FormControl(''),
-    budget: new FormControl('',Validators.required),
-    weight: new FormControl(''),
+    weigth: new FormControl('',Validators.max(9999999999.99)),
     foto: new FormControl(''),
     materials: new FormControl(''),
     faturado: new FormControl(false),
@@ -42,11 +42,30 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
   clientOptions: any;
   defaultId:any;
   optionsSelect: Array<any> =[];
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
+
+
+  validation_messages = {
+    'name_id': [
+      { type: 'required', message: 'É necessário escolher um cliente' }
+    ],
+    'budget': [
+      { type: 'size', message: 'Insira um valor entre 0 e 9 999 999 999.99 '},
+      { type: 'required', message: 'É necessário inserir um valor'  }
+    ],
+    'weigth': [
+      { type: 'size', message: 'Insira um valor entre 0 e 9 999 999 999.99 '},
+    ],
+    'price': [
+      { type: 'size', message: 'Insira um valor entre 0 e 9 999 999 999.99 '},
+    ],
+    'description': [
+      { type: 'size', message: 'Insira uma descrição até um máximo de 1024 caracteres'},
+    ],
+  }
+  number_error = 'Insira um valor entre 0 e 9 999 999 999.99 '
+  name_error = 'É necessário escolher um cliente' 
+  textbox_error ='Insira uma descrição até um máximo de 1024 caracteres'
+
   constructor(
     
     private route: ActivatedRoute,
@@ -64,20 +83,19 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
       const id = params['id'];
       
       if (id) {
-        //form pre-load
-       
-
         this.request = this.alterarReparacaoService.getReparacao(id).subscribe((reparacao: IReparacao) => {
           if (reparacao) {
             this.reparacao = reparacao;
             this.reparacao.url = reparacao.url;
-            this.reparacaoForm.hasError
+            // this.reparacaoForm.hasError
+            console.log(this.reparacao)
+            //this.reparacaoForm.
             this.reparacaoForm.controls.name_id.setValue(this.reparacao.name_id);
             this.reparacaoForm.controls.description.setValue(this.reparacao.description);
             this.reparacaoForm.controls.date_completed.setValue(this.reparacao.date_completed);
             this.reparacaoForm.controls.price.setValue(this.reparacao.price);
             this.reparacaoForm.controls.budget.setValue(this.reparacao.budget);
-            this.reparacaoForm.controls.weight.setValue(this.reparacao.weigth);
+            this.reparacaoForm.controls.weigth.setValue(this.reparacao.weigth);
             this.reparacaoForm.controls.foto.setValue(this.reparacao.foto);
             this.reparacaoForm.controls.materials.setValue(this.reparacao.materials);
             this.reparacaoForm.controls.faturado.setValue(this.reparacao.faturado);

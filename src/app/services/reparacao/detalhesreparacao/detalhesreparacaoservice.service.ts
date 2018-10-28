@@ -18,10 +18,20 @@ export class DetalhesreparacaoserviceService {
     }
   }
 
-  getReparacoesCliente(cliente_id: any): Observable<any[]>{
-    return this.http.get<any[]>(this._reparacoesurl  +'?'+'qc' +'=' + cliente_id);
-
+  getReparacoesCliente(cliente_id: any, url:any): Observable<any[]>{
+    if(!url && !(url.length > 0)){
+      return this.http.get<any[]>(this._reparacoesurl  +'?'+'qc' +'=' + cliente_id);
+    }
+    else {
+      return  this.http.get<any[]>(url);
+    }
   }
+
+  getAllReparacoesCliente(cliente_id: number): Observable<any[]>{
+    return this.http.get<any[]>(this._reparacoesurl +'?'+'qc' +'=' + cliente_id + '&q=all')
+  }
+
+  
   getReparacoes(url: any): Observable<any[]> {
     if(url=='' || url==undefined){
       return this.http.get<any[]>(this._reparacoesurl);

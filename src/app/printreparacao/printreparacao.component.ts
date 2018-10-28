@@ -11,11 +11,13 @@ import { FormGroup,FormControl } from '@angular/forms';
 })
 export class PrintreparacaoComponent extends HtmlToPdfComponent  implements OnInit {
  
-  public data: any;
-  private printer: HtmlToPdfComponent;
-  private printSub: any;
+  // public data: any;
+  // private printer: HtmlToPdfComponent;
+  // private printSub: any;
   message:any;
+
   dataToConvert:any;
+
   reparacaoForm = new FormGroup({
     name: new FormControl(''),
     description: new FormControl(''),
@@ -36,29 +38,7 @@ export class PrintreparacaoComponent extends HtmlToPdfComponent  implements OnIn
   ) { 
     super(router);
   }
-  /*
-  ngAfterViewInit() {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    setTimeout( (  ) => {
-      if(this.prs.formData) 
-        this.formData.setValue({
-          name: this.prs.formData.controls.name.value,
-          description: this.prs.formData.controls.description.value,
-          date_completed: this.prs.formData.controls.date_completed.value,
-          price: this.prs.formData.controls.price.value,
-          budget: this.prs.formData.controls.budget.value,
-          tlf: this.prs.formData.controls.tlf.value,
-          foto: this.prs.formData.controls.foto.value,
-          materials: this.prs.formData.controls.materials.value,
-          faturado: this.prs.formData.controls.faturado.value});
 
-    },0)
-
-
-    
-  }
-*/
   ngOnInit() {
     this.reparacaoForm = this.prs.getData();
 
@@ -69,7 +49,7 @@ export class PrintreparacaoComponent extends HtmlToPdfComponent  implements OnIn
 
   print(){
     this.captureScreen()
-    //this.router.navigate(['/reparacao'])
+  
   }
   
   ngOnDestroy(){

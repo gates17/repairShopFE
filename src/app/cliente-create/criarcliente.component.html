@@ -10,12 +10,17 @@
 
     <div class="container clientes-container">
       <form [formGroup]="clienteForm" (ngSubmit)="createCliente()">
-        <!--    <form class="text-center" style="color: #757575;"> -->
 
         <!-- name -->
         <div class="md-form mt-0">    
-          <input type="text" formControlName="name" class="form-control" mdbInputDirective>
+          <input type="text" formControlName="name" class="form-control"  mdbInputDirective>
           <label>Nome</label>
+          <div  *ngFor="let validation of validation_messages.name">
+            <span class="help-block form-error text-danger" 
+              *ngIf="clienteForm.controls['name'].touched
+              && clienteForm.controls['name'].errors?.required">{{validation.message}}
+            </span>
+          </div>
         </div>  
         <!-- morada -->
         <div class="md-form mt-0">    
@@ -34,14 +39,20 @@
         </div>  
         <!-- cell phone -->
         <div class="md-form mt-0">    
-          <input type="text" formControlName="tlf" class="form-control" mdbInputDirective>
+          <input type="number" formControlName="tlf" class="form-control" mdbInputDirective>
           <label>Telefone/Telemovel</label>
+          <div  *ngFor="let validation of validation_messages.tlf">
+            <span class="help-block form-error text-danger" 
+              *ngIf="clienteForm.controls['tlf'].errors?.required &&
+              clienteForm.controls['tlf'].touched">{{validation.message}}
+            </span>
+          </div>
         </div>  
         <!-- saldo -->
-        <div class="md-form mt-0">    
+        <!-- <div class="md-form mt-0">    
         <input type="text" formControlName="total_spent_by_client" class="form-control" mdbInputDirective>
         <label>Saldo</label>
-       </div>  
+       </div>   -->
         <!-- ACÇÕES -->
         <div class="col-md-3 flex-center">
           <div class="flex-item">

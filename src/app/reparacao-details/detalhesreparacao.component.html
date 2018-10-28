@@ -1,4 +1,4 @@
-<!-- Editable table -->
+                                                                                                        <!-- Editable table -->
 
 <!-- Material form register -->
 <mdb-card class="reparacoes">
@@ -76,38 +76,47 @@
         <!--ACCOES-->
         <div class="col-md-3 flex-center" id="accoes">
           <div class="flex-item">
-            <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)="print()" mdbWavesEffect>Imprimir</button>
+            <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)="print()" title="Imprimir" mdbWavesEffect>
+              <i class="fa fa-print" aria-hidden="true"></i>            
+            </button>
           </div> 
           <div class="flex-item" *ngIf="reparacao">
-              <button type="button nav-link" [routerLink]="['/reparacao/update',id]" routerLinkActive="active" 
-              mdbBtn color="secondary" rounded="true" class="my-0">Editar</button>
+            <button type="button nav-link" [routerLink]="['/reparacao/update',id]" routerLinkActive="active" 
+              mdbBtn color="secondary" rounded="true" class="my-0" title="Editar">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </button>
           </div>
           <div class="flex-item">
-              <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>Remover</button>
+            <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" title="Remover" mdbWavesEffect>
+              <i class="fa fa-print" aria-hidden="true"></i>
+              
+            </button>
   
-              <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                      <h4 class="modal-title w-100" id="myModalLabel">Remover reparação</h4>
-                    </div>
-                    <div class="modal-body">
-                      Tem a certeza que pretende eliminar a reparação?
-                      Caso elimine, não poderá voltar a consultar esta reparação!
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Cancelar</button>
-                      <button type="button" mdbBtn color="primary" class="relative waves-light"  (click)=[basicModal.hide(),remove(id)] mdbWavesEffect>Eliminar</button>
-                    </div>
+            <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">Remover reparação</h4>
+                  </div>
+                  <div class="modal-body">
+                    Tem a certeza que pretende eliminar a reparação?
+                    Caso elimine, não poderá voltar a consultar esta reparação!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Cancelar</button>
+                    <button type="button" mdbBtn color="primary" class="relative waves-light"  (click)=[basicModal.hide(),remove(id)] mdbWavesEffect>Eliminar</button>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
           <div class="flex-item">
-            <button mdbBtn color="danger"  block="true" class="my-4" routerLink="/reparacao" type="submit">Cancelar</button>
+            <button mdbBtn color="danger"  block="true" class="my-4" routerLink="/reparacao" type="submit" title="Cancelar">
+              <i class="fa fa-remove" aria-hidden="true"></i>
+            </button>
           </div>
 
 

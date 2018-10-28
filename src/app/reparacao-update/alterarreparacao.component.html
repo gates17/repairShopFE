@@ -9,43 +9,9 @@
     <!-- Form -->
     <div class="container reparacoes-container">
       <form [formGroup]="reparacaoForm" (ngSubmit)="saveReparacao()">
-        <!--    <form class="text-center" style="color: #757575;"> -->
-
         <!-- name -->
-     
-     
-     
-        <!-- <mat-form-field>
-        <mat-select placeholder="Favorite food"  name="select"required>
-          <mat-option *ngFor="let food of foods" [value]="food.value">
-            {{food.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>  
-     
-      <mat-form-field >
-        <mat-select>
-            <mat-option [value]="0">Automatically</mat-option>
-            <mat-option [value]="10">10</mat-option>
-            <mat-option [value]="20">20</mat-option>
-            <mat-option [value]="50">50</mat-option>
-            <mat-option [value]="100">100</mat-option>
-            <mat-option [value]="-1">All</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <div>
-         
-
-      </div>
-   
-           -->
-   
-          
-       
-   
-        <div class="md-form mt-0 cdk-overlay-container">   
-            <mat-form-field class="cdk-overlay-container">
+        <div class="md-form mt-0">   
+            <!-- <mat-form-field class="cdk-overlay-container">
                 <mat-select  formControlName="name_id" required  class="cdk-overlay-container">
                  
                   <mat-option *ngFor="let option of clientOptions" [value]="option.id"  class="cdk-overlay-container">
@@ -53,96 +19,85 @@
                   </mat-option>
                 </mat-select>
                 <mat-error *ngIf="reparacaoForm.controls['name_id'].hasError('required')">Por favor escoha um cliente</mat-error>
-              </mat-form-field>
+              </mat-form-field> -->
 
-          <label>Cliente</label>
-          
-          <select class="mat-select" formControlName="name_id" required [(ngModel)]="defaultId" required>
-            <option *ngFor="let option of clientOptions"  [value]="option.id" >{{option.name}}</option>
+          <label>Cliente</label>  
+          <select class="mat-select select" formControlName="name_id" [errorMessage]="name_error" required [(ngModel)]="defaultId">
+            <option *ngFor="let option of clientOptions"  [value]="option.id" >{{option.name}}
+            </option>
           </select>
+          <div  *ngFor="let validation of validation_messages.name_id">
+            <span class="help-block form-error text-danger" 
+              *ngIf="reparacaoForm.controls['name_id'].touched
+              && reparacaoForm.controls['name_id'].errors?.required">{{validation.message}}
+            </span>
+          </div>
         </div>  
-
-
-
         <!-- price -->
         <div class="md-form mt-0">    
-          <input type="text" formControlName="price" class="form-control" mdbInputDirective>
-          <label>Preço</label>
+          <input type="number" formControlName="price" [errorMessage]="number_error" class="form-control" mdbInputDirective>
+          <label>Preço </label>
+          <div  *ngFor="let validation of validation_messages.price">
+            <span class="help-block form-error text-danger " 
+              *ngIf="reparacaoForm.controls['price'].errors?.required &&
+              reparacaoForm.controls['price'].touched">{{validation.message}}
+            </span>
+          </div>
         </div>  
-
         <!-- budget -->
         <div class="md-form mt-0">    
-          <input type="text" formControlName="budget" class="form-control" mdbInputDirective>
+          <input type="number" formControlName="budget" [errorMessage]="number_error" class="form-control" mdbInputDirective>
           <label>Orçamento</label>
+          <div  *ngFor="let validation of validation_messages.budget">
+            <span class="help-block form-error text-danger" 
+              *ngIf="reparacaoForm.controls['budget'].errors?.required &&
+              reparacaoForm.controls['budget'].touched">{{validation.message}}
+            </span>
+          </div>
         </div>  
-
         <!-- description -->
         <div class="md-form mt-0">
-          <textarea type="text" formControlName="description"  class="md-textarea form-control" mdbInputDirective>
+          <textarea type="text" formControlName="description" [errorMessage]="textbox_error" class="md-textarea form-control" mdbInputDirective>
           </textarea>
           <label>Descrição</label>
         </div>
-
         <!-- date_completed -->
         <div class="md-form mt-0 input-group">   
-          
-          <!--
-          <button type="button"  class="btn btn-outline-secondary calendar" (click)="basicModal.show()" mdbWavesEffect>Modal Calendario</button>
-
-          <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-                    <span aria-hidden="true">×</span>
-                  </button>
-                  <h4 class="modal-title w-100" id="myModalLabel">Escolher Data</h4>
-                </div>
-                <div class="modal-body">
-                  <input type="text" placeholder="yyyy-mm-dd"name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="date_completed" class="form-control" mdbInputDirective>
-                  <div class="input-group-append">
-        
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"  type="button">Calendario</button>
-                    </div>
-                  <label>Data de conclusão</label>
-                </div>
-              </div>
-            </div>
-          </div>
--->
           <div class="input-group-append">
             <input type="text" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="date_completed" class="form-control" mdbInputDirective>
-            <button class="btn btn-outline-secondary calendar " (click)=[d.toggle()]  type="button">Calendario</button>
+            <button class="btn btn-secondary calendar " (click)=[d.toggle()]  type="button" title="Calendário">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </button>
           </div>
           <label>Data de conclusão</label>
         </div>  
-
-        <!-- cell phone -->
+        <!-- WEIGTH -->
         <div class="md-form mt-0">    
-          <input type="text" formControlName="weight" class="form-control" mdbInputDirective>
+          <input type="number" formControlName="weigth" [errorMessage]="number_error" class="form-control" mdbInputDirective>
           <label>Peso</label>
+          <div  *ngFor="let validation of validation_messages.weigth">
+            <span class="help-block form-error text-danger small" 
+              *ngIf="reparacaoForm.controls['weigth'].errors?.required &&
+              reparacaoForm.controls['weigth'].touched">{{validation.message}}
+            </span>
+          </div>
         </div>  
-
         <!-- foto -->
         <div class="md-form mt-0">    
           <input type="text" formControlName="foto" class="form-control" mdbInputDirective>
           <label>Imagem</label>
         </div>  
-
-
         <!-- materials -->
         <div class="md-form mt-0">
           <textarea type="text" formControlName="materials"  class="md-textarea form-control" mdbInputDirective>
           </textarea>
           <label>Materiais</label>
         </div>
-
         <!-- faturado -->
         <div class="md-form mt-0 align-items-s">
           <input type="checkbox" formControlName="faturado"  class="md-textarea form-control" mdbInputDirective>
           <label>Faturado</label>
         </div>
-
         <!-- pago -->
         <div class="md-form mt-0 align-items-s">
           <input type="checkbox" formControlName="pago"  class="md-textarea form-control" mdbInputDirective>
@@ -151,10 +106,13 @@
         <!--ACCOES-->
         <div class="col-md-3 flex-center">
           <div class="flex-item">
-            <button mdbBtn color="success" block="true" class="my-4" type="submit">Guardar</button>
+            <button mdbBtn color="success" block="true" class="my-4" type="submit" title="Guardar Reparação">
+              <i class="fa fa-save" aria-hidden="true"></i>
+            </button>
           </div> 
           <div class="flex-item">
-            <button mdbBtn color="danger"  block="true" class="my-4" routerLink="/reparacao" type="submit">Cancelar</button>
+            <button mdbBtn color="danger"  block="true" class="my-4" routerLink="/reparacao" type="submit" title="Cancelar">
+              <i class="fa fa-remove" aria-hidden="true"></i></button>
           </div>
          
         </div>
