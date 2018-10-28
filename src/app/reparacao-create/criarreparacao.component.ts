@@ -61,7 +61,8 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
     private reparacaoCreateService: CriarreparacaoserviceService,
     private getClientesService: ConsultarService,
     private datePipe: DatePipe,
-  ) { }
+  ) {
+   }
 
   ngOnInit() {
     this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
@@ -88,4 +89,6 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     //this.subresponse.unsubscribe()  
   }
+
+ 
 }

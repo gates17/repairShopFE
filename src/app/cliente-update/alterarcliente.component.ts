@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlterarService } from '../services/cliente/alterarservice/alterar.service';
 import { ICliente } from '../models/cliente';
 
@@ -16,13 +16,19 @@ export class AlterarclienteComponent implements OnInit, OnDestroy {
   cliente: ICliente;
   clienteSub: Subscription;
   clienteForm = new FormGroup({
-    name: new FormControl(''),
-    tlf: new FormControl(''),
-    address: new FormControl(''),
-    zip_code:  new FormControl(''),
-    localidade:  new FormControl(''),
+    name: new FormControl('', [ Validators.required, Validators.maxLength(255) ]),
+    tlf: new FormControl('',[ Validators.required, Validators.max(999999999), Validators.min(900000000) ]),
+    address: new FormControl('',Validators.maxLength(1024)),
+    zip_code:  new FormControl('', Validators.maxLength(15)),
+    localidade:  new FormControl('', Validators.maxLength(15)),
     total_spent_by_client:  new FormControl('')
   })
+  
+
+  number_error = 'Insira um valor até 16 caracteres '
+  number2_error = 'Insira um valor até 9 caracteres '
+  name_error = 'É necessário inserir um nome' 
+  textbox_error ='Insira uma descrição até um máximo de 1024 caracteres'
 
   constructor(
     private route: ActivatedRoute,

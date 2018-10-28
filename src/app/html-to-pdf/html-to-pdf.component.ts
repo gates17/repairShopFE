@@ -51,19 +51,7 @@ export class HtmlToPdfComponent implements OnInit {
       pdf.text(this.horizontal_padding+80, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.weight)))
     }
     pdf.save('MYPDF.pdf')
-    // const data = document.getElementById('contentToConvert');  
-
-
-    // html2canvas(data).then(canvas => {
-    //   console.log('PILAS')
-    //   let pdf = new jspdf('p','mm','a4');
-    //   console.log('CONA')
-    //   pdf.addHTML(canvas)
-    //   pdf.save('web.pdf');
-
-    //   console.log('PILAS2')
-    //     // do callback stuff
-    // });
+ 
   }
 
   public captureScreen()  

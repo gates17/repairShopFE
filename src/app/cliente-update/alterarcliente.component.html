@@ -14,37 +14,37 @@
 
         <!-- name -->
         <div class="md-form mt-0">    
-          <input type="text" formControlName="name" class="form-control" mdbInputDirective>
+          <input type="text" formControlName="name" class="form-control" [errorMessage]="name_error" mdbInputDirective>
           <label>Nome</label>
         </div>  
         <!-- morada -->
           <div class="md-form mt-0">    
-            <textarea type="text" formControlName="address" class="form-control" mdbInputDirective></textarea>  
+            <textarea type="text" formControlName="address" class="form-control" [errorMessage]="textbox_error" mdbInputDirective></textarea>  
             <label>Morada</label>
           </div>  
         <!-- localidade -->
         <div class="md-form mt-0">
-          <input type="text" formControlName="localidade"  class="md-textarea form-control" mdbInputDirective>
+          <input type="text" formControlName="localidade"  class="md-textarea form-control" [errorMessage]="number_error" mdbInputDirective>
           <label>Localidade</label>
         </div>
 
         <!-- codigo postal -->
         <div class="md-form mt-0">    
-          <input type="text" formControlName="zip_code" class="form-control" mdbInputDirective>
+          <input type="text" formControlName="zip_code" class="form-control" [errorMessage]="number_error" mdbInputDirective>
           <label>Codigo postal</label>
         </div>  
 
         <!-- cell phone -->
         <div class="md-form mt-0">    
-          <input type="text" formControlName="tlf" class="form-control" mdbInputDirective>
+          <input type="number" formControlName="tlf" class="form-control" [errorMessage]="number2_error" mdbInputDirective>
           <label>Telefone/Telemovel</label>
         </div>  
 
          <!-- saldo -->
-         <div class="md-form mt-0">    
+         <!-- <div class="md-form mt-0">    
           <input type="text" formControlName="total_spent_by_client" class="form-control" mdbInputDirective>
           <label>Saldo</label>
-        </div>  
+        </div>   -->
 
         <!-- ACÇÕES -->
         <div class="col-md-3 flex-center">

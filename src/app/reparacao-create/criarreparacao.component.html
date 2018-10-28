@@ -14,17 +14,16 @@
         <!-- name -->
         <div class="md-form mt-0"> 
           <label class="control-label">Cliente</label>
-
           <select class="mat-select select" formControlName="name_id" required>
             <option [value]="option.id" *ngFor="let option of clientOptions">{{option.name}}
             </option>
           </select>
           <div  *ngFor="let validation of validation_messages.name_id">
-              <span class="help-block form-error text-danger" 
-                *ngIf="reparacaoForm.controls['name_id'].touched
-                && reparacaoForm.controls['name_id'].errors?.required">{{validation.message}}
-              </span>
-            </div>
+            <span class="help-block form-error text-danger" 
+              *ngIf="reparacaoForm.controls['name_id'].touched
+              && reparacaoForm.controls['name_id'].errors?.required">{{validation.message}}
+            </span>
+          </div>
         </div>  
         <!-- price -->
           <div class="md-form mt-0">    
@@ -65,6 +64,12 @@
           <textarea type="text" formControlName="description"  class="md-textarea form-control" mdbInputDirective>
           </textarea>
           <label>Descrição</label>
+          <div  *ngFor="let validation of validation_messages.description">
+            <span class="help-block form-error text-danger " 
+              *ngIf="reparacaoForm.controls['description'].errors?.maxlength &&
+              reparacaoForm.controls['description'].touched">{{validation.message}}
+            </span>
+          </div>
         </div>
         <!-- foto -->
         <div class="md-form mt-0">    
@@ -78,8 +83,7 @@
           <label>Materiais</label>
         </div>
         <!-- date_completed -->
-        <div class="md-form mt-0 input-group">   
-         
+        <div class="md-form mt-0 input-group">
           <div class="input-group-append">
             <input type="text" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #d="ngbDatepicker" formControlName="date_completed" class="form-control" mdbInputDirective>
             <button class="btn btn-secondary calendar " (click)=[d.toggle()]  type="button" title="Calendário">
