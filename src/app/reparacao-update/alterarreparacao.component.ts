@@ -88,7 +88,6 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.reparacao = reparacao;
             this.reparacao.url = reparacao.url;
             // this.reparacaoForm.hasError
-            console.log(this.reparacao)
             //this.reparacaoForm.
             this.reparacaoForm.controls.name_id.setValue(this.reparacao.name_id);
             this.reparacaoForm.controls.description.setValue(this.reparacao.description);

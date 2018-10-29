@@ -42,7 +42,7 @@ export class ContaCorrenteClienteComponent implements OnInit {
         this.previous_url = this.pages['previous_url']
         this.next_url = this.pages['next_url']
         this.first_page = this.page_links[0]
-        console.log(data)
+        // console.log(data)
       });
     });
   }
@@ -66,7 +66,7 @@ export class ContaCorrenteClienteComponent implements OnInit {
   } 
 
   print(){
-    console.log(this.reparacoes)
+    // console.log(this.reparacoes)
     this.prs.setData(this.reparacoes)
     this.router.navigate(['/cliente/details/' + this.id +'/conta/print']);
   }
@@ -76,7 +76,7 @@ export class ContaCorrenteClienteComponent implements OnInit {
       this.id = params['id'];
       this.reparacoesClienteService.getAllReparacoesCliente(this.id).subscribe(data =>{
         this.reparacoes = data
-        console.log(this.reparacoes)
+        // console.log(this.reparacoes)
         this.prs.setData(data)
         this.router.navigate(['/cliente/details/' + this.id +'/conta/print']);
       });
@@ -84,7 +84,6 @@ export class ContaCorrenteClienteComponent implements OnInit {
   }
 
    onPageChanged(url: string) {
-     console.log(url)
     this.clienteSub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.reparacoesClienteService.getReparacoesCliente(this.id,url).subscribe(data =>{
@@ -95,7 +94,6 @@ export class ContaCorrenteClienteComponent implements OnInit {
         this.previous_url = this.pages['previous_url']
         this.next_url = this.pages['next_url']
         this.first_page = this.page_links[0]
-        console.log(data)
       });
     });
   }

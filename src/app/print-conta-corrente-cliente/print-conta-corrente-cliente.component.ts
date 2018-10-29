@@ -39,7 +39,6 @@ export class PrintContaCorrenteClienteComponent extends HtmlToPdfComponent  impl
 
   ngOnInit() {
     this.reparacoes = this.prs.getData();
-    console.log(this.reparacoes)
     this.dataToConvert = document.getElementById('contentToConvert');
   }
 
@@ -49,7 +48,6 @@ export class PrintContaCorrenteClienteComponent extends HtmlToPdfComponent  impl
   }
 
   printAll(){
-    console.log(this.reparacoes)
     this.captureHtml(this.reparacoes)
     this.router.navigate(['/cliente'])    
   }

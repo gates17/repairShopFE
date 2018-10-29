@@ -62,23 +62,27 @@
    
           </tr>
           <tr *ngFor="let cliente of clientes;let i = index">
-            <td>{{cliente.name}}</td>
-            <td>{{cliente.address}}</td>
-            <td>{{cliente.zip_code}}</td>
-            <td>{{cliente.localidade}}</td>
-            <td>{{cliente.tlf}}</td>
-            <td>{{cliente.date_created}}</td>
-            <td>
+            <td class="vam">{{cliente.name}}</td>
+            <td class="vam">{{cliente.address}}</td>
+            <td class="vam">{{cliente.zip_code}}</td>
+            <td class="vam">{{cliente.localidade}}</td>
+            <td class="vam">{{cliente.tlf}}</td>
+            <td class="vam">{{cliente.date_created}}</td>
+            <td class="vam">
               <span class="table-remove">
   
-                <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" (click)=get_detail(cliente.id)  mdbWavesEffect>
-                <i class="fa fa-search" aria-hidden="true"></i></button>
+                <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" (click)=get_detail(cliente.id) title="Consultar Cliente"  mdbWavesEffect>
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
   
                 <button type="button nav-link" [routerLink]="['/cliente/update',cliente.id]" routerLinkActive="active" 
-                mdbBtn color="secondary" rounded="true" class="my-0">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                  mdbBtn color="secondary" rounded="true" class="my-0" title="Editar Cliente">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
   
-                <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" title="Remover Cliente" mdbWavesEffect>
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
   
                 <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">

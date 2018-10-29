@@ -69,18 +69,18 @@
           <th class="text-center">Acções</th>
 
         </tr>
-        <tr *ngFor="let reparacao of reparacoes;let i = index" > 
+        <tr *ngFor="let reparacao of reparacoes;let i = index"> 
           <td   [hidden]="!false">{{reparacao.foto}}</td>
-          <td>{{reparacao.id}}</td>
-          <td>{{reparacao.name_id}}</td>
-          <td>{{reparacao.budget}}</td>
-          <td>{{reparacao.price}}</td>
-          <td>{{reparacao.weight}}</td>
-          <td>{{reparacao.date_created}}</td>
-          <td>{{reparacao.date_completed}}</td>
-          <td style="width:20% !important;" >{{reparacao.description |slice:0:120}}</td>
-          <td>{{reparacao.materials}}</td>
-          <td>
+          <td class="vam">{{reparacao.id}}</td>
+          <td class="vam">{{reparacao.name_id}}</td>
+          <td class="vam">{{reparacao.budget}}</td>
+          <td class="vam">{{reparacao.price}}</td>
+          <td class="vam">{{reparacao.weight}}</td>
+          <td class="vam">{{reparacao.date_created}}</td>
+          <td class="vam">{{reparacao.date_completed}}</td>
+          <td class="vam" style="width:20% !important;" >{{reparacao.description |slice:0:60}}</td>
+          <td class="vam">{{reparacao.materials}}</td>
+          <td class="vam">
             <ng-container *ngIf="reparacao.faturado; else elseTemplate">
               Sim
             </ng-container>
@@ -88,7 +88,7 @@
               Não
             </ng-template>
           </td>
-          <td>
+          <td class="vam">
             <ng-container *ngIf="reparacao.pago; else elseTemplate">
               Sim
             </ng-container>
@@ -101,16 +101,16 @@
           <td>
             <span class="table-remove">
 
-              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)=get_detail(reparacao.id) mdbWavesEffect>
+              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)=get_detail(reparacao.id) mdbWavesEffect title="Consultar Reparacao">
                 <i class="fa fa-search" aria-hidden="true"></i>
               </button>
 
               <button type="button nav-link" mdbBtn color="secondary" class="my-0" rounded="true" 
-                [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active">
+                [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active" title="Editar Reparacao">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
 
-              <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
+              <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect title="Remover Reparacao">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
               </button>
 

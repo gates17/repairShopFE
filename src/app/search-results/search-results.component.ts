@@ -56,7 +56,6 @@ export class SearchResultsComponent implements OnInit {
           this.previous_url = this.pages['previous_url']
           this.next_url = this.pages['next_url']
           this.first_page = this.page_links[0]  
-          console.log(data)
         });
       }
       else if(params['qdi']){

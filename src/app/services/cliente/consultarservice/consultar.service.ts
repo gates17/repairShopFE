@@ -19,7 +19,6 @@ export class ConsultarService {
 
 
   getClientes(url:any): Observable<ICliente[]> {
-    console.log(url)
     if(!url){
       return this.http.get<ICliente[]>(this._clientesurl);
     }
