@@ -45,7 +45,7 @@
           </ul>
         </nav>
         <span class="table-add float-right mb-3 mr-2">
-          <a class="nav-link text-success"  routerLink="/cliente/create" routerLinkActive="active">
+          <a class="nav-link text-success"  routerLink="/cliente/create" routerLinkActive="active" title="Criar Cliente">
   
             <mdb-icon icon="plus" size="2x"></mdb-icon>
           </a>
@@ -71,16 +71,16 @@
             <td class="vam">
               <span class="table-remove">
   
-                <button type="button nav-link" mdbBtn color="primary" class="my-0" rounde="true" (click)=get_detail(cliente.id) title="Consultar Cliente"  mdbWavesEffect>
+                <button type="button nav-link" mdbBtn color="primary" class="my-0 btn-sm" rounde="true" (click)=get_detail(cliente.id) title="Consultar Cliente"  mdbWavesEffect>
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
   
                 <button type="button nav-link" [routerLink]="['/cliente/update',cliente.id]" routerLinkActive="active" 
-                  mdbBtn color="secondary" rounded="true" class="my-0" title="Editar Cliente">
+                  mdbBtn color="secondary" rounded="true" class="my-0 btn-sm" title="Editar Cliente">
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
   
-                <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" title="Remover Cliente" mdbWavesEffect>
+                <button type="button" mdbBtn color="danger" class="relative waves-light my-0 btn-sm" (click)="basicModal.show()" title="Remover Cliente" mdbWavesEffect>
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
   

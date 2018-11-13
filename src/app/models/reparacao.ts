@@ -14,4 +14,5 @@ export interface IReparacao {
     materials:string,
     faturado:boolean,
     pago:boolean,
+    pagamento_parcial:number,
 }

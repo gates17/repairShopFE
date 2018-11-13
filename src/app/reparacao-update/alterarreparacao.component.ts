@@ -35,6 +35,7 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
     foto: new FormControl(''),
     materials: new FormControl(''),
     faturado: new FormControl(false),
+    pagamento_parcial: new FormControl('',Validators.max(9999999999.99)),
     pago: new FormControl(false)
 
   })
@@ -53,6 +54,9 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
       { type: 'required', message: 'É necessário inserir um valor'  }
     ],
     'weigth': [
+      { type: 'size', message: 'Insira um valor entre 0 e 9 999 999 999.99 '},
+    ],
+    'pagamento_parcial': [
       { type: 'size', message: 'Insira um valor entre 0 e 9 999 999 999.99 '},
     ],
     'price': [

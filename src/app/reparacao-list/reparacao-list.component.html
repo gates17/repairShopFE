@@ -45,32 +45,38 @@
 
         </ul>
       </nav>
-
       <span class="table-add float-right mb-3 mr-2">
-        <a class="nav-link text-success"  routerLink="/reparacao/create" routerLinkActive="active">
+        <a class="nav-link text-success"  (click)="reparacoesDiarias()" title="Imprimir Conta Corrente">
+          <mdb-icon icon="print" size="2x"></mdb-icon>
+        </a>
+      </span>
+      <span class="table-add float-right mb-3 mr-2">
+        <a class="nav-link text-success"  routerLink="/reparacao/create" routerLinkActive="active" title="Criar Reparação">
           <mdb-icon icon="plus" size="2x"></mdb-icon>
         </a>
       </span>
       
       <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
-          <th class="text-center" mat-sort-header="id">Id </th>
-          <th class="text-center" mat-sort-header="name_id">Cliente </th>
-          <th class="text-center">Orçamento</th>
-          <th class="text-center">Preço</th>
+          <th class="text-center vam"> </th>
+          <th class="text-center vam" mat-sort-header="id">Id </th>
+          <th class="text-center vam" mat-sort-header="name_id">Cliente </th>
+          <th class="text-center vam">Orçamento</th>
+          <th class="text-center vam">Preço</th>
           
-          <th class="text-center" mat-sort-header="weight">Peso</th>
-          <th class="text-center" mat-sort-header="date_created">Data de início</th>
-          <th class="text-center" mat-sort-header="date_completed">Data de conclusão</th> 
-          <th class="text-center">Descrição</th>
-          <th class="text-center">Materiais</th>
-          <th class="text-center">Faturado</th>
-          <th class="text-center" mat-sort-header="pago">Pago</th>
-          <th class="text-center">Acções</th>
+          <th class="text-center vam" mat-sort-header="weight">Peso</th>
+          <th class="text-center vam" mat-sort-header="date_created">Data de início</th>
+          <th class="text-center vam" mat-sort-header="date_completed">Data de conclusão</th> 
+          <th class="text-center vam">Descrição</th>
+          <th class="text-center vam"  [hidden]="!false">Materiais</th>
+          <th class="text-center vam">Faturado</th>
+          <th class="text-center vam" mat-sort-header="pago">Pago</th>
+          <th class="text-center vam">Acções</th>
 
         </tr>
         <tr *ngFor="let reparacao of reparacoes;let i = index"> 
-          <td   [hidden]="!false">{{reparacao.foto}}</td>
+          <!-- <td   [hidden]="!false">{{reparacao.foto}}</td> -->
+          <td class="vam"><input type="checkbox" name="active" (click)="print_list(reparacao.id)"  [checked]="reparacao.selected"></td>
           <td class="vam">{{reparacao.id}}</td>
           <td class="vam">{{reparacao.name_id}}</td>
           <td class="vam">{{reparacao.budget}}</td>
@@ -79,7 +85,7 @@
           <td class="vam">{{reparacao.date_created}}</td>
           <td class="vam">{{reparacao.date_completed}}</td>
           <td class="vam" style="width:20% !important;" >{{reparacao.description |slice:0:60}}</td>
-          <td class="vam">{{reparacao.materials}}</td>
+          <td class="vam"  [hidden]="!false">{{reparacao.materials}}</td>
           <td class="vam">
             <ng-container *ngIf="reparacao.faturado; else elseTemplate">
               Sim
@@ -98,19 +104,19 @@
           </td>
 
           <!-- ACCOES-->
-          <td>
+          <td class="vam">
             <span class="table-remove">
 
-              <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)=get_detail(reparacao.id) mdbWavesEffect title="Consultar Reparacao">
-                <i class="fa fa-search" aria-hidden="true"></i>
+              <button type="button nav-link" mdbBtn color="primary" class="my-0 btn-sm" rounded="true" (click)=get_detail(reparacao.id) mdbWavesEffect title="Consultar Reparacao">
+                <i class="fa fa-search fa-sm" aria-hidden="true"></i>
               </button>
 
-              <button type="button nav-link" mdbBtn color="secondary" class="my-0" rounded="true" 
+              <button type="button nav-link" mdbBtn color="secondary" class="my-0 btn-sm" rounded="true" 
                 [routerLink]="['/reparacao/update',reparacao.id]" routerLinkActive="active" title="Editar Reparacao">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
 
-              <button type="button" mdbBtn color="danger" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect title="Remover Reparacao">
+              <button type="button" mdbBtn color="danger" class="relative waves-light my-0 btn-sm" (click)="basicModal.show()" mdbWavesEffect title="Remover Reparacao">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
               </button>
 

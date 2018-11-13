@@ -24,11 +24,11 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
 
   private get_request: any;
   private delete_request:any;
- 
+  private list_to_print=[];
   reparacao: IReparacao;
   reparacaoSub: Subscription;
  
- 
+  public selected = false; 
   public pages=[];
   public page_links=[];
   public last_page: any;
@@ -47,6 +47,8 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
     private reparacaoDetailhesService: DetalhesreparacaoserviceService,
     private reparacaoEliminarService: EliminarreparacaoserviceService,
 
+
+    private http: HttpClient,
   ) 
   { 
 
@@ -84,6 +86,8 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
     });
   }
 
+
+
   ngOnInit() {
    
     this.get_request = this.reparacaoDetailhesService.getReparacoes('').subscribe(data =>{
@@ -94,12 +98,14 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
       this.previous_url = this.pages['previous_url']
       this.next_url = this.pages['next_url']
       this.first_page = this.page_links[0]
+      console.log(this.selected)
 
     });
-     }
+   
+  }
 
   ngOnDestroy(){
-     this.get_request.unsubscribe();
+    //  this.get_request.unsubscribe();
   }
   
   gotoList() {
@@ -122,6 +128,7 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
   }
 
   onPageChanged(url: string) {
+    
     this.get_request = this.reparacaoDetailhesService.getReparacoes(url).subscribe(data =>{
       this.pages = data['pages_list']
       this.page_links= this.pages['page_links']
@@ -130,8 +137,41 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
       this.previous_url = this.pages['previous_url']
       this.next_url = this.pages['next_url']
       this.first_page = this.page_links[0]
+      if (this.list_to_print != null && this.list_to_print.length > 0){
+        this.reparacoes.forEach(r => {
+          if(this.list_to_print.includes(r.id)){
+            this.selected = true
+          }
+          else{
+            this.selected= false
+          }
+          r["selected"]=this.selected
+        });
+      }
     });
+    
   }
+
+  print_list(id:number){
+    if (this.list_to_print.includes(id)){
+      // console.log(this.list_to_print.includes(id))
+      // console.log(this.list_to_print.indexOf(id))
+      this.list_to_print.splice(this.list_to_print.indexOf(id),1)
+    }
+    else {
+      this.list_to_print.push(id)
+    }
+    // console.log(this.list_to_print)
+  }
+
+  reparacoesDiarias()
+  {
+    this.get_request = this.http.get<any[]>("http://localhost:8000/reparacao/?q=today").subscribe(pilas =>{
+      console.log(pilas)
+    })
+    console.log(this.get_request)
+  }
+
 }
 
 

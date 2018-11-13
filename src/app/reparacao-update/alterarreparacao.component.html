@@ -44,6 +44,17 @@
             </span>
           </div>
         </div>  
+         <!-- PAGAMENTO PARCIAL -->
+        <div class="md-form mt-0">    
+          <input type="number" formControlName="pagamento_parcial" class="form-control" mdbInputDirective>
+          <label>Pagamento parcial</label>
+          <div  *ngFor="let validation of validation_messages.pagamento_parcial">
+            <span class="help-block form-error text-danger small" 
+              *ngIf="reparacaoForm.controls['pagamento_parcial'].errors?.required &&
+              reparacaoForm.controls['pagamento_parcial'].touched">{{validation.message}}
+            </span>
+          </div>
+        </div>
         <!-- budget -->
         <div class="md-form mt-0">    
           <input type="number" formControlName="budget" [errorMessage]="number_error" class="form-control" mdbInputDirective>
