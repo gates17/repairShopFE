@@ -44,6 +44,7 @@ import {PlatformModule} from '@angular/cdk/platform';
 import { ContaCorrenteComponent } from './conta-corrente/conta-corrente.component';
 import { ContaCorrenteClienteComponent } from './conta-corrente-cliente/conta-corrente-cliente.component';
 import { PrintContaCorrenteClienteComponent } from './print-conta-corrente-cliente/print-conta-corrente-cliente.component';
+import { ContaReparacaoComponent } from './conta-reparacao/conta-reparacao.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { PrintContaCorrenteClienteComponent } from './print-conta-corrente-clien
     SearchResultsComponent,
     ContaCorrenteComponent,
     ContaCorrenteClienteComponent,
-    PrintContaCorrenteClienteComponent,    
+    PrintContaCorrenteClienteComponent,
+    ContaReparacaoComponent,    
 
   ],
   imports: [

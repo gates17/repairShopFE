@@ -4,12 +4,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DetalhesreparacaoserviceService } from '../services/reparacao/detalhesreparacao/detalhesreparacaoservice.service';
 import { EliminarreparacaoserviceService } from '../services/reparacao/eliminarreparacao/eliminarreparacaoservice.service';
+import { PrintReparacaoService } from '../services/print/print-reparacao.service';
+
 import { IReparacao } from '../models/reparacao';
 
 import { HttpClient } from '@angular/common/http';
 
 import { Sort } from '@angular/material';
 
+
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-reparacao-list',
   templateUrl: './reparacao-list.component.html',
@@ -24,7 +28,7 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
 
   private get_request: any;
   private delete_request:any;
-  private list_to_print=[];
+  private list_to_print:any =[];
   reparacao: IReparacao;
   reparacaoSub: Subscription;
  
@@ -46,7 +50,7 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
     private router: Router,
     private reparacaoDetailhesService: DetalhesreparacaoserviceService,
     private reparacaoEliminarService: EliminarreparacaoserviceService,
-
+    private printService: PrintReparacaoService,
 
     private http: HttpClient,
   ) 
@@ -98,8 +102,6 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
       this.previous_url = this.pages['previous_url']
       this.next_url = this.pages['next_url']
       this.first_page = this.page_links[0]
-      console.log(this.selected)
-
     });
    
   }
@@ -154,22 +156,19 @@ export class ReparacaoListComponent implements OnInit, OnDestroy {
 
   print_list(id:number){
     if (this.list_to_print.includes(id)){
-      // console.log(this.list_to_print.includes(id))
+      // console.log(this.list_to_print.includes(reparacoesDiarias))
       // console.log(this.list_to_print.indexOf(id))
       this.list_to_print.splice(this.list_to_print.indexOf(id),1)
     }
     else {
       this.list_to_print.push(id)
     }
-    // console.log(this.list_to_print)
   }
 
-  reparacoesDiarias()
+  reparacoesDiarias():void
   {
-    this.get_request = this.http.get<any[]>("http://localhost:8000/reparacao/?q=today").subscribe(pilas =>{
-      console.log(pilas)
-    })
-    console.log(this.get_request)
+    this.printService.setList(this.list_to_print);//subject.asObservable());
+    this.router.navigate(['reparacao/conta/'])
   }
 
 }

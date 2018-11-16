@@ -1,0 +1,141 @@
+<!-- Editable table -->
+<div class="card reparacoes">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Reparações</h3>
+  <div class="card-body reparacoes-container">
+    <div id="table" class="table-editable">
+
+      <nav class="my-4 flex-center">
+        <ul class="pagination pagination-circle pg-blue mb-0"  *ngIf="pages">
+
+            <!--First-->
+            <li class="page-item">
+              <a class="page-link" mdbWavesEffect (click)="onPageChanged(first_page[0])">Primeira página </a>
+            </li>
+
+            <!--Previous-->
+            <li class="page-item" >
+              <a class="page-link" mdbWavesEffect aria-label="Previous" (click)="onPageChanged(previous_url)" 
+                    [disabled]="!previous_url">
+                  <span aria-hidden="true">Página anterior</span>
+                  <span class="sr-only">Previous</span>
+              </a>
+            </li>
+
+            <!--Numbers-->
+            <div *ngFor="let page of page_links ;let i = index,let last = last ">
+                <li class="page-item" [ngClass]="{'active': page[2]}" >
+                <a class="page-link"  mdbWavesEffect (click)="page" (click)="onPageChanged(page[0])" 
+                    >{{i+1}}</a>
+                </li>
+            </div>
+
+            <!--next-->
+            <li class="page-item">
+                <a class="page-link" mdbWavesEffect aria-label="Next" (click)="onPageChanged(next_url)" 
+                    [disabled]="!next_url">
+                    <span aria-hidden="true">Página seguinte </span>
+                    <span class="sr-only" >Next</span>
+                </a>
+            </li>
+            <!--LAST-->
+            <li class="page-item">
+              <a class="page-link"  (click)="onPageChanged(last_page[0])">Ultima página</a>
+            </li>
+
+        </ul>
+      </nav>
+      <span class="table-add float-right mb-3 mr-2">
+        <a class="nav-link text-success"  routerLink="/reparacao/create" routerLinkActive="active" title="Mudar Data">
+          <mdb-icon icon="calendar" size="2x"></mdb-icon>
+        </a>
+      </span>
+      <table matSort class="table table-bordered table-responsive-md table-striped text-center">
+        <tr>
+          <th class="text-center vam">Id </th>
+          <th class="text-center vam">Cliente </th>
+          <th class="text-center vam">Orçamento</th>
+          <th class="text-center vam">Preço</th>
+          
+          <th class="text-center vam">Peso</th>
+          <th class="text-center vam">Data de início</th>
+          <th class="text-center vam">Data de conclusão</th> 
+          <th class="text-center vam">Descrição</th>
+          <th class="text-center vam"  [hidden]="!false">Materiais</th>
+          <th class="text-center vam">Faturado</th>
+          <th class="text-center vam">Pago</th>
+        </tr>
+        <tr *ngFor="let reparacao of reparacoes;let i = index"> 
+          <!-- <td   [hidden]="!false">{{reparacao.foto}}</td> -->
+          <td class="vam">{{reparacao.id}}</td>
+          <td class="vam">{{reparacao.name_id}}</td>
+          <td class="vam">{{reparacao.budget}}</td>
+          <td class="vam">{{reparacao.price}}</td>
+          <td class="vam">{{reparacao.weight}}</td>
+          <td class="vam">{{reparacao.date_created}}</td>
+          <td class="vam">{{reparacao.date_completed}}</td>
+          <td class="vam" style="width:20% !important;" >{{reparacao.description |slice:0:60}}</td>
+          <td class="vam"  [hidden]="!false">{{reparacao.materials}}</td>
+          <td class="vam">
+            <ng-container *ngIf="reparacao.faturado; else elseTemplate">
+              Sim
+            </ng-container>
+            <ng-template #elseTemplate>
+              Não
+            </ng-template>
+          </td>
+          <td class="vam">
+            <ng-container *ngIf="reparacao.pago; else elseTemplate">
+              Sim
+            </ng-container>
+            <ng-template #elseTemplate>
+              Não
+            </ng-template>
+          </td>
+        </tr>
+      
+      </table>
+      
+      <nav class="my-4 flex-center">
+          <ul class="pagination pagination-circle pg-blue mb-0"  *ngIf="pages">
+
+              <!--First-->
+              <li class="page-item">
+                <a class="page-link" mdbWavesEffect (click)="onPageChanged(first_page[0])">Primeira página </a>
+              </li>
+
+              <!--Previous-->
+              <li class="page-item" >
+                <a class="page-link" mdbWavesEffect aria-label="Previous" (click)="onPageChanged(previous_url)" 
+                    [disabled]="!previous_url">
+                    <span aria-hidden="true">Página anterior</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+              </li>
+
+              <!--Numbers-->
+              <div *ngFor="let page of page_links ;let i = index,let last = last ">
+                  <li class="page-item" [ngClass]="{'active': page[2]}" >
+                  <a class="page-link"  mdbWavesEffect (click)="page" (click)="onPageChanged(page[0])" 
+                    >{{i+1}}</a>
+                  </li>
+              </div>
+
+              <!--next-->
+              <li class="page-item">
+                  <a class="page-link" mdbWavesEffect aria-label="Next" (click)="onPageChanged(next_url)" 
+                    [disabled]="!next_url">
+                      <span aria-hidden="true">Página seguinte </span>
+                      <span class="sr-only" >Next</span>
+                  </a>
+              </li>
+
+              <!--LAST-->
+              <li class="page-item">
+                <a class="page-link"  (click)="onPageChanged(last_page[0])">Ultima página</a>
+              </li>
+
+          </ul>
+      </nav>
+    </div>
+  </div>
+</div>

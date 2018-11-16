@@ -41,10 +41,12 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 import { PrintClienteComponent } from '../print-cliente/print-cliente.component';
 import { PrintreparacaoComponent } from '../printreparacao/printreparacao.component';
 import { AppComponent } from '../app.component';
+
+//Conta corrente
 import { ContaCorrenteComponent } from '../conta-corrente/conta-corrente.component';
 import { ContaCorrenteClienteComponent } from '../conta-corrente-cliente/conta-corrente-cliente.component';
 import { PrintContaCorrenteClienteComponent } from '../print-conta-corrente-cliente/print-conta-corrente-cliente.component';
-
+import { ContaReparacaoComponent } from '../conta-reparacao/conta-reparacao.component';
 const routes: Routes = [
   
   {path: 'reparacao', component: ReparacaoListComponent },
@@ -55,6 +57,9 @@ const routes: Routes = [
   {path: 'reparacao/delete/:id', component: EliminarreparacaoComponent },
   {path: 'reparacao/update/:id', component: AlterarreparacaoComponent },
 
+  {path: 'reparacao/conta', component: ContaReparacaoComponent },
+  //{path: 'reparacao/conta/list', component: ContaReparacaoComponent },
+
   {path: 'cliente', component: ClienteListComponent },
   {path: 'cliente/create', component: CriarclienteComponent },
   {path: 'cliente/print', component: PrintClienteComponent},
@@ -62,6 +67,7 @@ const routes: Routes = [
   {path: 'cliente/details/:id', component: DetalhesclienteComponent },
   {path: 'cliente/delete/:id', component: RemoverclienteComponent },
   {path: 'cliente/update/:id', component: AlterarclienteComponent },
+
   {path: 'cliente/details/:id/conta', component: ContaCorrenteClienteComponent },
   {path: 'cliente/details/:id/conta/print', component: PrintContaCorrenteClienteComponent },
 
@@ -119,5 +125,6 @@ export const routingComponents = [
 
   HtmlToPdfComponent,
   ContaCorrenteComponent,
-  ContaCorrenteClienteComponent
+  ContaCorrenteClienteComponent,
+  ContaReparacaoComponent
 ]
