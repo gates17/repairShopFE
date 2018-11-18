@@ -8,7 +8,7 @@ import { PrintReparacaoService } from '../services/print/print-reparacao.service
 import { IReparacao } from '../models/reparacao';
 
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-conta-reparacao',
@@ -37,17 +37,21 @@ export class ContaReparacaoComponent implements OnInit {
   images: Array<string>;
   new_date:any;
   public reparacoes = [];
-
   sortedData: any[];
   subscription: Subscription;
+
+  searchStartQuery:any;
+  search:any;
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private reparacaoDetailhesService: DetalhesreparacaoserviceService,
     private prs: PrintReparacaoService,
-
     private http: HttpClient,
+
+    private datePipe: DatePipe
   ) 
   { 
     // this.subscription = this.prs.getList().subscribe(message => { 
@@ -105,6 +109,8 @@ export class ContaReparacaoComponent implements OnInit {
     
   }
   onDateChange() {
+    console.log(this.searchStartQuery)
+    console.log(this.new_date)
     this.get_request = this.http.get<any[]>("http://localhost:8000/reparacao/?q=day&qd=" + this.new_date).subscribe(data =>{
       this.pages = data['pages_list']
       this.page_links= this.pages['page_links']
@@ -114,6 +120,17 @@ export class ContaReparacaoComponent implements OnInit {
       this.next_url = this.pages['next_url']
       this.first_page = this.page_links[0]
     });
+  }
+  searchData(){
+    this.search='query';
+    if(this.searchStartQuery != undefined && this.searchStartQuery != null){
+      let ngbDate = this.searchStartQuery;
+      let myDateParser = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
+      let myDate = this.datePipe.transform(myDateParser,"yyyy-MM-dd")
+      this.new_date=myDate
+    }
+    else{this.new_date=null}
+    console.log(this.new_date)
   }
 
   print(){
