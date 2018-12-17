@@ -54,6 +54,37 @@ export class HtmlToPdfComponent implements OnInit {
  
   }
 
+  public captureReparacaoHtml(reparacoes:any){
+    var data = document.getElementById('contentToConvert');  
+    let pdf = new jspdf('p','mm','a5');
+    var total:number = 0;
+    var pago:number =0;
+
+    
+    pdf.text(this.horizontal_padding, this.vertical_padding,'Id')
+    pdf.text(this.horizontal_padding+10, this.vertical_padding, 'Orçamento')
+    pdf.text(this.horizontal_padding+50, this.vertical_padding, 'Preço')
+    pdf.text(this.horizontal_padding+80, this.vertical_padding, 'Peso')
+    for(let reparacao of reparacoes) 
+    {
+      console.log(reparacao)
+      total += parseFloat(reparacao.price)
+      pago +=  parseFloat(reparacao.pagamento_parcial)
+      this.vertical_padding+=10
+      pdf.text(this.horizontal_padding, this.vertical_padding,JSON.stringify(reparacao.id))
+      pdf.text(this.horizontal_padding+10, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.budget)))
+      pdf.text(this.horizontal_padding+50, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.price)))
+      pdf.text(this.horizontal_padding+80, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.weight)))
+    }
+    pdf.text(this.horizontal_padding, this.vertical_padding+10,'Total')
+    pdf.text(this.horizontal_padding+80, this.vertical_padding+10,total)
+    pdf.text(this.horizontal_padding, this.vertical_padding+20,'Paga')
+    pdf.text(this.horizontal_padding+80, this.vertical_padding+20,pago)
+
+    pdf.save('MYPDF.pdf')
+ 
+  }
+
   public captureScreen()  
   { 
     var data = document.getElementById('contentToConvert');  

@@ -46,7 +46,10 @@ import { AppComponent } from '../app.component';
 import { ContaCorrenteComponent } from '../conta-corrente/conta-corrente.component';
 import { ContaCorrenteClienteComponent } from '../conta-corrente-cliente/conta-corrente-cliente.component';
 import { PrintContaCorrenteClienteComponent } from '../print-conta-corrente-cliente/print-conta-corrente-cliente.component';
+
 import { ContaReparacaoComponent } from '../conta-reparacao/conta-reparacao.component';
+import { PrintContaReparacaoComponent } from '../print-conta-reparacao/print-conta-reparacao.component';
+
 const routes: Routes = [
   
   {path: 'reparacao', component: ReparacaoListComponent },
@@ -58,6 +61,7 @@ const routes: Routes = [
   {path: 'reparacao/update/:id', component: AlterarreparacaoComponent },
 
   {path: 'reparacao/conta', component: ContaReparacaoComponent },
+  {path: 'reparacao/conta/print', component: PrintContaReparacaoComponent },
   //{path: 'reparacao/conta/list', component: ContaReparacaoComponent },
 
   {path: 'cliente', component: ClienteListComponent },
@@ -126,5 +130,7 @@ export const routingComponents = [
   HtmlToPdfComponent,
   ContaCorrenteComponent,
   ContaCorrenteClienteComponent,
-  ContaReparacaoComponent
+
+  ContaReparacaoComponent,
+  PrintContaReparacaoComponent
 ]

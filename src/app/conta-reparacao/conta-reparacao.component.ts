@@ -67,8 +67,6 @@ export class ContaReparacaoComponent implements OnInit {
     this.list_to_print= this.prs.getList()//.subscribe(message => this.list_to_print=message)
 
     if(this.list_to_print != undefined && this.list_to_print!= null && this.list_to_print.length > 0){
-      console.log(true)
-      console.log(this.list_to_print )
       this.get_request = this.http.get<any[]>("http://localhost:8000/reparacao/?q=list&qp="+this.list_to_print).subscribe(data =>{
         this.pages = data['pages_list']
         this.page_links= this.pages['page_links']
@@ -90,7 +88,6 @@ export class ContaReparacaoComponent implements OnInit {
         this.first_page = this.page_links[0]
       });
     }
-    console.log(this.reparacoes)
   }
 
   onPageChanged(url: string) {
@@ -103,14 +100,10 @@ export class ContaReparacaoComponent implements OnInit {
       this.previous_url = this.pages['previous_url']
       this.next_url = this.pages['next_url']
       this.first_page = this.page_links[0]
-      console.log(data)
-    
     });
     
   }
   onDateChange() {
-    console.log(this.searchStartQuery)
-    console.log(this.new_date)
     this.get_request = this.http.get<any[]>("http://localhost:8000/reparacao/?q=day&qd=" + this.new_date).subscribe(data =>{
       this.pages = data['pages_list']
       this.page_links= this.pages['page_links']
@@ -130,13 +123,11 @@ export class ContaReparacaoComponent implements OnInit {
       this.new_date=myDate
     }
     else{this.new_date=null}
-    console.log(this.new_date)
   }
 
   print(){
-    this.get_request = this.http.get<any[]>("http://localhost:8000/reparacao/?q=today").subscribe(pilas =>{
-      })
-      console.log(this.get_request)
-
+    console.log(this.reparacoes)
+    this.prs.setList(this.reparacoes)
+    this.router.navigate(['/reparacao/conta/print'])
   }
 }

@@ -20,15 +20,12 @@ export class PrintReparacaoService {
   }
 
   setList(listData:any) {
-    console.log("LISTDATA",listData)
     if(listData.length > 0){
-      console.log("LENGTH")     
       this.list = listData
     }
   }
 
   getList(): any {
-    console.log("lista",this.list)
     if(this.list != null && this.list != undefined){ 
       return this.list ;
     }

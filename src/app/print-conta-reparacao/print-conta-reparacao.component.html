@@ -1,0 +1,80 @@
+<!-- Editable table -->
+<div class="container flex">
+  <div id="content" #content class="flex-center">  
+    <div>  
+      <div class="alert alert-info flex-center">  
+          <strong>Pré-visualização recibo</strong>  
+      </div>  
+    </div>  
+  </div>  
+  <div>  
+<div class="card recibo mx-auto">  <!-- alinhar os items ao centro resulta em imagem desfocada devido ao tamanho da div  (messageEvent)="receiveMessage($event)"-->
+  <!--
+    <app-detalhesreparacao [formGroup]="reparacaoForm" id="contentToConvert"></app-detalhesreparacao>
+    -->
+    <mdb-card id="contentToConvert">
+      <mdb-card-header class="info-color white-text text-center py-4" id="header">
+        <h5>Pré-visualizar Conta Corrente</h5>
+      </mdb-card-header>
+      <mdb-card-body class="px-lg-5 pt-0">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                  <th class="text-center vam">Id </th>
+                  <th class="text-center vam">Cliente </th>
+                  <th class="text-center vam">Orçamento</th>
+                  <th class="text-center vam">Preço</th>
+                  
+                  <th class="text-center vam">Peso</th>
+                  <th class="text-center vam">Data de início</th>
+                  <th class="text-center vam">Data de conclusão</th> 
+                  <th class="text-center vam">Descrição</th>
+                  <th class="text-center vam">Faturado</th>
+                  <th class="text-center vam">Pago</th>
+        
+                </tr>
+                <tr *ngFor="let reparacao of reparacoes;let i = index"> 
+                  <!-- <td   [hidden]="!false">{{reparacao.foto}}</td> -->
+                  <td class="vam">{{reparacao.id}}</td>
+                  <td class="vam">{{reparacao.name_id}}</td>
+                  <td class="vam">{{reparacao.budget}}</td>
+                  <td class="vam">{{reparacao.price}}</td>
+                  <td class="vam">{{reparacao.weight}}</td>
+                  <td class="vam">{{reparacao.date_created}}</td>
+                  <td class="vam">{{reparacao.date_completed}}</td>
+                  <td class="vam" style="width:20% !important;" >{{reparacao.description |slice:0:60}}</td>
+                  <td class="vam">
+                    <ng-container *ngIf="reparacao.faturado; else elseTemplate">
+                      Sim
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                      Não
+                    </ng-template>
+                  </td>
+                  <td class="vam">
+                    <ng-container *ngIf="reparacao.pago; else elseTemplate">
+                      Sim
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                      Não
+                    </ng-template>
+                  </td>
+                </tr>
+              
+              </table>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+
+    <div class="actions flex-center">  
+        <div>         
+          <div>  
+            <button type="button nav-link" mdbBtn color="secondary"  class="my-0 flex-item" routerLink="/reparacao"  mdbWavesEffect>Reparações</button>
+            <input type="button" mdbBtn color="primary"  class="my-0 flex-item" value="Imprimir recibo" (click)="printAll()" mdbWavesEffect/>  
+          </div>  
+        </div>  
+      </div> 
+  </div>
+</div>
+</div>
+  
