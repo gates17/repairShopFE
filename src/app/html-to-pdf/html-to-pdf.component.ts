@@ -19,6 +19,8 @@ export class HtmlToPdfComponent implements OnInit {
   vertical_padding:number = 20;
   horizontal_padding:number = 20;
   data_wrap:Array<string> =[];
+  total:number = 0;
+  pago:number =0;
   constructor(
     router: Router
   ) { }
@@ -57,8 +59,7 @@ export class HtmlToPdfComponent implements OnInit {
   public captureReparacaoHtml(reparacoes:any){
     var data = document.getElementById('contentToConvert');  
     let pdf = new jspdf('p','mm','a5');
-    var total:number = 0;
-    var pago:number =0;
+   
 
     
     pdf.text(this.horizontal_padding, this.vertical_padding,'Id')
@@ -67,9 +68,11 @@ export class HtmlToPdfComponent implements OnInit {
     pdf.text(this.horizontal_padding+80, this.vertical_padding, 'Peso')
     for(let reparacao of reparacoes) 
     {
-      console.log(reparacao)
-      total += parseFloat(reparacao.price)
-      pago +=  parseFloat(reparacao.pagamento_parcial)
+
+      this.total = this.total + parseFloat(reparacao.price)
+      this.pago +=  parseFloat(reparacao.pagamento_parcial)
+      console.log(this.total, this.pago)
+      console.log(String(this.total), String(this.pago))
       this.vertical_padding+=10
       pdf.text(this.horizontal_padding, this.vertical_padding,JSON.stringify(reparacao.id))
       pdf.text(this.horizontal_padding+10, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.budget)))
@@ -77,12 +80,11 @@ export class HtmlToPdfComponent implements OnInit {
       pdf.text(this.horizontal_padding+80, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.weight)))
     }
     pdf.text(this.horizontal_padding, this.vertical_padding+10,'Total')
-    pdf.text(this.horizontal_padding+80, this.vertical_padding+10,total)
-    pdf.text(this.horizontal_padding, this.vertical_padding+20,'Paga')
-    pdf.text(this.horizontal_padding+80, this.vertical_padding+20,pago)
+    pdf.text(this.horizontal_padding+80, this.vertical_padding+10,String(this.total))
+    pdf.text(this.horizontal_padding, this.vertical_padding+20,'Pagou')
+    pdf.text(this.horizontal_padding+80, this.vertical_padding+20,String(this.pago))
 
     pdf.save('MYPDF.pdf')
- 
   }
 
   public captureScreen()  
