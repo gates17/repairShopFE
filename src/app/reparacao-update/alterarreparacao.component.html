@@ -65,7 +65,65 @@
               reparacaoForm.controls['budget'].touched">{{validation.message}}
             </span>
           </div>
-        </div>  
+        </div>
+
+
+        <div class="md-form mt-0">    
+          <input type="number" formControlName="discount" class="form-control" mdbInputDirective>
+          <label>Desconto</label>
+          <!-- <div  *ngFor="let validation of validation_messages.budget">
+            <span class="help-block form-error text-danger" 
+              *ngIf="reparacaoForm.controls['budget'].errors?.required &&
+              reparacaoForm.controls['budget'].touched">{{validation.message}}
+            </span>
+          </div>
+                  -->
+        </div>
+
+        <div class="md-form mt-0">    
+          <input type="number" formControlName="quantity" class="form-control" mdbInputDirective>
+          <label>Quantidade</label>
+          <!-- <div  *ngFor="let validation of validation_messages.budget">
+            <span class="help-block form-error text-danger" 
+              *ngIf="reparacaoForm.controls['budget'].errors?.required &&
+              reparacaoForm.controls['budget'].touched">{{validation.message}}
+            </span>
+          </div> -->
+        </div>
+
+        <div class="md-form mt-0">    
+          <input type="number" formControlName="units" class="form-control" mdbInputDirective>
+          <label>Unidades</label>
+          <!-- <div  *ngFor="let validation of validation_messages.budget">
+            <span class="help-block form-error text-danger" 
+              *ngIf="reparacaoForm.controls['budget'].errors?.required &&
+              reparacaoForm.controls['budget'].touched">{{validation.message}}
+            </span>
+          </div> -->
+        </div>
+        
+        <div class="md-form mt-0">    
+          <input type="number" formControlName="tax" class="form-control" mdbInputDirective>
+          <label>Iva</label>
+          <!-- <div  *ngFor="let validation of validation_messages.budget">
+            <span class="help-block form-error text-danger" 
+              *ngIf="reparacaoForm.controls['budget'].errors?.required &&
+              reparacaoForm.controls['budget'].touched">{{validation.message}}
+            </span>
+          </div> -->        
+        </div>
+
+        <div class="md-form mt-0">    
+          <input type="number" formControlName="total_to_pay" class="form-control" mdbInputDirective>
+          <label>Total</label>
+          <!-- <div  *ngFor="let validation of validation_messages.budget">
+            <span class="help-block form-error text-danger" 
+              *ngIf="reparacaoForm.controls['budget'].errors?.required &&
+              reparacaoForm.controls['budget'].touched">{{validation.message}}
+            </span>
+          </div> -->
+        </div>
+
         <!-- description -->
         <div class="md-form mt-0">
           <textarea type="text" formControlName="description" [errorMessage]="textbox_error" class="md-textarea form-control" mdbInputDirective>
@@ -94,10 +152,12 @@
           </div>
         </div>  
         <!-- foto -->
+        <!--
         <div class="md-form mt-0">    
           <input type="text" formControlName="foto" class="form-control" mdbInputDirective>
           <label>Imagem</label>
         </div>  
+        -->
         <!-- materials -->
         <div class="md-form mt-0">
           <textarea type="text" formControlName="materials"  class="md-textarea form-control" mdbInputDirective>

@@ -31,7 +31,11 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
     faturado: new FormControl(false),
     pago: new FormControl(false),
     pagamento_parcial: new FormControl('',Validators.max(9999999999.99)),
-    
+    discount:new FormControl('',Validators.max(100)),
+    quantity:new FormControl('',Validators.max(9999999999)),
+    units:new FormControl('',Validators.max(9999999999)),
+    tax:new FormControl('',Validators.max(100)),
+    total_to_pay:new FormControl('',Validators.max(9999999999.99))
 
   })
  
@@ -80,6 +84,7 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
   }
 
   createReparacao() {
+    console.log(this.reparacaoForm)
     if (this.reparacaoForm.controls.date_completed.value != null){
       let date = this.reparacaoForm.controls.date_completed.value
       let dateParser = new Date(date.year, date.month-1, date.day);

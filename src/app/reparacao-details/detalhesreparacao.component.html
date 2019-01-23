@@ -28,6 +28,7 @@
           <input type="number" formControlName="pagamento_parcial" class="form-control" mdbInputDirective>
           <label>Pagamento parcial</label>
         </div>
+
         <!-- budget -->
         <div class="md-form mt-0">    
           <input type="text" formControlName="budget" class="form-control  disabled" mdbInputDirective>
@@ -54,30 +55,58 @@
         </div>  
 
         <!-- foto -->
+        <!--
         <div class="md-form mt-0">    
           <input type="text" formControlName="foto" class="form-control  disabled" mdbInputDirective>
           <label>Imagem</label>
         </div>  
-
-       <!-- materials -->
+        -->
+        <!-- materials -->
         <div class="md-form mt-0">
           <textarea type="text" formControlName="materials"  class="md-textarea form-control  disabled" mdbInputDirective>
           </textarea>
           <label>Materiais</label>
         </div>
 
-       <!-- faturado -->
-       <div class="md-form mt-0">
-          <input type="checkbox" formControlName="faturado"  class="md-textarea form-control  disabled" mdbInputDirective>
-          <label>Faturado</label>
+        <!-- faturado -->
+        <div class="md-form mt-0">
+            <input type="checkbox" formControlName="faturado"  class="md-textarea form-control  disabled" mdbInputDirective>
+            <label>Faturado</label>
+          </div>
+
+        <!-- pago -->
+        <div class="md-form mt-0">
+          <input type="checkbox" formControlName="pago"  class="md-textarea form-control  disabled" mdbInputDirective>
+          <label>Pago</label>
         </div>
 
-       <!-- pago -->
-       <div class="md-form mt-0">
-        <input type="checkbox" formControlName="pago"  class="md-textarea form-control  disabled" mdbInputDirective>
-        <label>Pago</label>
-       </div>
-        <!--ACCOES-->
+
+      <!-- discount -->
+      <div class="md-form mt-0">    
+        <input type="text" formControlName="discount" class="form-control  disabled" mdbInputDirective>
+        <label>Desconto</label>
+      </div>  
+      <!-- quantity -->
+      <div class="md-form mt-0">    
+        <input type="text" formControlName="quantity" class="form-control  disabled" mdbInputDirective>
+        <label>Quantidade</label>
+      </div>  
+      <!-- units -->
+      <div class="md-form mt-0">    
+        <input type="text" formControlName="units" class="form-control  disabled" mdbInputDirective>
+        <label>Unidades</label>
+      </div>  
+      <!-- tax -->
+      <div class="md-form mt-0">    
+        <input type="text" formControlName="tax" class="form-control  disabled" mdbInputDirective>
+        <label>Iva</label>
+      </div>  
+      <!-- total to pay -->
+      <div class="md-form mt-0">    
+        <input type="text" formControlName="total_to_pay" class="form-control  disabled" mdbInputDirective>
+        <label>Total</label>
+      </div>  
+      <!--ACCOES-->
         <div class="col-md-3 flex-center" id="accoes">
           <div class="flex-item">
             <button type="button nav-link" mdbBtn color="primary" class="my-0" rounded="true" (click)="print()" title="Imprimir" mdbWavesEffect>

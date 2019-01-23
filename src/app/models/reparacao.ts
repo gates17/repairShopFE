@@ -15,4 +15,9 @@ export interface IReparacao {
     faturado:boolean,
     pago:boolean,
     pagamento_parcial:number,
+    discount:number,
+    quantity:number,
+    units:number,
+    tax:number,
+    total_to_pay:number
 }
