@@ -73,14 +73,34 @@ export class HtmlToPdfComponent implements OnInit {
       this.total = this.total + parseFloat(reparacao.price)
       this.pago +=  parseFloat(reparacao.pagamento_parcial)
       this.vertical_padding+=10
+     
+      if (this.vertical_padding>=pdf.pageHeight)
+      {
+        console.log(this.vertical_padding)
+        console.log(pdf.pageHeight  )
+        console.log(pdf.internal.pageSize.height)
+        pdf.addPage();
+        this.vertical_padding=20
+        pdf.text(this.horizontal_padding, this.vertical_padding,'Id')
+        pdf.text(this.horizontal_padding+10, this.vertical_padding, 'Orçamento')
+        pdf.text(this.horizontal_padding+50, this.vertical_padding, 'Preço')
+        pdf.text(this.horizontal_padding+80, this.vertical_padding, 'Peso')
+        this.vertical_padding+=10
+      }
       pdf.text(this.horizontal_padding, this.vertical_padding,JSON.stringify(reparacao.id))
       pdf.text(this.horizontal_padding+10, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.budget)))
       pdf.text(this.horizontal_padding+50, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.price)))
       pdf.text(this.horizontal_padding+80, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.weight)))
-      if (this.vertical_padding>=pdf.pageHeight)
-      {
+    }
+    if (this.vertical_padding>=pdf.pageHeight)
+    {
         pdf.addPage();
-      }
+        this.vertical_padding=20
+        pdf.text(this.horizontal_padding, this.vertical_padding,'Id')
+        pdf.text(this.horizontal_padding+10, this.vertical_padding, 'Orçamento')
+        pdf.text(this.horizontal_padding+50, this.vertical_padding, 'Preço')
+        pdf.text(this.horizontal_padding+80, this.vertical_padding, 'Peso')
+        this.vertical_padding+=10
     }
     pdf.text(this.horizontal_padding, this.vertical_padding+10,'Total')
     pdf.text(this.horizontal_padding+80, this.vertical_padding+10,String(this.total))
