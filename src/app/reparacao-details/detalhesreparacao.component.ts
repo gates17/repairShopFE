@@ -39,7 +39,9 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
     quantity:new FormControl(''),
     units:new FormControl(''),
     tax:new FormControl(''),
-    total_to_pay:new FormControl('')
+    tax_to_pay:new FormControl('',Validators.max(9999999999.99)),
+    total_to_pay:new FormControl('',Validators.max(9999999999.99)),
+    total_to_pay_with_tax:new FormControl('',Validators.max(9999999999.99))
 
   })
 
@@ -78,7 +80,9 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
             this.reparacaoForm.controls.quantity.setValue(this.reparacao.quantity);
             this.reparacaoForm.controls.units.setValue(this.reparacao.units);
             this.reparacaoForm.controls.tax.setValue(this.reparacao.tax);
+            this.reparacaoForm.controls.tax_to_pay.setValue(this.reparacao.tax_to_pay);
             this.reparacaoForm.controls.total_to_pay.setValue(this.reparacao.total_to_pay);
+            this.reparacaoForm.controls.total_to_pay_with_tax.setValue(this.reparacao.total_to_pay_with_tax);
           } else {
             alert("A reparacação não foi encontrada. Clique em ok para retornar às reparações.")
             this.gotoList();
@@ -118,7 +122,9 @@ export class DetalhesreparacaoComponent implements OnInit, OnDestroy {
       this.reparacaoForm.controls.quantity.setValue(this.reparacao.quantity);
       this.reparacaoForm.controls.units.setValue(this.reparacao.units);
       this.reparacaoForm.controls.tax.setValue(this.reparacao.tax);
+      this.reparacaoForm.controls.tax_to_pay.setValue(this.reparacao.tax_to_pay);
       this.reparacaoForm.controls.total_to_pay.setValue(this.reparacao.total_to_pay);
+      this.reparacaoForm.controls.total_to_pay_with_tax.setValue(this.reparacao.total_to_pay_with_tax);
 
       this.prs.setData(this.reparacaoForm);
    

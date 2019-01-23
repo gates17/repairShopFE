@@ -41,7 +41,9 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
     quantity:new FormControl('',Validators.max(9999999999)),
     units:new FormControl('',Validators.max(9999999999)),
     tax:new FormControl('',Validators.max(100)),
-    total_to_pay:new FormControl('',Validators.max(9999999999.99))
+    tax_to_pay:new FormControl('',Validators.max(9999999999.99)),
+    total_to_pay:new FormControl('',Validators.max(9999999999.99)),
+    total_to_pay_with_tax:new FormControl('',Validators.max(9999999999.99))
 
   })
   private client_request: any;
@@ -113,8 +115,10 @@ export class AlterarreparacaoComponent implements OnInit, OnDestroy {
             this.reparacaoForm.controls.quantity.setValue(this.reparacao.quantity);
             this.reparacaoForm.controls.units.setValue(this.reparacao.units);
             this.reparacaoForm.controls.tax.setValue(this.reparacao.tax);
+            this.reparacaoForm.controls.tax_to_pay.setValue(this.reparacao.tax_to_pay);
             this.reparacaoForm.controls.total_to_pay.setValue(this.reparacao.total_to_pay);
-            
+            this.reparacaoForm.controls.total_to_pay_with_tax.setValue(this.reparacao.total_to_pay_with_tax);
+      
             this.client_request = this.getClientesService.getClientes('').subscribe(data =>{
               this.clientOptions = data['results']
              

@@ -19,5 +19,7 @@ export interface IReparacao {
     quantity:number,
     units:number,
     tax:number,
-    total_to_pay:number
+    tax_to_pay:number,
+    total_to_pay:number,
+    total_to_pay_with_tax:number
 }

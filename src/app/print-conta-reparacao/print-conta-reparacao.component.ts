@@ -37,6 +37,7 @@ export class PrintContaReparacaoComponent extends HtmlToPdfComponent implements 
   }
 
   printAll(){
+    console.log(this.reparacoes)
     this.captureReparacaoHtml(this.reparacoes)
     this.router.navigate(['/reparacao'])    
   }

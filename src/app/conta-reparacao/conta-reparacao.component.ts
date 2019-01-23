@@ -65,11 +65,9 @@ export class ContaReparacaoComponent implements OnInit {
 
   ngOnInit() {
     this.list_to_print= this.prs.getList()//.subscribe(message => this.list_to_print=message)
-    console.log(this.list_to_print)
     if(this.list_to_print != undefined && this.list_to_print!= null && this.list_to_print.length > 0){
       this.get_request = this.http.get<any[]>("http://localhost:8000/reparacao/?q=list&qp="+this.list_to_print).subscribe(data =>{
       this.reparacoes=data
-      console.log(data)
       });
     }
     else{
@@ -122,8 +120,6 @@ export class ContaReparacaoComponent implements OnInit {
   }
 
   print(){
-    console.log(this.get_request)
-    console.log(this.reparacoes)
     this.prs.setList(this.reparacoes)
     this.router.navigate(['/reparacao/conta/print'])
   }

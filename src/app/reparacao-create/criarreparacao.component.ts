@@ -35,8 +35,9 @@ export class CriarreparacaoComponent implements OnInit, OnDestroy {
     quantity:new FormControl('',Validators.max(9999999999)),
     units:new FormControl('',Validators.max(9999999999)),
     tax:new FormControl('',Validators.max(100)),
-    total_to_pay:new FormControl('',Validators.max(9999999999.99))
-
+    tax_to_pay:new FormControl('',Validators.max(9999999999.99)),
+    total_to_pay:new FormControl('',Validators.max(9999999999.99)),
+    total_to_pay_with_tax:new FormControl('',Validators.max(9999999999.99))
   })
  
   // private subresponse:any;
