@@ -72,8 +72,8 @@ export class HtmlToPdfComponent implements OnInit {
     pdf.text(this.horizontal_padding+64, this.vertical_padding, 'Total')
     pdf.text(this.horizontal_padding+80, this.vertical_padding, 'Total C/Iva')
     pdf.text(this.horizontal_padding+96, this.vertical_padding, '%Iva')
-    pdf.text(this.horizontal_padding+112, this.vertical_padding, 'Iva')
-    pdf.text(this.horizontal_padding+124, this.vertical_padding, 'Desconto')
+    pdf.text(this.horizontal_padding+108, this.vertical_padding, 'Iva')
+    pdf.text(this.horizontal_padding+120, this.vertical_padding, 'Desconto')
   }
 
   public faturacao(pdf:any){
@@ -82,28 +82,28 @@ export class HtmlToPdfComponent implements OnInit {
     console.log(this.vertical_padding)
 
     pdf.text(this.horizontal_padding, this.vertical_padding+30,'Total')
-    pdf.text(this.horizontal_padding+134, this.vertical_padding+30,String(this.total))
+    pdf.text(this.horizontal_padding+120, this.vertical_padding+30,String(this.total))
     
     pdf.text(this.horizontal_padding, this.vertical_padding+35,'Total c/ Iva')
-    pdf.text(this.horizontal_padding+134, this.vertical_padding+35,String(this.total_com_iva))
+    pdf.text(this.horizontal_padding+120, this.vertical_padding+35,String(this.total_com_iva))
   
     pdf.text(this.horizontal_padding, this.vertical_padding+40,'Valor do iva')
-    pdf.text(this.horizontal_padding+134, this.vertical_padding+40,String(this.valor_do_iva))
+    pdf.text(this.horizontal_padding+120, this.vertical_padding+40,String(this.valor_do_iva))
   
     pdf.text(this.horizontal_padding, this.vertical_padding+45,'Desconto')
-    pdf.text(this.horizontal_padding+134, this.vertical_padding+45,String(this.desconto))
+    pdf.text(this.horizontal_padding+120, this.vertical_padding+45,String(this.desconto))
   
     pdf.text(this.horizontal_padding, this.vertical_padding+50,'Pagou')
-    pdf.text(this.horizontal_padding+134, this.vertical_padding+50,String(this.pago))
+    pdf.text(this.horizontal_padding+120, this.vertical_padding+50,String(this.pago))
     
     pdf.text(this.horizontal_padding, this.vertical_padding+55,'Valor em divida')
-    pdf.text(this.horizontal_padding+134, this.vertical_padding+55,String(this.total))
+    pdf.text(this.horizontal_padding+120, this.vertical_padding+55,String(this.total))
 
   }
   public captureReparacaoHtml(reparacoes:any){
     var data = document.getElementById('contentToConvert');  
-    let pdf = new jspdf('l','mm','a5');
-    pdf.pageHeight=148
+    let pdf = new jspdf('l','mm','a4');
+    pdf.pageHeight=200
     pdf.setFontSize(8)
     this.vertical_padding = 10
     this.horizontal_padding = 10
@@ -130,16 +130,6 @@ export class HtmlToPdfComponent implements OnInit {
         this.vertical_padding=20
         this.cabecalho(pdf)
 
-        // pdf.text(this.horizontal_padding, this.vertical_padding,'Id')
-        // pdf.text(this.horizontal_padding+10, this.vertical_padding, 'Preço')
-        // pdf.text(this.horizontal_padding+25, this.vertical_padding, 'Peso')
-        // pdf.text(this.horizontal_padding+35, this.vertical_padding, 'Unidades')
-        // pdf.text(this.horizontal_padding+55, this.vertical_padding, 'Quantidade')
-        // pdf.text(this.horizontal_padding+80, this.vertical_padding, 'Total')
-        // pdf.text(this.horizontal_padding+98, this.vertical_padding, 'Total C/Iva')
-        // pdf.text(this.horizontal_padding+125, this.vertical_padding, '%Iva')
-        // pdf.text(this.horizontal_padding+140, this.vertical_padding, 'Iva')
-        // pdf.text(this.horizontal_padding+160, this.vertical_padding, 'Desconto')
 
         this.vertical_padding+=10
       }
@@ -166,63 +156,22 @@ export class HtmlToPdfComponent implements OnInit {
         this.cabecalho(pdf)
         this.vertical_padding+=10
     }
-    if(this.vertical_padding<88)
+    if(this.vertical_padding<150)
     {
       console.log(this.vertical_padding)
-      this.vertical_padding=88
+      this.vertical_padding=150
       this.faturacao(pdf)
       this.vertical_padding=10
     }
-    if(this.vertical_padding >=88){
+    if(this.vertical_padding >=150){
       pdf.addPage();
       this.vertical_padding=10
       this.cabecalho(pdf)
 
-      this.vertical_padding=88
+      this.vertical_padding=150
       this.faturacao(pdf)
 
     }
-  
-    // for(let reparacao of reparacoes) 
-    // {
-
-    //   this.total = this.total + parseFloat(reparacao.price)
-    //   this.pago +=  parseFloat(reparacao.pagamento_parcial)
-    //   pdf.text(this.horizontal_padding, this.vertical_padding,'Id')
-    //   pdf.text(this.horizontal_padding+10, this.vertical_padding,JSON.stringify(reparacao.id))
-
-    //   this.vertical_padding+=10
-    //   pdf.text(this.horizontal_padding, this.vertical_padding, 'Orçamento')
-    //   pdf.text(this.horizontal_padding+30, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.budget)))
-
-    //   this.vertical_padding+=10
-    //   pdf.text(this.horizontal_padding, this.vertical_padding, 'Preço')
-    //   pdf.text(this.horizontal_padding+30, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.price)))
-
-    //   this.vertical_padding+=10
-    //   pdf.text(this.horizontal_padding, this.vertical_padding, 'Peso')
-    //   pdf.text(this.horizontal_padding+30, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.weight)))
-
-    //   this.vertical_padding+=10
-    //   pdf.text(this.horizontal_padding, this.vertical_padding, 'Pago')
-    //   pdf.text(this.horizontal_padding+30, this.vertical_padding, JSON.parse(JSON.stringify(reparacao.pagamento_parcial)))
-
-    //   this.vertical_padding+=20
-    //   this.vertical_padding+=20
-
-    //   if (this.vertical_padding>=pdf.pageHeight)
-    //   {
-    //     console.log(pdf.options)
-    //     console.log(this.vertical_padding)
-    //     console.log(pdf.pageHeight  )
-    //     console.log(pdf.internal.pageSize.height)
-    //     pdf.addPage();
-    //   }
-    // }
-    // pdf.text(this.horizontal_padding, this.vertical_padding+10,'Total')
-    // pdf.text(this.horizontal_padding+30, this.vertical_padding+10,String(this.total))
-    // pdf.text(this.horizontal_padding, this.vertical_padding+20,'Pagou')
-    // pdf.text(this.horizontal_padding+30, this.vertical_padding+20,String(this.pago))
     pdf.save('MYPDF.pdf')
   }
 
